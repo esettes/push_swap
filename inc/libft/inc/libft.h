@@ -6,15 +6,16 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:36:29 by iostancu          #+#    #+#             */
-/*   Updated: 2022/07/04 17:34:33 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/02/19 19:01:34 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
+
+#include <stddef.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 typedef struct s_list
 {
@@ -22,12 +23,20 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+/**
+ * @return True if 'c' is alphanumeric.
+ */
 int		ft_isalpha(int c);
+/**
+ * @return True if 'c' is digit(0-9).
+ */
 int		ft_isdigit(int c);
-int		ft_chrisdigit(char c);
 int		ft_isalnum(int c);
-int		ft_isspace(char c);
+int 	ft_isspace(int c);
 int		ft_isascii(int c);
+/**
+ * @return True if 'c' is printable.
+ */
 int		ft_isprint(int c);
 size_t	ft_strlen(const char *s);
 /**
@@ -37,8 +46,6 @@ size_t	ft_strlen(const char *s);
  * @param[in] b Pointer to memory to fill.
  * @param[in] c Byte to fill with.
  * @param[in] len Number of bytes to fill.
- * 
- * @return Pointer to b.
  */
 void	*ft_memset(void *b, int c, size_t len);
 /**
@@ -52,13 +59,14 @@ void	ft_bzero(void *s, size_t n);
 /**
  * Copies n bytes from memory area src to memory area dest.
  * 
- * @param dest Where the copy will be saved.
- * @param src Source to be copied.
- * @param n Number of bytes.
+ * @param[in] dest Where the copy will be saved.
+ * @param[in] src Source to be copied.
+ * @param[in] n Number of bytes.
  *
- * @return Pointer to dest.
+ * @return Pointer to dest
  */
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+
 void	*ft_memmove(void *dest, const void *src, size_t n);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
@@ -69,25 +77,9 @@ char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-/**
- * Returns pointer to the first coincidence of needle found in haystack.
- * 
- * @param[in] haystack String where to search.
- * @param[in] needle String which I search.
- * @param[in] len Lenght of haystack where want to search.
- */
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-/**
- * Returns pointer to the next char of coincidence.
- */
-char	*ft_strnstr_after(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *str);
-/**
- * Allocates the requested memory and sets it to zero.
- * 
- * @param[in] count Number of items to alloc.
- * @param[in] size Type size of the items.
- */
+int 	ft_atoi_base(const char *str, int base);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -99,11 +91,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *color, char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-/**
- * Creates a new node of type t_list.
- */
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
@@ -113,6 +102,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-int		ft_atoi_base(const char *str, int base);
 
 #endif

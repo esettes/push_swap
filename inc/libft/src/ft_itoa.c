@@ -6,11 +6,12 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 20:04:09 by iostancu          #+#    #+#             */
-/*   Updated: 2022/06/20 13:18:47 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/02/19 16:59:58 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 static size_t	ft_is_neg(int n)
 {

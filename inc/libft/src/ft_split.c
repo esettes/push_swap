@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:27:13 by iostancu          #+#    #+#             */
-/*   Updated: 2022/06/20 13:17:35 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/02/19 18:52:11 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 static char	**free_memory(const char **arr, size_t pos)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < pos)
-	{
-		free ((void *)arr[i]);
-		i++;
-	}
+	while (pos--)
+		free ((void *)arr[pos]);
 	free(arr);
 	return (NULL);
 }
@@ -35,8 +29,6 @@ static size_t	str_count(char const *s, char c)
 	count = 0;
 	bo = 0;
 	a = (char *)s;
-	if (!a)
-		return (0);
 	while (*a)
 	{
 		if (*a != c && bo == 0)

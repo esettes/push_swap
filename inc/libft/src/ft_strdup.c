@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:20:53 by iostancu          #+#    #+#             */
-/*   Updated: 2022/06/20 13:17:04 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/02/04 19:40:42 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 char	*ft_strdup(const char *s1)
 {
+	size_t	i;
+	size_t	len;
 	char	*cpy;
 
-	cpy = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	i = 0;
+	len = ft_strlen(s1);
+	cpy = (char *)malloc(ft_strlen((char *)s1) + 1);
 	if (cpy == NULL)
 		return (NULL);
-	ft_strlcpy(cpy, s1, ft_strlen(s1) + 1);
+	while (i < len)
+	{
+		cpy[i] = s1[i];
+		i++;
+	}
+	cpy[i] = '\0';
 	return (cpy);
 }

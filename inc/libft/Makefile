@@ -1,40 +1,59 @@
-GREEN	=\033[0;32m
-BBLUE	=\033[1;34m
-LBLUE	=\033[2;34m
-LRED	=\033[2;31m
-LYELLOW	=\033[2;33m
+GREEN	= \033[0;32m
+BWHITE	= \033[1;37m
+LGREEN	= \033[2;32m
 LWHITE	= \033[2;37m
-LGREEN	=\033[2;32m
-
-NAME	= libft.a
+RESET	= \033[2;33m
 
 SRCDIR	= ./src/
 SRCNAMES	= $(shell ls $(SRCDIR) | grep -E ".+\.c")
-SRC	= $(addprefix $(SRCDIR), $(SRCNAMES))
+SRCS	= $(addprefix $(SRCDIR), $(SRCNAMES))
+
 OBJDIR	= ./obj/
 OBJS	= $(addprefix $(OBJDIR), $(SRCNAMES:.c=.o))
 
-LIBINC	= ./inc/#libft.h
-FLAGS	= -Wall -Wextra -Werror #-glldb
-CC	= gcc
+B_SRCDIR	= ./bonus/
+B_SRCNAMES	= $(shell ls $(B_SRCDIR) | grep -E ".+\.c")
+B_SRCS	= $(addprefix $(B_SRCDIR), $(B_SRCNAMES))
+OBJB	= $(addprefix $(OBJDIR), $(B_SRCNAMES:.c=.o))
+
+NAME	= libft.a
+BONUS	= .
+CC  = gcc
+RM  = rm -f
+CFLAGS  = -Wall -Wextra -Werror
+AR = ar rc
+
+HEADER	= -I include -I ./inc/
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	@$(CC) $(FLAGS) -I$(LIBINC) -o $@ -c $<
-#	@echo "${LWHITE}Compiling $(notdir $<) ${LGREEN}✓$(RESET)"
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CFLAGS) $(HEADER) -o $@ -c $<
 
-$(NAME): $(OBJS)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
-	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)\033[2;33m"
+$(NAME):	$(OBJS)
+	@${AR} ${NAME} ${OBJS}
+	@ranlib ${NAME}
+	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)"
+	@echo "${BWHITE}Compilation ${GREEN}[OK]$(RESET)" 
 
-all: $(NAME) ${OBJDIR}
+$(OBJDIR)%.o:$(B_SRCDIR)%.c
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CFLAGS) $(HEADER) -o $@ -c $<
+
+${BONUS}:	${OBJS} ${OBJB}
+		@${AR}	${NAME} ${OBJB}
+		@ranlib ${NAME}
+
+bonus:	${BONUS}
+
+all:	${NAME}
 
 clean:
-	@rm -rf $(OBJDIR)*.o
+		@${RM} ${OBJS} ${OBJB}
 
-fclean: clean
-	@rm -fr $(NAME)
+fclean:	clean
+		@${RM} ${NAME}
+		@echo "${BWHITE}Clean all ${GREEN}[OK]$(RESET)"
 
-re: fclean all
+re:		fclean all bonus
 
-.PHONY: re clean fclean all
+.PHONY:	all clean fclean re
