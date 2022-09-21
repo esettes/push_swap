@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_isnumsymbol.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 16:42:46 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/21 21:49:23 by iostancu         ###   ########.fr       */
+/*   Created: 2022/09/21 21:35:02 by iostancu          #+#    #+#             */
+/*   Updated: 2022/09/21 21:35:32 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *color, char *s, int fd)
+int	ft_isnumsymbol(int c)
 {
-	if (!s || fd < 0)
-		return ;
-	if (!color)
-		color = "\x1b[0m";
-	while (*color)
-		write(fd, color++, 1);
-	while (*s)
-		write (fd, s++, 1);
-	write (fd, "\n", 1);
+	if ((c == '-' && c <= '+'))
+		return (1);
+	return (0);
 }

@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/21 17:01:06 by iostancu          #+#    #+#              #
+#    Updated: 2022/09/21 21:19:27 by iostancu         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 GREEN	= \033[0;32m
 BWHITE	= \033[1;37m
 LGREEN	= \033[2;32m
@@ -33,7 +45,7 @@ $(NAME):	$(OBJS)
 	@${AR} ${NAME} ${OBJS}
 	@ranlib ${NAME}
 	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)"
-	@echo "${BWHITE}Compilation ${GREEN}[OK]$(RESET)" 
+#@echo "${BWHITE}Compilation ${GREEN}[OK]$(RESET)" 
 
 $(OBJDIR)%.o:$(B_SRCDIR)%.c
 	@mkdir -p $(OBJDIR)

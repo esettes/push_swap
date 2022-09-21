@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 16:42:46 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/21 21:49:23 by iostancu         ###   ########.fr       */
+/*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
+/*   Updated: 2022/09/21 21:44:57 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_putendl_fd(char *color, char *s, int fd)
+int	check_valid_args(char **stack)
 {
-	if (!s || fd < 0)
-		return ;
-	if (!color)
-		color = "\x1b[0m";
-	while (*color)
-		write(fd, color++, 1);
-	while (*s)
-		write (fd, s++, 1);
-	write (fd, "\n", 1);
+	t_iter	it;
+	
+	it.i = 0;
+	it.j = 0;
+	while (stack[it.i])
+	{
+		while (stack[it.i][it.j])
+		{
+			if (ft_isnumsymbol(stack[it.i][it.j]) || ft_isdigit(stack[it.i][it.j]))
+				it.j++;
+			else
+				return (0);
+		}
+		it.i++;
+	}
+	return (1);
 }

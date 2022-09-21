@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:36:29 by iostancu          #+#    #+#             */
-/*   Updated: 2022/02/19 19:01:34 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/21 21:49:47 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ft_isalpha(int c);
  * @return True if 'c' is digit(0-9).
  */
 int		ft_isdigit(int c);
+int		ft_isnumsymbol(int c);
 int		ft_isalnum(int c);
 int 	ft_isspace(int c);
 int		ft_isascii(int c);
@@ -91,7 +92,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
+void	ft_putendl_fd(char *color, char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
