@@ -35,6 +35,10 @@ HEADERS	= -I include -I ./inc/libft/inc/ -I ./inc/headers/
 CC	= gcc
 CFLAGS	= -O0 -g  #-Ofast -fsanitize=leak -fno-omit-frame-pointer # -Wall -Wextra -Werror 
 
+ifeq ($(OS), Linux)
+	VALGRIND = valgrind --tool=memcheck --leak-check=full --track-origin=yes -s
+endif
+
 all: obj $(LIBFT) $(NAME)
 
 obj:

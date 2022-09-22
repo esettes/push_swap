@@ -29,6 +29,6 @@ typedef struct	s_iter
 	int	j;
 }				t_iter;
 
-int	check_valid_args(char **stack);
+int	check_valid_args(int pos, char **stack);
 
 #endif

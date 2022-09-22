@@ -14,7 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	if (check_valid_args(argv))
+	
+	if (check_valid_args(argc, argv))
 		ft_putendl_fd(GREEN_,"Valid arguments!", 1);
 	else
 		ft_putendl_fd(RED_,"Invalid arguments!", 1);
