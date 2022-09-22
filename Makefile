@@ -24,7 +24,7 @@ OS		=	$(shell uname -s)
 SRCDIR	= ./src/
 SRCNAMES	= $(shell ls $(SRCDIR) | grep -E ".+\.c")
 SRC	= $(addprefix $(SRCDIR), $(SRCNAMES))
-OBJDIR	= ./obj/
+OBJDIR	= ./src/obj/
 OBJS	= $(addprefix $(OBJDIR), $(SRCNAMES:.c=.o))
 
 LIBFT	= ./inc/libft/libft.a
@@ -36,13 +36,13 @@ CC	= gcc
 CFLAGS	= -O0 -g  #-Ofast -fsanitize=leak -fno-omit-frame-pointer # -Wall -Wextra -Werror 
 
 ifeq ($(OS), Linux)
-	VALGRIND = valgrind --tool=memcheck --leak-check=full --track-origin=yes -s
+	VALGRIND = valgrind --tool=memcheck --leak-check=full --track-origins=yes -s
 endif
 
 all: obj $(LIBFT) $(NAME)
 
 obj:
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
 	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<

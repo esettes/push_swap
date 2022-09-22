@@ -4,7 +4,8 @@
 #define LONG_MIN (~LONG_MAX)
 int isspace(int c); /* <-- Forward declare from <ctype.h> */ 
 
-long f_strtol(const char *restrict nptr, char **restrict endptr, int base) {
+long ft_strtol(const char *restrict nptr, char **restrict endptr, int base) 
+{
     const char *p = nptr, *endp;
     _Bool is_neg = 0, overflow = 0;
     /* Need unsigned so (-LONG_MIN) can fit in these: */

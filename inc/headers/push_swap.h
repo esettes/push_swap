@@ -29,6 +29,14 @@ typedef struct	s_iter
 	int	j;
 }				t_iter;
 
-int	check_valid_args(int pos, char **stack);
+typedef struct	s_stack
+{
+	int	*a;
+	int	*b;
+}				t_stack;
+
+int		is_valid_arg(char **stack);
+int		is_sorted_arg(int pos, t_stack *stack);
+void    alloc_stacks(int argc, char **argv, t_stack *stack);
 
 #endif
