@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/21 21:44:57 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/22 23:36:53 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,27 @@ int	is_sorted_arg(int pos, t_stack *stack)
 		i++;
 	}
     return (1);
+}
+
+int is_duplicated_arg(int pos, t_stack *stack)
+{
+    int	i;
+    int aux;
+
+	i = 1;
+	if (pos == 1)
+        return (1);
+	while (i < pos)
+    {
+        aux = i;
+        
+        while (aux + 1 < pos)
+        {
+            if (stack->a[i] == stack->a[aux + 1])
+                return (1);
+            aux++;
+        }
+        i++;
+	}
+    return (0);
 }

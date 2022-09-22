@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/21 21:48:12 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/22 23:37:02 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_stack
 
 int		is_valid_arg(char **stack);
 int		is_sorted_arg(int pos, t_stack *stack);
-void    alloc_stacks(int argc, char **argv, t_stack *stack);
+void	alloc_stacks(int argc, char **argv, t_stack *stack);
+int		is_duplicated_arg(int pos, t_stack *stack);
 
 #endif
