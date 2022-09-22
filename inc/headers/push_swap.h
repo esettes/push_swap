@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/22 23:37:02 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/23 00:43:16 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,22 @@ int		is_valid_arg(char **stack);
 int		is_sorted_arg(int pos, t_stack *stack);
 void	alloc_stacks(int argc, char **argv, t_stack *stack);
 int		is_duplicated_arg(int pos, t_stack *stack);
+
+/*
+ * Swaps the first two elements of the head of stack A.
+ * Nothing to do if stack A have < 1 elements.
+ */
+void	swap_a(t_stack *stack);
+/*
+ * Swaps the first two elements of the head of stack B.
+ * Nothing to do if stack B have < 1 elements.
+ */
+void	swap_b(t_stack *stack);
+/*
+ * Swaps the first two elements of the head of stack A and B.
+ * Nothing to do if stack A or stack B has < 1 elements.
+ */
+void	swap_a_b(t_stack *stack);
+void    print_args(int pos, t_stack *stack);
 
 #endif

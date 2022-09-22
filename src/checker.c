@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/22 23:36:53 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/23 00:42:43 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,16 @@ int is_duplicated_arg(int pos, t_stack *stack)
         i++;
 	}
     return (0);
+}
+
+void    print_args(int pos, t_stack *stack)
+{
+    int i;
+
+    i = 1;
+    while (i < pos)
+    {
+	    printf("%i\n",stack->a[i]);
+		i++;
+	}
 }
