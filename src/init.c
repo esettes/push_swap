@@ -54,7 +54,8 @@ void    print_args(int pos, t_stack *stack)
     i = 1;
     while (i < pos)
     {
-	    printf("%i\n",stack->a->item[i]);
+	    printf("%i\n",stack->a->item);
+        stack->a = stack->a->next;
 		i++;
 	}
 }
