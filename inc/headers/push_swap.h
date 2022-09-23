@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 #include "libft.h"
+#include "stdio.h"
 
 #define RED_    "\x1b[31m"
 #define GREEN_  "\x1b[32m"
@@ -31,8 +32,8 @@ typedef struct	s_iter
 
 typedef struct s_st
 {
-	int			*item;
-	struct s_a	*next;
+	long int	*item;
+	struct s_st	*next;
 }				t_st;
 
 typedef struct	s_stack

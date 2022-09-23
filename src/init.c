@@ -34,14 +34,17 @@ void    alloc_stacks(int argc, char **argv, t_stack *stack)
     // if (argc == 1)
     //     return ;
     //stack = (t_stack *)malloc(sizeof(t_stack));
-    stack->a = (int *)malloc(sizeof(int) * (argc));
-    stack->b = (int *)malloc(sizeof(int) * (argc));
+    stack->a = (t_st *)malloc(sizeof(t_st));
+    stack->b = (t_st *)malloc(sizeof(t_st));
+    stack->a->next = NULL;
     //while(i < argc)
     while (i < argc)
     {
         ptr = NULL;
         ret = ft_strtol(argv[i], &ptr, 10);
-        stack->a->item = ret;
+        //stack->a->item = (long int)malloc(sizeof(long int));
+        stack->a->item[i - 1] = ret;
+        printf("%i\n", stack->a->item);
         stack->a = stack->a->next;
         i++;
     }
