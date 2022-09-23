@@ -21,12 +21,9 @@ int		main(int argc, char **argv)
 	return (0);
 }
 
-void	free_stack(t_stack *stack)
+void	free_stack(t_st *stack)
 {
-	free(stack->a->item);
-	free(stack->a);
-	//free(stack->b->item);
-	free(stack->b);
+	free(stack->item);
 	free(stack);
 }
 
@@ -56,10 +53,15 @@ int		push_swap(int argc, char **argv)
 		swap_a(stack, 0);
 		ft_putendl_fd(VIOLET_,"After swap A:", 1);*/
 		//print_args(argc, stack);
+		free_stack(stack->a);
+		free(stack);
 	}
 	else
+	{
 		ft_putendl_fd(RED_,"Invalid arguments!", 1);
-	free_stack(stack);
+		free(stack);
+	}
+	
 	return (1);
 }
 
