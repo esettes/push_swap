@@ -33,7 +33,7 @@ COMPS	= $(LIBFT)
 HEADERS	= -I include -I ./inc/libft/inc/ -I ./inc/headers/
 
 CC	= gcc
-CFLAGS	= -O0 -g  #-Ofast -fsanitize=leak -fno-omit-frame-pointer # -Wall -Wextra -Werror 
+CFLAGS	= -O0 -g3  #-Ofast -fsanitize=leak -fno-omit-frame-pointer # -Wall -Wextra -Werror 
 
 ifeq ($(OS), Linux)
 	VALGRIND = valgrind --tool=memcheck --leak-check=full --track-origins=yes -s
@@ -45,11 +45,11 @@ obj:
 	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
+	@ $(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
 
 #Change libx42_flags position at the end of the coommand
 $(NAME):	$(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) 
+	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) 
 	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)\033[2;33m"
 	@echo "${BWHITE}Compilation ${GREEN}[OK]$(RESET)\033[2;33m" 
 

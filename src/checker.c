@@ -35,23 +35,29 @@ int	is_valid_arg(char **stack)
 	return (1);
 }
 
-/*
-int	is_sorted_arg(int pos, t_stack *stack)
+
+int	is_sorted_arg(int pos, t_st *stack)
 {
 	int	i;
+    int aux;
 
 	i = 1;
 	if (pos == 1)
         return (1);
-	while (i < pos)
+    while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
+	while (stack)
     {
-	    if (stack->a[i - 1] > stack->a[i])
+	    if (stack->item[i - 1] > stack->item[i])
             return (0);
 		i++;
 	}
     return (1);
 }
-*/
+
 /*
 int is_duplicated_arg(int pos, t_stack *stack)
 {

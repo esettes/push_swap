@@ -32,7 +32,7 @@ NAME	= libft.a
 BONUS	= .
 CC  = gcc
 RM  = rm -f
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -g3 -o0 -Wall -Wextra -Werror
 AR = ar rc
 
 HEADER	= -I include -I ./inc/

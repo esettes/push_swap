@@ -50,9 +50,9 @@ typedef struct	s_stack
 
 void    print_args(int pos, t_stack *stack);
 int		is_valid_arg(char **stack);
-int		is_sorted_arg(int pos, t_stack *stack);
+int		is_sorted_arg(int pos, t_st *stack);
 void	alloc_stacks(int argc, char **argv, t_stack *stack);
-int		is_duplicated_arg(int pos, t_stack *stack);
+int		is_duplicated_arg(int pos, t_st *stack);
 
 /**
  * Swaps the first two elements of the head of stack A.
