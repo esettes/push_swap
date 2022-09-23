@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/23 00:43:16 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/23 04:22:43 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,59 @@ typedef struct	s_iter
 	int	j;
 }				t_iter;
 
+typedef struct s_st
+{
+	int			*item;
+	struct s_a	*next;
+}				t_st;
+
 typedef struct	s_stack
 {
-	int	*a;
-	int	*b;
+	t_st	*a;
+	t_st	*b;
 }				t_stack;
 
+// typedef struct	s_stack
+// {
+// 	int	*a;
+// 	int	*b;
+// }				t_stack;
+
+void    print_args(int pos, t_stack *stack);
 int		is_valid_arg(char **stack);
 int		is_sorted_arg(int pos, t_stack *stack);
 void	alloc_stacks(int argc, char **argv, t_stack *stack);
 int		is_duplicated_arg(int pos, t_stack *stack);
 
-/*
+/**
  * Swaps the first two elements of the head of stack A.
  * Nothing to do if stack A have < 1 elements.
  */
-void	swap_a(t_stack *stack);
-/*
+void	swap_a(t_stack *stack, int called);
+/**
  * Swaps the first two elements of the head of stack B.
  * Nothing to do if stack B have < 1 elements.
  */
-void	swap_b(t_stack *stack);
-/*
+void	swap_b(t_stack *stack, int called);
+/**
  * Swaps the first two elements of the head of stack A and B.
  * Nothing to do if stack A or stack B has < 1 elements.
  */
 void	swap_a_b(t_stack *stack);
-void    print_args(int pos, t_stack *stack);
+
+/**
+ * @brief Gets the first item of stack B and puts it at stack A head.
+ * Nothing to do if stack B is NULL.
+ * 
+ * @param stack 
+ */
+void	push_a(t_stack *stack);
+/**
+ * @brief Gets the first item of stack A and puts it at stack B head.
+ * Nothing to do if stack A is NULL.
+ * 
+ * @param stack 
+ */
+void	push_b(t_stack *stack);
 
 #endif

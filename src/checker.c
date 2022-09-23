@@ -6,11 +6,12 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/23 00:42:43 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/23 04:11:23 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 int	is_valid_arg(char **stack)
 {
@@ -34,6 +35,7 @@ int	is_valid_arg(char **stack)
 	return (1);
 }
 
+/*
 int	is_sorted_arg(int pos, t_stack *stack)
 {
 	int	i;
@@ -49,7 +51,8 @@ int	is_sorted_arg(int pos, t_stack *stack)
 	}
     return (1);
 }
-
+*/
+/*
 int is_duplicated_arg(int pos, t_stack *stack)
 {
     int	i;
@@ -72,15 +75,4 @@ int is_duplicated_arg(int pos, t_stack *stack)
 	}
     return (0);
 }
-
-void    print_args(int pos, t_stack *stack)
-{
-    int i;
-
-    i = 1;
-    while (i < pos)
-    {
-	    printf("%i\n",stack->a[i]);
-		i++;
-	}
-}
+*/
