@@ -70,10 +70,32 @@ void	f_swap_both(t_stack *stack);
  * @param src 
  * @param dst
  * @param print 1 = prints msg, 0 = no print
- * @param flag 1 = if puts elem to stack A, 2 = if puts elem to stack B
+ * @param stack 1 = if puts elem to stack A, 2 = if puts elem to stack B
  */
 void	f_push(t_node **src, t_node **dst, int print, int stack);
 
+/**
+ * @brief Rotates the head element of stack to the bottom. The rest of 
+ * elements moves up by one position.
+ * Nothing to do if stack have < 1 elements.
+ * 
+ * @param head list to rotate
+ * @param print 1 = prints msg, 0 = no print
+ * @param stack 1 = if rotates stack A or 2 = if rotates stack B
+ */
+void    f_reverse_rotate(t_node **head, int print, int stack);
+/**
+ * @brief Rotates the last element of stack to the head. The rest of
+ * elements moves down by one position.
+ * Nothing to do if stack have < 1 elements.
+ * 
+ * @param head list to rotate
+ * @param print 1 = prints msg, 0 = no print
+ * @param stack 1 = if rotates stack A or 2 = if rotates stack B
+ */
+void    f_rotate(t_node **head, int print, int stack);
+
+void    add_back(t_node *head, long int data);
 void    print_args(t_node *stack);
 void    print_both_stacks(t_stack *stack);
 

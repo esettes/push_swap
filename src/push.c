@@ -16,7 +16,7 @@ void	f_push(t_node **src, t_node **dst, int print, int stack)
 {
 	t_node	*tmp;
 
-	if (!dst)
+	if (*dst == NULL)
 		return ;
 	if (*src)
 	{
@@ -27,9 +27,9 @@ void	f_push(t_node **src, t_node **dst, int print, int stack)
 		if (print)
 		{
 			if (stack == 1)
-				ft_putendl_fd(CYAN_,"pa", 1);
+				ft_putendl_fd(CYAN_, "pa", 1);
 			else if (stack == 2)
-				ft_putendl_fd(CYAN_,"pb", 1);
+				ft_putendl_fd(CYAN_, "pb", 1);
 		}
 	}
 }

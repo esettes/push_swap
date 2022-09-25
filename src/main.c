@@ -30,14 +30,15 @@ int		main(int argc, char **argv)
 			ft_putendl_fd(GREEN_,"Valid arguments!", 1);
 			print_args(stack->a);
 			printf("* * * *\n");
-			f_push(&stack->a, &stack->b, 1, 2);
-			f_push(&stack->a, &stack->b, 1, 2);
+			f_rotate(&stack->a, 1, 1);
+			//f_push(&stack->a, &stack->b, 1, 2);
+			//f_push(&stack->a, &stack->b, 1, 2);
 			//print_args(stack->a);
 			print_both_stacks(stack);
 		}
 		else
 		{
-			ft_putendl_fd(RED_,"Invalid arguments!", 1);
+			ft_putendl_fd(RED_,"Error", 1);
 		}
 		free_stack(&stack->a);
 		free_stack(&stack->b);
