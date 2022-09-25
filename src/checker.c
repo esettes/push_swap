@@ -26,37 +26,34 @@ int	is_valid_arg(char **stack)
         ptr = NULL;
         ret = ft_strtol(stack[i], &ptr, 10);
         if (*ptr)
-        {
-            //printf("Error!: %s\n", ptr);
             return (0);
-        }
         i++;
     }
 	return (1);
 }
 
 
-int	is_sorted_arg(int pos, t_st *stack)
-{
-	int	i;
-    int aux;
+// int	is_sorted_arg(int pos, t_node *stack)
+// {
+// 	int	i;
+//     int aux;
 
-	i = 1;
-	if (pos == 1)
-        return (1);
-    while (lst)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
-	while (stack)
-    {
-	    if (stack->item[i - 1] > stack->item[i])
-            return (0);
-		i++;
-	}
-    return (1);
-}
+// 	i = 1;
+// 	if (pos == 1)
+//         return (1);
+//     // while (lst)
+// 	// {
+// 	// 	f(lst->content);
+// 	// 	lst = lst->next;
+// 	// }
+// 	while (stack)
+//     {
+// 	    if (stack->data > stack->data)
+//             return (0);
+// 		i++;
+// 	}
+//     return (1);
+// }
 
 /*
 int is_duplicated_arg(int pos, t_stack *stack)

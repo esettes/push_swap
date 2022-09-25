@@ -30,16 +30,16 @@ typedef struct	s_iter
 	int	j;
 }				t_iter;
 
-typedef struct s_st
+typedef struct s_node
 {
-	long int	*item;
-	struct s_st	*next;
-}				t_st;
+	long int		data;
+	struct s_node	*next;
+}				t_node;
 
 typedef struct	s_stack
 {
-	t_st	*a;
-	t_st	*b;
+	t_node	*a;
+	t_node	*b;
 }				t_stack;
 
 // typedef struct	s_stack
@@ -48,11 +48,11 @@ typedef struct	s_stack
 // 	int	*b;
 // }				t_stack;
 
-void    print_args(int pos, t_stack *stack);
+void    print_args(t_node *stack);
 int		is_valid_arg(char **stack);
-int		is_sorted_arg(int pos, t_st *stack);
-void	alloc_stacks(int argc, char **argv, t_stack *stack);
-int		is_duplicated_arg(int pos, t_st *stack);
+int		is_sorted_arg(int pos, t_node *stack);
+t_stack	*alloc_stacks(int argc, char **argv);
+int		is_duplicated_arg(int pos, t_node *stack);
 
 /**
  * Swaps the first two elements of the head of stack A.
