@@ -1,5 +1,5 @@
 #include "push_swap.h"
-long 	ft_nodertol(const char *restrict nptr, char **restrict endptr, int base);
+long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void    push_new_node(t_node **head_a, long int data);
 void    print_node(t_node *stack);
 void    add_back(t_node *head, long int data);
@@ -14,16 +14,20 @@ t_stack    *alloc_stacks(int argc, char **argv)
 	i = 1;
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->a = (t_node *)malloc(sizeof(t_node));
+	stack->b = (t_node *)malloc(sizeof(t_node));
 	ptr = NULL;
 	ret = ft_strtol(argv[i], &ptr, 10);
 	stack->a->data = ret;
 	stack->a->next = NULL;
+	stack->b->data = 0;
+	stack->b->next = NULL;
 	i++;
 	while (argv[i])
 	{
 		ptr = NULL;
 		ret = ft_strtol(argv[i], &ptr, 10);
 		add_back(stack->a, ret);
+		add_back(stack->b, 0);
 		i++;
 	}
 	return (stack);
@@ -75,5 +79,21 @@ void    print_args(t_node *stack)
     {
 	    printf("%d\n",current->data);
         current = current->next;
+	}
+}
+
+void    print_both_stacks(t_stack *stack)
+{
+	t_node *current_a;
+	t_node *current_b;
+
+	current_a = stack->a;
+	current_b = stack->b;
+	printf("|A|\t|B|\n");
+    while (current_a != NULL && current_b != NULL)
+    {
+	    printf(" %d \t %d\n",current_a->data, current_b->data);
+        current_a = current_a->next;
+		current_b = current_b->next;
 	}
 }

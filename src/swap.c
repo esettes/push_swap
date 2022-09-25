@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	swap_a(t_node **head, int called)
+void	f_swap(t_node **head, int stack, int called)
 {
 	t_node *first;
 	t_node *second;
@@ -25,44 +25,17 @@ void	swap_a(t_node **head, int called)
 	second->next = first;
 	*head = second;
 	if (!called)
-		ft_putendl_fd(BLUE_,"sa", 1);
+	{
+		if (stack == 0)
+			ft_putendl_fd(BLUE_,"sa", 1);
+		if (stack == 1)
+			ft_putendl_fd(BLUE_,"sb", 1);
+	}
 }
 
-/*
-void	swap_a(t_stack *stack, int called)
+void	f_swap_both(t_stack *stack)
 {
-	int	i;
-	int	aux;
-
-	i = 1;
-	if (!(stack->a[i + 1]))
-		return ;
-	aux = stack->a[i];
-	stack->a[i] = stack->a[i + 1];
-	stack->a[i + 1] = aux;
-	if (!called)
-		ft_putendl_fd(BLUE_,"sa", 1);
-}
-
-void	swap_b(t_stack *stack, int called)
-{
-	int	i;
-	int	aux;
-
-	i = 1;
-	if (!(stack->b[i + 1]))
-		return ;
-	aux = stack->b[i];
-	stack->b[i] = stack->b[i + 1];
-	stack->b[i + 1] = aux;
-	if (!called)
-		ft_putendl_fd(BLUE_,"sb", 1);
-}
-
-void	swap_a_b(t_stack *stack)
-{
-	swap_a(stack, 1);
-	swap_b(stack, 1);
+	f_swap(&stack->a, 0, 1);
+	f_swap(&stack->b, 1, 1);
 	ft_putendl_fd(BLUE_,"ss", 1);
 }
-*/

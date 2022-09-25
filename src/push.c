@@ -12,16 +12,24 @@
 
 #include "push_swap.h"
 
-/*
-void	push_a(t_stack *stack)
+void	f_push(t_node **src, t_node **dst, int print, int stack)
 {
-	if (!(stack->b))
-		return ;
-	
-	ft_putendl_fd(VIOLET_,"pa", 1);
-}
+	t_node	*tmp;
 
-void	push_b(t_stack *stack)
-{
-	
-}*/
+	if (!dst)
+		return ;
+	if (*src)
+	{
+		tmp = *src;
+		*src = (*src)->next;
+		tmp->next = *dst;
+		*dst = tmp;
+		if (print)
+		{
+			if (stack == 1)
+				ft_putendl_fd(CYAN_,"pa", 1);
+			else if (stack == 2)
+				ft_putendl_fd(CYAN_,"pb", 1);
+		}
+	}
+}

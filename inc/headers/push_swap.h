@@ -42,47 +42,39 @@ typedef struct	s_stack
 	t_node	*b;
 }				t_stack;
 
-// typedef struct	s_stack
-// {
-// 	int	*a;
-// 	int	*b;
-// }				t_stack;
-
-void    print_args(t_node *stack);
+t_stack	*alloc_stacks(int argc, char **argv);
 int		is_valid_arg(char **stack);
 int		is_sorted_arg(t_node *head);
-t_stack	*alloc_stacks(int argc, char **argv);
 int		is_duplicated_arg(t_node *head);
 
 /**
- * Swaps the first two elements of the head of stack A.
- * Nothing to do if stack A have < 1 elements.
- */
-void	swap_a(t_node **head, int called);
+ * @brief Swaps the first two elements of the head of stack.
+ * Nothing to do if stack have < 1 elements.
+ * 
+ * @param head list to swap
+ * @param stack index for msg display. 1 = stack A; 2 = stack B
+ * @param called 1 = if function is called from swap_both or 0 = if not
+ */ 
+void	f_swap(t_node **head, int stack, int called);
 /**
- * Swaps the first two elements of the head of stack B.
- * Nothing to do if stack B have < 1 elements.
- */
-void	swap_b(t_stack *stack, int called);
-/**
- * Swaps the first two elements of the head of stack A and B.
+ * @brief Swaps the first two elements of the head of stack A and B.
  * Nothing to do if stack A or stack B has < 1 elements.
+ * 
+ * @param stack
  */
-void	swap_a_b(t_stack *stack);
+void	f_swap_both(t_stack *stack);
+/**
+ * @brief Gets the first item of stack src and puts it at stack dst head.
+ * Nothing to do if stack src is NULL.
+ * 
+ * @param src 
+ * @param dst
+ * @param print 1 = prints msg, 0 = no print
+ * @param flag 1 = if puts elem to stack A, 2 = if puts elem to stack B
+ */
+void	f_push(t_node **src, t_node **dst, int print, int stack);
 
-/**
- * @brief Gets the first item of stack B and puts it at stack A head.
- * Nothing to do if stack B is NULL.
- * 
- * @param stack 
- */
-void	push_a(t_stack *stack);
-/**
- * @brief Gets the first item of stack A and puts it at stack B head.
- * Nothing to do if stack A is NULL.
- * 
- * @param stack 
- */
-void	push_b(t_stack *stack);
+void    print_args(t_node *stack);
+void    print_both_stacks(t_stack *stack);
 
 #endif
