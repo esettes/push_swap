@@ -32,50 +32,59 @@ int	is_valid_arg(char **stack)
 	return (1);
 }
 
-
-// int	is_sorted_arg(int pos, t_node *stack)
+// int		is_duplicated_arg(t_node *head)
 // {
-// 	int	i;
-//     int aux;
-
-// 	i = 1;
-// 	if (pos == 1)
-//         return (1);
-//     // while (lst)
-// 	// {
-// 	// 	f(lst->content);
-// 	// 	lst = lst->next;
-// 	// }
-// 	while (stack)
-//     {
-// 	    if (stack->data > stack->data)
-//             return (0);
-// 		i++;
+// 	t_node	*tmp;
+// 	t_node	*tmp2;
+	
+// 	tmp = head;
+// 	while (tmp != NULL)
+// 	{
+// 		tmp2 = tmp->next;
+// 		while (tmp2 != NULL)
+// 		{
+// 			if (tmp->data == tmp2->data)
+// 				return (1);
+// 			tmp2 = tmp2->next;
+// 		}
+// 		tmp = tmp->next;
 // 	}
-//     return (1);
+// 	return (0);
 // }
 
-/*
-int is_duplicated_arg(int pos, t_stack *stack)
+int     is_sorted_arg(t_node *head)
 {
-    int	i;
-    int aux;
+	t_node *current;
+	t_node *next;
 
-	i = 1;
-	if (pos == 1)
-        return (1);
-	while (i < pos)
-    {
-        aux = i;
-        
-        while (aux + 1 < pos)
-        {
-            if (stack->a[i] == stack->a[aux + 1])
-                return (1);
-            aux++;
-        }
-        i++;
+	current = head;
+	next = current->next;
+	while (next != NULL)
+	{
+		if (current->data > next->data)
+			return (0);
+		current = current->next;
+		next = current->next;
 	}
-    return (0);
+	return (1);
 }
-*/
+
+int		is_duplicated_arg(t_node *head)
+{
+	t_node *current;
+	t_node *next;
+
+	current = head;
+	while (current->next != NULL)
+	{
+		next = current->next;
+		while (next != NULL)
+		{
+			if (current->data == next->data)
+				return (1);
+			next = next->next;
+		}
+		current = current->next;
+	}
+	return (0);
+}

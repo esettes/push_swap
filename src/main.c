@@ -49,10 +49,14 @@ int		push_swap(int argc, char **argv)
 	{
 		ft_putendl_fd(GREEN_,"Valid arguments!", 1);
 		stack = alloc_stacks(argc, argv);
-		// if (is_sorted_arg(argc, stack->a))
-		// 	ft_putendl_fd(RED_,"Stack is sorted! Nothing to do.", 1);
-		// else
-		// 	ft_putendl_fd(BLUE_,"Stack is not sorted! Sort it!", 1);
+		if (is_sorted_arg(stack->a))
+			ft_putendl_fd(RED_,"Stack is sorted! Nothing to do.", 1);
+		else
+			ft_putendl_fd(BLUE_,"Stack is not sorted! Sort it!", 1);
+		if (is_duplicated_arg(stack->a))
+			ft_putendl_fd(RED_,"An argument is duplicated.", 1);
+		else
+			ft_putendl_fd(BLUE_,"Ok. All arguments are diferent.", 1);
 		print_args(stack->a);
 		free_stack(&stack->a);
 		free(stack);
