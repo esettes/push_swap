@@ -11,27 +11,75 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-int		push_swap(int argc, char **argv);
+int		is_correct_argument(t_stack *stack);
+int		check_arguments(int argc, char **argv);
 int		pop_node(t_node **head);
 long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
+void	free_stack(t_node **head);
+
+// int		main(int argc, char **argv)
+// {
+// 	if (check_arguments(argc, argv))
+// 	{
+// 		//ft_putendl_fd(RESET_,"Finish.", 1);
+// 		ft_putendl_fd(VIOLET_,"Before swap A:", 1);
+// 		print_args(stack->a);
+// 		swap_a(&stack->a, 0);
+// 		ft_putendl_fd(VIOLET_,"After swap A:", 1);
+// 		print_args(stack->a);
+
+		
+// 	}
+// 	free_stack(&stack->a);
+// 	free(stack);
+// 	return (0);
+// }
 
 int		main(int argc, char **argv)
 {
-	if (push_swap(argc, argv))
-		ft_putendl_fd(RESET_,"Finish.", 1);
-	return (0);
+	t_stack	*stack;
+
+	if (is_valid_arg(argv))
+	{
+		stack = alloc_stacks(argc, argv);
+		if (!stack)
+			return (0);
+		if (is_correct_argument(stack))
+			ft_putendl_fd(GREEN_,"Valid arguments!", 1);
+		free_stack(&stack->a);
+		free(stack);
+	}
+	else
+	{
+		ft_putendl_fd(RED_,"Invalid arguments!", 1);
+		return (0);
+	}
+	return (1);
 }
 
-// void	free_stack(t_node **head)
-// {
-// 	while(*head != NULL)
-// 	{
-// 		pop_node(head);
-// 	}
-// 	free(head);
-// 	//free(stack->data);
-// 	//free(stack);
-// }
+int		is_correct_argument(t_stack *stack)
+{
+	if (is_sorted_arg(stack->a))
+		{
+			ft_putendl_fd(RED_,"Stack is sorted! Nothing to do.", 1);
+			return (0);
+		}
+		else
+		{
+			ft_putendl_fd(BLUE_,"Stack is not sorted! Sort it!", 1);
+		}
+		if (is_duplicated_arg(stack->a))
+		{
+			ft_putendl_fd(RED_,"An argument is duplicated.", 1);
+			return (0);
+		}
+		else
+		{
+			ft_putendl_fd(BLUE_,"Ok. All arguments are diferent.", 1);
+			
+		}
+		return (1);
+}
 
 void	free_stack(t_node **head)
 {
@@ -40,72 +88,4 @@ void	free_stack(t_node **head)
 		pop_node(head);
 	}
 }
-
-int		push_swap(int argc, char **argv)
-{
-	t_stack	*stack;
-	
-	if (is_valid_arg(argv))
-	{
-		ft_putendl_fd(GREEN_,"Valid arguments!", 1);
-		stack = alloc_stacks(argc, argv);
-		if (is_sorted_arg(stack->a))
-			ft_putendl_fd(RED_,"Stack is sorted! Nothing to do.", 1);
-		else
-			ft_putendl_fd(BLUE_,"Stack is not sorted! Sort it!", 1);
-		if (is_duplicated_arg(stack->a))
-			ft_putendl_fd(RED_,"An argument is duplicated.", 1);
-		else
-			ft_putendl_fd(BLUE_,"Ok. All arguments are diferent.", 1);
-		print_args(stack->a);
-		free_stack(&stack->a);
-		free(stack);
-	}
-	else
-	{
-		ft_putendl_fd(RED_,"Invalid arguments!", 1);
-
-	}
-	
-	return (1);
-}
-
-// int		push_swap(int argc, char **argv)
-// {
-// 	t_stack	*stack;
-// 	//t_node 	*head_a;
-// 	long int size;
-	
-// 	stack = (t_stack *)malloc(sizeof(t_stack));
-// 	stack->a = NULL;
-// 	stack->b = NULL;
-// 	size = sizeof(long int);
-// 	if (is_valid_arg(argv))
-// 	{
-// 		ft_putendl_fd(GREEN_,"Valid arguments!", 1);
-// 		alloc_stacks(argc, argv, stack);
-// 		// if (is_sorted_arg(argc, stack->a))
-// 		// 	ft_putendl_fd(RED_,"Stack is sorted! Nothing to do.", 1);
-// 		// else
-// 		// 	ft_putendl_fd(BLUE_,"Stack is not sorted! Sort it!", 1);
-// 		/*if (is_duplicated_arg(argc, stack))
-// 			ft_putendl_fd(RED_,"An argument is duplicated.", 1);
-// 		else
-// 			ft_putendl_fd(BLUE_,"Ok. All arguments are diferent.", 1);
-// 		ft_putendl_fd(VIOLET_,"Before swap A:", 1);
-// 		print_args(argc, stack);
-// 		swap_a(stack, 0);
-// 		ft_putendl_fd(VIOLET_,"After swap A:", 1);*/
-// 		//print_args(argc, stack->a);
-// 		free_stack(stack->a);
-// 		free(stack);
-// 	}
-// 	else
-// 	{
-// 		ft_putendl_fd(RED_,"Invalid arguments!", 1);
-// 		free(stack);
-// 	}
-	
-// 	return (1);
-// }
 

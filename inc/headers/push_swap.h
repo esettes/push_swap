@@ -58,7 +58,7 @@ int		is_duplicated_arg(t_node *head);
  * Swaps the first two elements of the head of stack A.
  * Nothing to do if stack A have < 1 elements.
  */
-void	swap_a(t_stack *stack, int called);
+void	swap_a(t_node **head, int called);
 /**
  * Swaps the first two elements of the head of stack B.
  * Nothing to do if stack B have < 1 elements.

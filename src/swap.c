@@ -12,6 +12,22 @@
 
 #include "push_swap.h"
 
+void	swap_a(t_node **head, int called)
+{
+	t_node *first;
+	t_node *second;
+
+	if (*head == NULL || (*head)->next == NULL)
+		return ;
+	first = *head;
+	second = first->next;
+	first->next = second->next;
+	second->next = first;
+	*head = second;
+	if (!called)
+		ft_putendl_fd(BLUE_,"sa", 1);
+}
+
 /*
 void	swap_a(t_stack *stack, int called)
 {
