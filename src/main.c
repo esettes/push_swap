@@ -15,11 +15,13 @@ int		is_correct_argument(t_stack *stack);
 int		pop_node(t_node **head);
 long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void	free_stack(t_node **head);
+void	myRandInRange();
 
 int		main(int argc, char **argv)
 {
 	t_stack	*stack;
 
+	myRandInRange();
 	if (is_valid_arg(argv))
 	{
 		stack = alloc_stacks(argc, argv);
