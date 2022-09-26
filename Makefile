@@ -6,7 +6,7 @@
 #    By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 17:00:44 by iostancu          #+#    #+#              #
-#    Updated: 2022/09/21 17:00:45 by iostancu         ###   ########.fr        #
+#    Updated: 2022/09/26 16:09:10 by iostancu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,10 @@ OBJDIR	= ./src/obj/
 OBJS	= $(addprefix $(OBJDIR), $(SRCNAMES:.c=.o))
 
 LIBFT	= ./inc/libft/libft.a
-COMPS	= $(LIBFT)
+GNL	= ./inc/gnl/gnl.a
+COMPS	= $(LIBFT) $(GNL)
 
-HEADERS	= -I include -I ./inc/libft/inc/ -I ./inc/headers/
+HEADERS	= -I include -I ./inc/libft/inc/ -I ./inc/headers/ -I ./inc/gnl/inc/
 
 CC	= gcc
 CFLAGS	= -O0 -g3  #-Ofast -fsanitize=leak -fno-omit-frame-pointer # -Wall -Wextra -Werror 
@@ -39,7 +40,7 @@ ifeq ($(OS), Linux)
 	VALGRIND = valgrind --tool=memcheck --leak-check=full --track-origins=yes -s
 endif
 
-all: obj $(LIBFT) $(NAME)
+all: obj $(COMPS) $(NAME)
 
 obj:
 	@mkdir -p $(OBJDIR)
@@ -49,12 +50,15 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 
 #Change libx42_flags position at the end of the coommand
 $(NAME):	$(OBJS)
-	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) 
+	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(COMPS) 
 	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)\033[2;33m"
 	@echo "${BWHITE}Compilation ${GREEN}[OK]$(RESET)\033[2;33m" 
 
 $(LIBFT):
 	@$(MAKE) -C $(dir $(LIBFT))
+
+$(GNL):
+	@$(MAKE) -C $(dir $(GNL))
 
 LD_DEBUG=all
 
@@ -64,17 +68,19 @@ dbgfiles:
 	@echo "${LWHITE}Clean debug files... ${LGREEN}✓$(RESET)\033[2;33m"
 
 clean:	dbgfiles
-	@echo "${LWHITE}Clean fdf... ${LGREEN}✓$(RESET)\033[2;33m"
+	@echo "${LWHITE}Clean push swap... ${LGREEN}✓$(RESET)\033[2;33m"
 	@rm -rf ${OBJDIR}*.o
 	@echo "${LWHITE}Clean Libft... ${LGREEN}✓$(RESET)\033[2;33m"
 	@$(MAKE) -C $(dir $(LIBFT)) clean
 
 fclean: dbgfiles
 	@rm -rf $(NAME)
-	@echo "${LWHITE}Clean fdf... ${LGREEN}✓$(RESET)\033[2;33m"
+	@echo "${LWHITE}Clean push swap... ${LGREEN}✓$(RESET)\033[2;33m"
 	@rm -rf ${OBJDIR}*.o
 	@echo "${LWHITE}Clean Libft... ${LGREEN}✓$(RESET)\033[2;33m"
 	@$(MAKE) -C $(dir $(LIBFT)) fclean
+	@echo "${LWHITE}Clean GNL... ${LGREEN}✓$(RESET)\033[2;33m"
+	@$(MAKE) -C $(dir $(GNL)) fclean
 	@echo "\n"
 
 re: fclean all

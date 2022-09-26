@@ -6,25 +6,42 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/23 04:10:23 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:20:00 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "fcntl.h"
+
 int		is_correct_argument(t_stack *stack);
 int		pop_node(t_node **head);
 long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void	free_stack(t_node **head);
-void	myRandInRange();
+int		*myRandInRange();
 
 int		main(int argc, char **argv)
 {
 	t_stack	*stack;
+	int		fd;
+	char	**input;
+	int 	i;
+	int		*arr;
 
-	myRandInRange();
+	i = 0;
+	//fd = open(argv[1], O_WRONLY);
+	//input = malloc(sizeof(char *) * 10000);
+	//read_input_file(fd, input);
+	//close(fd);
+	// while (input[i])
+	// {
+	// 	printf("%s\n", input[i]);
+	// 	i++;
+	// }
+	arr = myRandInRange();
 	if (is_valid_arg(argv))
 	{
-		stack = alloc_stacks(argc, argv);
+		//stack = alloc_stacks(argc, argv);
+		stack = alloc_stacks_arr(argc, arr);
 		if (!stack)
 			return (0);
 		if (is_correct_argument(stack))
@@ -51,6 +68,7 @@ int		main(int argc, char **argv)
 		ft_putendl_fd(RED_,"Invalid arguments!", 1);
 		return (0);
 	}
+	free (arr);
 	return (1);
 }
 

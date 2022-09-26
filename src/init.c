@@ -33,6 +33,29 @@ t_stack    *alloc_stacks(int argc, char **argv)
 	return (stack);
 }
 
+t_stack    *alloc_stacks_arr(int argc, int *arr)
+{
+    int 		i;
+	t_stack		*stack;
+
+	i = 0;
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	stack->a = (t_node *)malloc(sizeof(t_node));
+	stack->b = (t_node *)malloc(sizeof(t_node));
+	stack->a->data = arr[i];
+	stack->a->next = NULL;
+	stack->b->data = 0;
+	stack->b->next = NULL;
+	i++;
+	while (arr[i])
+	{
+		add_back(stack->a, arr[i]);
+		add_back(stack->b, 0);
+		i++;
+	}
+	return (stack);
+}
+
 void    add_back(t_node *head, long int data)
 {
     t_node *current;

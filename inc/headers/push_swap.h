@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/23 04:22:43 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:19:38 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 #include "libft.h"
+#include "gnl.h"
 #include "stdio.h"
 
 #define RED_    "\x1b[31m"
@@ -43,9 +44,12 @@ typedef struct	s_stack
 }				t_stack;
 
 t_stack	*alloc_stacks(int argc, char **argv);
+t_stack    *alloc_stacks_arr(int argc, int *arr);
 int		is_valid_arg(char **stack);
 int		is_sorted_arg(t_node *head);
 int		is_duplicated_arg(t_node *head);
+int		pop_node(t_node **head);
+char 	**read_input_file(int fd, char **split_fd);
 
 /**
  * @brief Swaps the first two elements of the head of stack.
