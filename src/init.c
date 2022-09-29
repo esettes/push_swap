@@ -33,9 +33,9 @@ t_stack    *alloc_stacks(int argc, char **argv)
 	return (stack);
 }
 
-t_stack    *alloc_stacks_arr(int argc, int *arr)
+t_stack		*alloc_stacks_arr(int argc, int *arr)
 {
-    int 		i;
+	int 		i;
 	t_stack		*stack;
 
 	i = 0;

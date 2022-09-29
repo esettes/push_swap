@@ -1,7 +1,7 @@
 #include "push_swap.h"
 #include "fcntl.h"
 
-int is_not_duplicated(int *arr, int num);
+int is_not_duplicated(int *arr, int num, int max_iter);
 
 int myRand ()  // Generate a 4 digit pseudo-random integer 
 {
@@ -29,14 +29,15 @@ int *myRandInRange()  // max-min must be < 10000
     max = 20;
     i = min;
     k = 0;
-    num = myRand() % (max + 1 - min) + min;
-    arr = malloc(sizeof(int) * 125);
+    
+    arr = malloc(sizeof(int *) * max - 1);
+	arr[0] = 0;
     //fd = open("input2.txt", O_WRONLY | O_CREAT | O_TRUNC, 0766);
     while (i < max)
     {
-		num = myRand();
+		num = myRand() % (max + 1 - min) + min;
 
-		if (is_not_duplicated(arr, num))
+		if (is_not_duplicated(arr, num, k))
 		{
 			arr[k] = num;
 			k++;
@@ -51,12 +52,12 @@ int *myRandInRange()  // max-min must be < 10000
 	return (arr);
 }
 
-int is_not_duplicated(int *arr, int num)
+int is_not_duplicated(int *arr, int num, int max_iter)
 {
 	int j;
 
 	j = 0;
-	while (arr[j])
+	while (j <= max_iter)
 	{
 		if (arr[j] == num)
 		{

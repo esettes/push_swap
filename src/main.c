@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/26 19:20:00 by iostancu         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:21:42 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ int		main(int argc, char **argv)
 	// 	printf("%s\n", input[i]);
 	// 	i++;
 	// }
-	arr = myRandInRange();
+	//if (argc < 2)
+	//arr = myRandInRange();
 	if (is_valid_arg(argv))
 	{
-		//stack = alloc_stacks(argc, argv);
-		stack = alloc_stacks_arr(argc, arr);
+		stack = alloc_stacks(argc, argv);
+		//stack = alloc_stacks_arr(argc, arr);
 		if (!stack)
 			return (0);
 		if (is_correct_argument(stack))

@@ -6,10 +6,9 @@
 #    By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 17:00:44 by iostancu          #+#    #+#              #
-#    Updated: 2022/09/26 16:09:10 by iostancu         ###   ########.fr        #
+#    Updated: 2022/09/29 20:35:28 by iostancu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 GREEN	=\033[0;32m
 WHITE	= \033[0;37m
@@ -34,7 +33,7 @@ COMPS	= $(LIBFT) $(GNL)
 HEADERS	= -I include -I ./inc/libft/inc/ -I ./inc/headers/ -I ./inc/gnl/inc/
 
 CC	= gcc
-CFLAGS	= -O0 -g3  #-Ofast -fsanitize=leak -fno-omit-frame-pointer # -Wall -Wextra -Werror 
+CFLAGS	= -O0 -g3 -fsanitize=address #-Ofast  -fno-omit-frame-pointer # -Wall -Wextra -Werror 
 
 ifeq ($(OS), Linux)
 	VALGRIND = valgrind --tool=memcheck --leak-check=full --track-origins=yes -s
