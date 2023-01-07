@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/29 21:21:42 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/07 18:28:02 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,11 @@ int		main(int argc, char **argv)
 	int		fd;
 	char	**input;
 	int 	i;
-	int		*arr;
 
 	i = 0;
-	//fd = open(argv[1], O_WRONLY);
-	//input = malloc(sizeof(char *) * 10000);
-	//read_input_file(fd, input);
-	//close(fd);
-	// while (input[i])
-	// {
-	// 	printf("%s\n", input[i]);
-	// 	i++;
-	// }
-	//if (argc < 2)
-	//arr = myRandInRange();
 	if (is_valid_arg(argv))
 	{
 		stack = alloc_stacks(argc, argv);
-		//stack = alloc_stacks_arr(argc, arr);
 		if (!stack)
 			return (0);
 		if (is_correct_argument(stack))
@@ -69,7 +56,6 @@ int		main(int argc, char **argv)
 		ft_putendl_fd(RED_,"Invalid arguments!", 1);
 		return (0);
 	}
-	free (arr);
 	return (1);
 }
 
