@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/26 19:19:38 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:08:22 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	s_iter
 typedef struct s_node
 {
 	long int		data;
+	int				index;
 	struct s_node	*next;
 }				t_node;
 
@@ -102,5 +103,6 @@ void    f_rotate(t_node **head, int print, int stack);
 void    add_back(t_node *head, long int data);
 void    print_args(t_node *stack);
 void    print_both_stacks(t_stack *stack);
+void	selection_sort(t_stack *stacks);
 
 #endif

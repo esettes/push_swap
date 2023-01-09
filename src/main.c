@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/07 18:28:02 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:20:55 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,16 @@ int		main(int argc, char **argv)
 			ft_putendl_fd(GREEN_,"Valid arguments!", 1);
 			print_args(stack->a);
 			printf("* * * *\n");
-			f_rotate(&stack->a, 1, 1);
+			//f_rotate(&stack->a, 1, 1);
 			//f_push(&stack->a, &stack->b, 1, 2);
 			//f_push(&stack->a, &stack->b, 1, 2);
 			//print_args(stack->a);
 			print_both_stacks(stack);
+			selection_sort(stack);
 		}
 		else
 		{
-			ft_putendl_fd(RED_,"Error", 1);
+			ft_putendl_fd(RED_,"Error", 2);
 		}
 		free_stack(&stack->a);
 		free_stack(&stack->b);

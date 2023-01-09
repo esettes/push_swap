@@ -6,7 +6,7 @@
 #    By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 17:00:44 by iostancu          #+#    #+#              #
-#    Updated: 2022/09/29 20:35:28 by iostancu         ###   ########.fr        #
+#    Updated: 2023/01/09 20:10:03 by iostancu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ COMPS	= $(LIBFT) $(GNL)
 HEADERS	= -I include -I ./inc/libft/inc/ -I ./inc/headers/ -I ./inc/gnl/inc/
 
 CC	= gcc
-CFLAGS	= -O0 -g3 -fsanitize=address #-Ofast  -fno-omit-frame-pointer # -Wall -Wextra -Werror 
+CFLAGS	= -g3 #-fsanitize=address #-Ofast  -fno-omit-frame-pointer # -Wall -Wextra -Werror 
 
 ifeq ($(OS), Linux)
 	VALGRIND = valgrind --tool=memcheck --leak-check=full --track-origins=yes -s
