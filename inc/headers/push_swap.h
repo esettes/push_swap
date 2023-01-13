@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/09 20:08:22 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:30:38 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ typedef struct	s_stack
 {
 	t_node	*a;
 	t_node	*b;
+	int		elements;
 }				t_stack;
 
 t_stack	*alloc_stacks(int argc, char **argv);
-t_stack    *alloc_stacks_arr(int argc, int *arr);
+t_stack	*alloc_stacks_arr(int argc, int *arr);
 int		is_valid_arg(char **stack);
 int		is_sorted_arg(t_node *head);
 int		is_duplicated_arg(t_node *head);
@@ -72,7 +73,7 @@ void	f_swap_both(t_stack *stack);
  * @brief Gets the first item of stack src and puts it at stack dst head.
  * Nothing to do if stack src is NULL.
  * 
- * @param src 
+ * @param src
  * @param dst
  * @param print 1 = prints msg, 0 = no print
  * @param stack 1 = if puts elem to stack A, 2 = if puts elem to stack B

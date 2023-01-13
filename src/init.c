@@ -2,7 +2,6 @@
 long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void    push_new_node(t_node **head_a, long int data);
 void    print_node(t_node *stack);
-void    add_back(t_node *head, long int data);
 
 t_stack    *alloc_stacks(int argc, char **argv)
 {
@@ -30,6 +29,7 @@ t_stack    *alloc_stacks(int argc, char **argv)
 		add_back(stack->b, 0);
 		i++;
 	}
+	stack->elements = i;
 	return (stack);
 }
 

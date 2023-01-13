@@ -6,51 +6,116 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/09 20:37:02 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/13 23:10:54 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+void	swap_selection(t_node *a, t_node *b);
+t_node	*create_aux_stack(t_node *original);
+void	set_index_to_original_stack(t_node *original, t_node *aux);
 
 void	selection_sort(t_stack *stacks)
 {
 	t_iter	iter;
 	int		index;
-	t_node	*current;
 	t_node	*next;
+	t_node	*aux;
+	t_node *head;
 
-	current = stacks->a;
 	iter.i = 0;
 	iter.j = 0;
 	index = 0;
-	printf("\nIndexing....\n");
-	while (current->next != NULL)
+	aux = create_aux_stack(stacks->a);
+	head = aux;
+	//printf("\nIndexing....\n");
+	while (aux->next != NULL)
 	{
-		next = current->next;
+		next = aux->next;
 		while (next != NULL)
 		{
-			if (current->data > next->data)
+			if (aux->data > next->data)
 			{
-				printf("Is %ld > %ld? \tIndex: %d\n",current->data, next->data, index);
+				swap_selection(aux, next);
 				next->index = index;
-				//printf("next < current %d \t %d\n",next->data, next->index);
+				aux->index = index;
 			}
-			else if (current->data < next->data)
-			{
-				printf("Is %ld < %ld? \tIndex: %d\n",current->data, next->data, index);
-				current->index = index;
-				//printf("next > current %d \t %d\n",current->data, current->index);
-			}
+			else
+				aux->index = index;
 			next = next->next;
 		}
-		current = current->next;
+		aux = aux->next;
 		index++;
 	}
-	current = stacks->a;
-	printf("\nPrint....\n");
-	while (current != NULL)
+	aux->index = index;
+	aux = head;
+	set_index_to_original_stack(stacks->a, aux);
+	// printf("\nPrint....\n");
+	// while (aux != NULL)
+	// {
+	// 	printf("%d \t %d\n",aux->data, aux->index);
+	// 	aux = aux->next;
+	// }
+}
+
+void	swap_selection(t_node *a, t_node *b)
+{
+	t_node		*val1;
+	long int	data1;
+	t_node		*val2;
+
+	val1 = a;
+	val2 = b;
+	data1 = val1->data;
+	val1->data = val2->data;
+	val2->data = data1;
+}
+
+t_node	*create_aux_stack(t_node *original)
+{
+	t_node	*head;
+	t_node	*stack;
+
+	stack = (t_node *)malloc(sizeof(t_node));
+	stack->data = original->data;
+	stack->next = NULL;
+	head = stack;
+	original = original->next;
+	while (original != NULL)
 	{
-		printf("%d \t %d\n",current->data, current->index);
-		current = current->next;
+		add_back(stack, original->data);
+		original = original->next;
 	}
+	return (head);
+}
+
+void	set_index_to_original_stack(t_node *original, t_node *aux)
+{
+	t_node	*head_a;
+	t_node	*head_o;
+	t_node	*aux_head;
+
+	head_a = aux;
+	head_o = original;
+	while (head_a != NULL)
+	{
+		aux_head = head_o;
+		while (aux_head != NULL)
+		{
+			if (head_a->data == aux_head->data)
+			{
+				aux_head->index = head_a->index;
+				break ;
+			}
+			aux_head = aux_head->next;
+		}
+		head_a = head_a->next;
+	}
+	// head_o = original;
+	// printf("\n\n* * Set index to original * * \n");
+	// while (head_o != NULL)
+	// {
+	// 	printf("%d \t %d\n",head_o->data, head_o->index);
+	// 	head_o = head_o->next;
+	// }
 }
