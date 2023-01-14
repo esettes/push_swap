@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/13 21:30:38 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/15 00:03:06 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_stack	*alloc_stacks_arr(int argc, int *arr);
 int		is_valid_arg(char **stack);
 int		is_sorted_arg(t_node *head);
 int		is_duplicated_arg(t_node *head);
-int		pop_node(t_node **head);
+void    push_new_node(t_node **head_a, long int data);
 char 	**read_input_file(int fd, char **split_fd);
 
 /**
@@ -105,5 +105,9 @@ void    add_back(t_node *head, long int data);
 void    print_args(t_node *stack);
 void    print_both_stacks(t_stack *stack);
 void	selection_sort(t_stack *stacks);
+void	f_sort(t_stack *stack);
+long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
+t_node	*pop_node(t_node **head);
+void    add_front(t_node **head_a, t_node *new_node);
 
 #endif

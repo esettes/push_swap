@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/13 23:11:24 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/15 00:02:17 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "fcntl.h"
 
 int		is_correct_argument(t_stack *stack);
-int		pop_node(t_node **head);
 long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void	free_stack(t_node **head);
 int		*myRandInRange();
@@ -43,6 +42,8 @@ int		main(int argc, char **argv)
 			//print_args(stack->a);
 			print_both_stacks(stack);
 			selection_sort(stack);
+			f_sort(stack);
+			print_both_stacks(stack);
 		}
 		else
 		{

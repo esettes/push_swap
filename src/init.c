@@ -5,9 +5,9 @@ void    print_node(t_node *stack);
 
 t_stack    *alloc_stacks(int argc, char **argv)
 {
-    char 		*ptr;
-    long int 	ret;
-    int 		i;
+	char 		*ptr;
+	long int 	ret;
+	int 		i;
 	t_stack		*stack;
 
 	i = 1;
@@ -18,7 +18,7 @@ t_stack    *alloc_stacks(int argc, char **argv)
 	ret = ft_strtol(argv[i], &ptr, 10);
 	stack->a->data = ret;
 	stack->a->next = NULL;
-	stack->b->data = 0;
+	stack->b->data = NULL;
 	stack->b->next = NULL;
 	i++;
 	while (argv[i])
@@ -26,7 +26,7 @@ t_stack    *alloc_stacks(int argc, char **argv)
 		ptr = NULL;
 		ret = ft_strtol(argv[i], &ptr, 10);
 		add_back(stack->a, ret);
-		add_back(stack->b, 0);
+		//add_back(stack->b, 0);
 		i++;
 	}
 	stack->elements = i;
@@ -58,7 +58,7 @@ t_stack		*alloc_stacks_arr(int argc, int *arr)
 
 void    add_back(t_node *head, long int data)
 {
-    t_node *current;
+	t_node *current;
 
 	current = head;
 	while (current->next != NULL)
@@ -70,27 +70,62 @@ void    add_back(t_node *head, long int data)
 
 void    push_new_node(t_node **head_a, long int data)
 {
-    t_node *new_node;
+	t_node *new_node;
 
-    new_node = (t_node *)malloc(sizeof(t_node));
-    new_node->data = data;
-    new_node->next = *head_a;
-	*head_a = new_node;
+	new_node = (t_node *)malloc(sizeof(t_node));
+	new_node->data = data;
+	if (head_a)
+	{
+		new_node->next = *head_a;
+		*head_a = new_node;
+	}
+	else
+		new_node->next = NULL;
 }
 
-int	pop_node(t_node **head)
+void    add_front(t_node **head_a, t_node *new_node)
 {
-	int	ret;
-	t_node	*next_node;
+	t_node	*tmp;
 
-	ret = -1;
+	if (head_a)
+	{
+		tmp = *head_a;
+		*head_a = new_node;
+		new_node->next = tmp;
+	}
+	else
+	{
+		printf("\n------ no list to add_front ------\n");
+	}
+}
+
+// int	pop_node(t_node **head)
+// {
+// 	int	ret;
+// 	t_node	*next_node;
+
+// 	ret = -1;
+// 	if (*head == NULL)
+// 		return (ret);
+// 	next_node = (*head)->next;
+// 	ret = (*head)->data;
+// 	free(*head);
+// 	*head = next_node;
+// 	return (ret);
+// }
+
+t_node	*pop_node(t_node **head)
+{
+	t_node	*next_node;
+	t_node	*popped;
+
 	if (*head == NULL)
-		return (ret);
+		return (NULL);
+	popped = *head;
 	next_node = (*head)->next;
-	ret = (*head)->data;
-	free(*head);
+	popped->next = NULL;
 	*head = next_node;
-	return (ret);
+	return (popped);
 }
 
 void    print_args(t_node *stack)
@@ -98,10 +133,10 @@ void    print_args(t_node *stack)
 	t_node *current;
 
 	current = stack;
-    while (current != NULL)
-    {
-	    printf("%d\n",current->data);
-        current = current->next;
+	while (current != NULL)
+	{
+		printf("%d\n",current->data);
+		current = current->next;
 	}
 }
 
@@ -109,14 +144,32 @@ void    print_both_stacks(t_stack *stack)
 {
 	t_node *current_a;
 	t_node *current_b;
+	int		aux;
 
 	current_a = stack->a;
 	current_b = stack->b;
+	aux = 0;
 	printf("|A|\t|B|\n");
-    while (current_a != NULL && current_b != NULL)
-    {
-	    printf(" %d \t %d\n",current_a->data, current_b->data);
-        current_a = current_a->next;
-		current_b = current_b->next;
+	while (aux < stack->elements)
+	{
+		if (current_a != NULL && current_b != NULL)
+		{
+			printf(" %ld \t %ld\n",current_a->data, current_b->data);
+			current_a = current_a->next;
+			current_b = current_b->next;
+			aux += 2;
+		}
+		else if (current_b != NULL)
+		{
+			printf("   \t %ld\n", current_b->data);
+			current_b = current_b->next;
+			aux++;
+		}
+		else if (current_a != NULL)
+		{
+			printf(" %ld \t  \n",current_a->data);
+			current_a = current_a->next;
+			aux++;
+		}
 	}
 }
