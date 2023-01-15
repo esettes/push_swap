@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/15 00:03:06 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/15 23:23:29 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #include "gnl.h"
 #include "stdio.h"
 
-#define RED_    "\x1b[31m"
-#define GREEN_  "\x1b[32m"
-#define YELLOW_ "\x1b[33m"
-#define BLUE_   "\x1b[34m"
-#define VIOLET_ "\x1b[35m"
-#define CYAN_   "\x1b[36m"
-#define RESET_  "\x1b[0m"
+#define RED_    ""
+#define GREEN_  ""
+#define YELLOW_ ""
+#define BLUE_   ""
+#define VIOLET_ ""
+#define CYAN_   ""
+#define RESET_  ""
 
 typedef struct	s_iter
 {
@@ -48,8 +48,9 @@ typedef struct	s_stack
 t_stack	*alloc_stacks(int argc, char **argv);
 t_stack	*alloc_stacks_arr(int argc, int *arr);
 int		is_valid_arg(char **stack);
-int		is_sorted_arg(t_node *head);
-int		is_duplicated_arg(t_node *head);
+int		is_sorted_arg(t_node **head);
+int     is_reverse_sorted(t_node **head);
+int		is_duplicated_arg(t_node **head);
 void    push_new_node(t_node **head_a, long int data);
 char 	**read_input_file(int fd, char **split_fd);
 
@@ -58,7 +59,7 @@ char 	**read_input_file(int fd, char **split_fd);
  * Nothing to do if stack have < 1 elements.
  * 
  * @param head list to swap
- * @param stack index for msg display. 1 = stack A; 2 = stack B
+ * @param stack index for msg display. 0 = stack A; 1 = stack B
  * @param called 1 = if function is called from swap_both or 0 = if not
  */ 
 void	f_swap(t_node **head, int stack, int called);
@@ -101,7 +102,8 @@ void    f_reverse_rotate(t_node **head, int print, int stack);
  */
 void    f_rotate(t_node **head, int print, int stack);
 
-void    add_back(t_node *head, long int data);
+void	add_back(t_node **head, t_node *new_node);
+void	add_value_back(t_node **head, long int data);
 void    print_args(t_node *stack);
 void    print_both_stacks(t_stack *stack);
 void	selection_sort(t_stack *stacks);

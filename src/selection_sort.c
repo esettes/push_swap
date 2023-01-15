@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/15 00:34:08 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/15 23:50:17 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ void	swap_selection(t_node *a, t_node *b);
 t_node	*create_aux_stack(t_node *original);
 void	set_index_to_original_stack(t_node *original, t_node *aux);
 void	free_stack(t_node **head);
-int	check_all_elements(t_stack *stack);
+int	check_all_elements(t_stack *stack, int n);
 
 void	selection_sort(t_stack *stacks)
 {
@@ -86,7 +86,7 @@ t_node	*create_aux_stack(t_node *original)
 	original = original->next;
 	while (original != NULL)
 	{
-		add_back(stack, original->data);
+		add_value_back(&stack, original->data);
 		original = original->next;
 	}
 	return (head);
@@ -129,65 +129,72 @@ void	f_sort(t_stack *stack)
 	t_node	*head_b;
 	t_node	*next_a;
 	t_node	*next_b;
+	int		i;
 
-	// while is not sorted
-	while (!is_sorted_arg(stack->a) && !check_all_elements(stack))
+	while (!is_sorted_arg(&stack->a) || !check_all_elements(stack, 0))
 	{
+		i = 0;
 		head_a = stack->a;
 		head_b = stack->b;
-		next_a = head_a->next;
-		while (head_a && next_a)
+		while (i < stack->elements)
 		{
-			next_a = head_a->next;
-			//while (next_a)
-			//{
-				if (head_a->index > next_a->index)
-				{
-					f_reverse_rotate(&stack->a, 1, 1);
-					f_push(&stack->a, &stack->b, 1, 2);
-					//stack->a = head_a;
-					//f_reverse_rotate(head_a, 1, 1);
-				}
-				else if (head_a->index < next_a->index)
-				{
-					f_push(&stack->a, &stack->b, 1, 2);
-					//f_reverse_rotate(&stack->a, 1, 1);
-				}
-				
-				printf("* * *\n");
-				print_both_stacks(stack);
-				if (head_b && head_a->index > head_b->index)
-					f_push(&stack->b, &stack->a, 1, 1);
-				else if (head_b && head_a->index < head_b->index)
-					f_push(&stack->a, &stack->b, 1, 1);
-				
-				next_a = next_a->next;
-				
-			//}
-			head_a = head_a->next;
+			if (stack->a && stack->a->index == i)
+				f_push(&stack->a, &stack->b, 1, 2);
+			else if (stack->a && stack->a->next && stack->a->next->index == i)
+			{
+				f_swap(&stack->a, 0, 0);
+				f_push(&stack->a, &stack->b, 1, 2);
+			}
+			else
+			{
+				if (stack->a )
+					f_rotate(&stack->a, 1, 1);
+			}
+			usleep(200000);
+			//print_both_stacks(stack);
+			i++;
 		}
-		printf("exit ********************\n");
+		if (!stack->a)
+		{
+			break ;
+		}
+		
 	}
+	
+	while (head_b != NULL)
+	{
+		f_push(&stack->b, &stack->a, 1, 1);
+		head_b = stack->b->next;
+	}
+	print_both_stacks(stack);
+	
 }
 
-int	check_all_elements(t_stack *stack)
+int	check_all_elements(t_stack *stack, int n)
 {
 	t_node *current;
 	int		i;
 
-	current = stack->a;
-	i = 0;
-	printf("elements original: %d\n", stack->elements);
-	while (current->next != NULL)
+	if (n == 0)
+	{
+		i = 0;
+		current = stack->a;
+	}
+	else
+	{
+		i = 1;
+		current = stack->b;
+	}
+	
+	//printf("elements original: %d\n", stack->elements);
+	while (current != NULL)
 	{
 		current = current->next;
 		i++;
-		printf("elements: %d\n", i);
+		//printf("elements: %d\n", i);
 	}
-	printf("elements: %d\n", i);
 	if (i == stack->elements)
 	{
-		printf("elements: %d\n", i);
 		return (1);
 	}
 	return (0);

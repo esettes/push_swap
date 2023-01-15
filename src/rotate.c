@@ -2,37 +2,39 @@
 
 void    f_reverse_rotate(t_node **head, int print, int stack)
 {
-    t_node *tmp;
-    t_node *last;
+	t_node *tmp;
+	t_node *last;
 
-    if (*head == NULL || (*head)->next == NULL)
-        return ;
-    tmp = *head;
-    while (tmp->next)
-    {
-        last = tmp;
-        tmp = tmp->next;
-    }
-    last->next = NULL;
-    tmp->next = *head;
-    *head = tmp;
-    if (print)
-    {
-        if (stack == 1)
-            ft_putendl_fd(VIOLET_, "rra", 1);
-        else if (stack == 2)
-            ft_putendl_fd(VIOLET_, "rrb", 1);
-    }
+	if (*head == NULL || (*head)->next == NULL)
+		return ;
+	tmp = *head;
+	while (tmp->next)
+	{
+		last = tmp;
+		tmp = tmp->next;
+	}
+	last->next = NULL;
+	tmp->next = *head;
+	*head = tmp;
+	if (print)
+	{
+		if (stack == 1)
+			ft_putendl_fd(VIOLET_, "rra", 1);
+		else if (stack == 2)
+			ft_putendl_fd(VIOLET_, "rrb", 1);
+	}
 }
 
 void	f_rotate(t_node **head, int print, int stack)
 {
 	long int	aux;
+	t_node	*tmp;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
-	aux = pop_node(head);
-	add_back(*head, aux);
+	//aux = pop_node(head);
+	tmp = pop_node(head);
+	add_back(head, tmp);
 	if (print)
 	{
 		if (stack == 1)

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/09 19:56:09 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/15 22:58:47 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	is_valid_arg(char **stack)
     int 		i;
 	
 	i = 1;
-	ft_putendl_fd(RESET_,"Arguments validation...", 1);
 	if (stack[1] == NULL)
 		return (0);
     while (stack[i])
@@ -33,29 +32,54 @@ int	is_valid_arg(char **stack)
 	return (1);
 }
 
-int     is_sorted_arg(t_node *head)
+int     is_sorted_arg(t_node **head)
 {
 	t_node *current;
 	t_node *next;
 
-	current = head;
-	next = current->next;
-	while (next != NULL)
+	if (*head)
 	{
-		if (current->data > next->data)
-			return (0);
-		current = current->next;
+		current = *head;
 		next = current->next;
+		while (next != NULL)
+		{
+			if (current->data > next->data)
+				return (0);
+			current = current->next;
+			next = current->next;
+		}
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
-int		is_duplicated_arg(t_node *head)
+int     is_reverse_sorted(t_node **head)
 {
 	t_node *current;
 	t_node *next;
 
-	current = head;
+	if (*head)
+	{
+		current = *head;
+		next = current->next;
+		while (next != NULL)
+		{
+			if (current->data < next->data)
+				return (0);
+			current = current->next;
+			next = current->next;
+		}
+		return (1);
+	}
+	return (0);
+}
+
+int		is_duplicated_arg(t_node **head)
+{
+	t_node *current;
+	t_node *next;
+
+	current = *head;
 	while (current->next != NULL)
 	{
 		next = current->next;

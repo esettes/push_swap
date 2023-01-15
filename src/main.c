@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/15 00:02:17 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/15 22:59:18 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,8 @@ int		main(int argc, char **argv)
 			return (0);
 		if (is_correct_argument(stack))
 		{
-			ft_putendl_fd(GREEN_,"Valid arguments!", 1);
-			print_args(stack->a);
-			printf("* * * *\n");
-			//f_rotate(&stack->a, 1, 1);
-			//f_push(&stack->a, &stack->b, 1, 2);
-			//f_push(&stack->a, &stack->b, 1, 2);
-			//print_args(stack->a);
-			print_both_stacks(stack);
 			selection_sort(stack);
 			f_sort(stack);
-			print_both_stacks(stack);
 		}
 		else
 		{
@@ -55,7 +46,7 @@ int		main(int argc, char **argv)
 	}
 	else
 	{
-		ft_putendl_fd(RED_,"Invalid arguments!", 1);
+		ft_putendl_fd(RED_,"Error", 2);
 		return (0);
 	}
 	return (1);
@@ -63,12 +54,12 @@ int		main(int argc, char **argv)
 
 int		is_correct_argument(t_stack *stack)
 {
-	if (is_sorted_arg(stack->a))
+	if (is_sorted_arg(&stack->a))
 	{
 		//ft_putendl_fd(RED_,"Stack is sorted! Nothing to do.", 1);
 		return (0);
 	}
-	if (is_duplicated_arg(stack->a))
+	if (is_duplicated_arg(&stack->a))
 	{
 		//ft_putendl_fd(RED_,"An argument is duplicated.", 1);
 		return (0);
