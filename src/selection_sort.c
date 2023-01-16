@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/16 23:56:54 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:02:05 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	selection_sort(t_stack *stacks)
 	index = 0;
 	aux = create_aux_stack(stacks->a);
 	head = aux;
-	//printf("\nIndexing....\n");
 	while (aux->next != NULL)
 	{
 		next = aux->next;
@@ -55,12 +54,6 @@ void	selection_sort(t_stack *stacks)
 	aux = head;
 	set_index_to_original_stack(stacks->a, aux);
 	free_stack(&aux);
-	// printf("\nPrint....\n");
-	// while (aux != NULL)
-	// {
-	// 	printf("%d \t %d\n",aux->data, aux->index);
-	// 	aux = aux->next;
-	// }
 }
 
 void	swap_selection(t_node *a, t_node *b)
@@ -116,13 +109,6 @@ void	set_index_to_original_stack(t_node *original, t_node *aux)
 		}
 		head_a = head_a->next;
 	}
-	// head_o = original;
-	// printf("\n\n* * Set index to original * * \n");
-	// while (head_o != NULL)
-	// {
-	// 	printf("%d \t %d\n",head_o->data, head_o->index);
-	// 	head_o = head_o->next;
-	// }
 }
 
 void	f_sort(t_stack *stack)
@@ -141,33 +127,6 @@ void	f_sort(t_stack *stack)
 		
 		while (i <= stack->elements && stack->a)
 		{
-			// if (j <= stack->elements)
-			// {
-			// 	if (stack->a && stack->a->index == j)
-			// 	{
-			// 		f_push(&stack->a, &stack->b, 1, 2);
-			// 		// if (stack->a)
-			// 		// {
-			// 		// 	if (is_index_before_first_half(stack, i))
-			// 		// 	{
-			// 		// 		//f_rotate_both(stack);
-			// 		// 		f_rotate(&stack->a, 1, 0);
-			// 		// 		f_rotate(&stack->b, 1, 1);
-			// 		// 	}
-			// 		// 	else
-			// 				f_rotate(&stack->b, 1, 1);
-			// 		//}
-			// 		j++;
-			// 	}
-			// 	else if (stack->a && stack->a->next && stack->a->next->index == j)
-			// 	{
-			// 		f_swap(&stack->a, 0, 0);
-			// 		f_push(&stack->a, &stack->b, 1, 2);
-			// 		f_rotate(&stack->b, 1, 1);
-			// 		j++;
-			// 	}
-			// 	print_both_stacks(stack);
-			// }
 			if (stack->a && stack->a->index == i)
 			{
 				f_push(&stack->a, &stack->b, 1, 2);
@@ -195,7 +154,6 @@ void	f_sort(t_stack *stack)
 					}
 				}
 			}
-			//print_both_stacks(stack);
 			//usleep(200000);
 			//print_both_stacks(stack);
 		}
@@ -207,14 +165,6 @@ void	f_sort(t_stack *stack)
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
 	}
-	// while (stack->b && (middle <= stack->elements))
-	// {
-	// 	f_push(&stack->b, &stack->a, 1, 1);
-	// 	f_rotate(&stack->a, 1, 2);
-	// 	middle++;
-	// }
-	
-	//f_push(&stack->b, &stack->a, 1, 1);
 	//print_both_stacks(stack);
 	
 }
