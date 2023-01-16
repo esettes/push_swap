@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/15 23:50:17 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:56:54 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_node	*create_aux_stack(t_node *original);
 void	set_index_to_original_stack(t_node *original, t_node *aux);
 void	free_stack(t_node **head);
 int	check_all_elements(t_stack *stack, int n);
+int	is_last_index_less(t_node *lst, int index);
+int	is_index_before_first_half(t_stack *stack, int index);
 
 void	selection_sort(t_stack *stacks)
 {
@@ -126,53 +128,100 @@ void	set_index_to_original_stack(t_node *original, t_node *aux)
 void	f_sort(t_stack *stack)
 {
 	t_node	*head_a;
-	t_node	*head_b;
-	t_node	*next_a;
-	t_node	*next_b;
 	int		i;
+	int		j;
+	int		middle;
 
 	while (!is_sorted_arg(&stack->a) || !check_all_elements(stack, 0))
 	{
 		i = 0;
+		j = stack->elements / 2;
+		middle = j;
 		head_a = stack->a;
-		head_b = stack->b;
-		while (i < stack->elements)
+		
+		while (i <= stack->elements && stack->a)
 		{
+			// if (j <= stack->elements)
+			// {
+			// 	if (stack->a && stack->a->index == j)
+			// 	{
+			// 		f_push(&stack->a, &stack->b, 1, 2);
+			// 		// if (stack->a)
+			// 		// {
+			// 		// 	if (is_index_before_first_half(stack, i))
+			// 		// 	{
+			// 		// 		//f_rotate_both(stack);
+			// 		// 		f_rotate(&stack->a, 1, 0);
+			// 		// 		f_rotate(&stack->b, 1, 1);
+			// 		// 	}
+			// 		// 	else
+			// 				f_rotate(&stack->b, 1, 1);
+			// 		//}
+			// 		j++;
+			// 	}
+			// 	else if (stack->a && stack->a->next && stack->a->next->index == j)
+			// 	{
+			// 		f_swap(&stack->a, 0, 0);
+			// 		f_push(&stack->a, &stack->b, 1, 2);
+			// 		f_rotate(&stack->b, 1, 1);
+			// 		j++;
+			// 	}
+			// 	print_both_stacks(stack);
+			// }
 			if (stack->a && stack->a->index == i)
+			{
 				f_push(&stack->a, &stack->b, 1, 2);
+				i++;
+			}
 			else if (stack->a && stack->a->next && stack->a->next->index == i)
 			{
 				f_swap(&stack->a, 0, 0);
 				f_push(&stack->a, &stack->b, 1, 2);
+				i++;
 			}
 			else
 			{
-				if (stack->a )
-					f_rotate(&stack->a, 1, 1);
+				if (stack->a)
+				{
+					if (!is_index_before_first_half(stack, i))
+					{
+						while (stack->a->index != i)
+							f_reverse_rotate(&stack->a, 1, 0);
+					}
+					else
+					{
+						while (stack->a->index != i)
+							f_rotate(&stack->a, 1, 0);
+					}
+				}
 			}
-			usleep(200000);
 			//print_both_stacks(stack);
-			i++;
+			//usleep(200000);
+			//print_both_stacks(stack);
 		}
 		if (!stack->a)
-		{
 			break ;
-		}
-		
 	}
-	
-	while (head_b != NULL)
+	i = 0;
+	while (stack->b)// && (i < middle))
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
-		head_b = stack->b->next;
 	}
-	print_both_stacks(stack);
+	// while (stack->b && (middle <= stack->elements))
+	// {
+	// 	f_push(&stack->b, &stack->a, 1, 1);
+	// 	f_rotate(&stack->a, 1, 2);
+	// 	middle++;
+	// }
+	
+	//f_push(&stack->b, &stack->a, 1, 1);
+	//print_both_stacks(stack);
 	
 }
 
 int	check_all_elements(t_stack *stack, int n)
 {
-	t_node *current;
+	t_node	*current;
 	int		i;
 
 	if (n == 0)
@@ -185,17 +234,47 @@ int	check_all_elements(t_stack *stack, int n)
 		i = 1;
 		current = stack->b;
 	}
-	
-	//printf("elements original: %d\n", stack->elements);
 	while (current != NULL)
 	{
 		current = current->next;
 		i++;
-		//printf("elements: %d\n", i);
 	}
 	if (i == stack->elements)
-	{
 		return (1);
+	return (0);
+}
+
+int	is_last_index_less(t_node *lst, int index)
+{
+	t_node	*tmp;
+
+	tmp = lst;
+	while (lst->next)
+	{
+		lst = lst->next;
 	}
+	if (lst->index < index)
+		return (1);
+	lst = tmp;
+	return (0);
+}
+
+int	is_index_before_first_half(t_stack *stack, int index)
+{
+	t_node	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = stack->a;
+	while (i <= (stack->elements / 2))
+	{
+		if (stack->a->index == (index + 1))
+		{
+			stack->a = tmp;
+			return (1);
+		}
+		i++;
+	}
+	stack->a = tmp;
 	return (0);
 }

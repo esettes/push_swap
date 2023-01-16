@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/15 23:23:29 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:29:11 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,10 @@ void    f_reverse_rotate(t_node **head, int print, int stack);
  * 
  * @param head list to rotate
  * @param print 1 = prints msg, 0 = no print
- * @param stack 1 = if rotates stack A or 2 = if rotates stack B
+ * @param stack 0 = if rotates stack A or 1 = if rotates stack B
  */
 void    f_rotate(t_node **head, int print, int stack);
+void	f_rotate_both(t_stack *stack);
 
 void	add_back(t_node **head, t_node *new_node);
 void	add_value_back(t_node **head, long int data);
