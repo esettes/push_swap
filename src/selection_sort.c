@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/17 00:02:05 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/18 23:55:34 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,24 @@ void	f_sort(t_stack *stack)
 		
 		while (i <= stack->elements && stack->a)
 		{
+			if (j <= stack->elements)
+			{
+				if (stack->a && stack->a->index == j)
+				{
+					f_push(&stack->a, &stack->b, 1, 2);
+					f_rotate(&stack->b, 1, 1);
+					j++;
+				}
+				if (stack->a && stack->a->next && stack->a->next->index == j)
+				{
+					f_swap(&stack->a, 0, 0);
+					f_push(&stack->a, &stack->b, 1, 2);
+					f_rotate(&stack->b, 1, 1);
+					j++;
+				}
+				printf("j: %i\n", j);
+				print_both_stacks(stack);
+			}
 			if (stack->a && stack->a->index == i)
 			{
 				f_push(&stack->a, &stack->b, 1, 2);
@@ -155,18 +173,24 @@ void	f_sort(t_stack *stack)
 				}
 			}
 			//usleep(200000);
-			//print_both_stacks(stack);
+			print_both_stacks(stack);
 		}
 		if (!stack->a)
 			break ;
 	}
 	i = 0;
-	while (stack->b)// && (i < middle))
+	while (stack->b && (i < middle))
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
 	}
+	while (stack->b && (middle <= stack->elements))
+	{
+		f_push(&stack->b, &stack->a, 1, 1);
+		f_rotate(&stack->a, 1, 2);
+		middle++;
+	}
+	//f_push(&stack->b, &stack->a, 1, 1);
 	//print_both_stacks(stack);
-	
 }
 
 int	check_all_elements(t_stack *stack, int n)
@@ -194,6 +218,29 @@ int	check_all_elements(t_stack *stack, int n)
 	return (0);
 }
 
+int	count_stack_elements(t_stack *stack, int n)
+{
+	t_node	*current;
+	int		i;
+
+	if (n == 0)
+	{
+		i = 0;
+		current = stack->a;
+	}
+	else
+	{
+		i = 1;
+		current = stack->b;
+	}
+	while (current != NULL)
+	{
+		current = current->next;
+		i++;
+	}
+	return (i);
+}
+
 int	is_last_index_less(t_node *lst, int index)
 {
 	t_node	*tmp;
@@ -212,17 +259,20 @@ int	is_last_index_less(t_node *lst, int index)
 int	is_index_before_first_half(t_stack *stack, int index)
 {
 	t_node	*tmp;
+	int		elements;
 	int		i;
 
 	i = 0;
+	elements = count_stack_elements(stack, 0);
 	tmp = stack->a;
-	while (i <= (stack->elements / 2))
+	while (i <= (elements / 2))
 	{
-		if (stack->a->index == (index + 1))
+		if (stack->a->index == index)
 		{
 			stack->a = tmp;
 			return (1);
 		}
+		stack->a = stack->a->next;
 		i++;
 	}
 	stack->a = tmp;
