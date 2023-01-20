@@ -19,6 +19,7 @@ t_stack    *alloc_stacks(int argc, char **argv)
 	ret = ft_strtol(argv[i], &ptr, 10);
 	stack->a->data = ret;
 	stack->a->next = NULL;
+	stack->is_even = 0;
 	// stack->b->data = '\0';
 	// stack->b->index = '\0';
 	// stack->b->next = NULL;
@@ -33,6 +34,8 @@ t_stack    *alloc_stacks(int argc, char **argv)
 	}
 	i--;
 	stack->elements = i;
+	if (i % 2 == 0)
+		stack->is_even = 1;
 	return (stack);
 }
 
@@ -166,6 +169,8 @@ void    print_both_stacks(t_stack *stack)
 	t_node *current_b;
 	int		aux;
 
+	#if PRINT_
+	printf("\033c");
 	current_a = stack->a;
 	current_b = stack->b;
 	aux = 0;
@@ -191,4 +196,6 @@ void    print_both_stacks(t_stack *stack)
 		}
 		aux++;
 	}
+	usleep(300000);
+	#endif
 }

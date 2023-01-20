@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/16 23:29:11 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:15:40 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,26 @@
 #include "gnl.h"
 #include "stdio.h"
 
-#define RED_    ""
-#define GREEN_  ""
-#define YELLOW_ ""
-#define BLUE_   ""
-#define VIOLET_ ""
-#define CYAN_   ""
-#define RESET_  ""
+#define PRINT_    0
+#define COLORED    0
+
+#if COLORED
+	#define RED_    "\x1b[31m"
+	#define GREEN_  "\x1b[32m"
+	#define YELLOW_ "\x1b[33m"
+	#define BLUE_   "\x1b[34m"
+	#define VIOLET_ "\x1b[35m"
+	#define CYAN_   "\x1b[36m"
+	#define RESET_  "\x1b[0m"
+#else
+	#define RED_    ""
+	#define GREEN_  ""
+	#define YELLOW_ ""
+	#define BLUE_   ""
+	#define VIOLET_ ""
+	#define CYAN_   ""
+	#define RESET_  ""
+#endif
 
 typedef struct	s_iter
 {
@@ -43,6 +56,7 @@ typedef struct	s_stack
 	t_node	*a;
 	t_node	*b;
 	int		elements;
+	int		is_even;
 }				t_stack;
 
 t_stack	*alloc_stacks(int argc, char **argv);
