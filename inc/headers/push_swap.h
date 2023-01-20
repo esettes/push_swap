@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/20 19:15:40 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/20 21:49:00 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct	s_stack
 	t_node	*a;
 	t_node	*b;
 	int		elements;
+	int		current_a_elems;
+	int		current_b_elems;
 	int		is_even;
 }				t_stack;
 
@@ -120,7 +122,7 @@ void	f_rotate_both(t_stack *stack);
 void	add_back(t_node **head, t_node *new_node);
 void	add_value_back(t_node **head, long int data);
 void    print_args(t_node *stack);
-void    print_both_stacks(t_stack *stack);
+void    print_both_stacks(t_stack *stack, int i, int j);
 void	selection_sort(t_stack *stacks);
 void	f_sort(t_stack *stack);
 long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);

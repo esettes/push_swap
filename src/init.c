@@ -163,14 +163,14 @@ void    print_args(t_node *stack)
 	}
 }
 
-void    print_both_stacks(t_stack *stack)
+void    print_both_stacks(t_stack *stack, int i, int j)
 {
 	t_node *current_a;
 	t_node *current_b;
 	int		aux;
 
 	#if PRINT_
-	printf("\033c");
+	//printf("\033c");
 	current_a = stack->a;
 	current_b = stack->b;
 	aux = 0;
@@ -196,6 +196,8 @@ void    print_both_stacks(t_stack *stack)
 		}
 		aux++;
 	}
-	usleep(300000);
+	printf("i: \t%i\n", i);
+	printf("j: \t%i\n", j);
+	usleep(150000);
 	#endif
 }
