@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/20 22:00:23 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/20 23:06:56 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	check_all_elements(t_stack *stack, int n);
 int	is_last_index_less(t_node *lst, int index);
 int	is_index_before_first_half(t_stack *stack, int index);
 int	count_stack_elements(t_stack *stack, int n);
+t_moves	*init_num_moves(void);
+
 
 void	selection_sort(t_stack *stacks)
 {
@@ -115,121 +117,42 @@ void	set_index_to_original_stack(t_node *original, t_node *aux)
 void	f_sort(t_stack *stack)
 {
 	t_node	*head_a;
-	int		i;
-	int		j;
+	t_iter	iter;
+	t_moves	*moves;
 	int		middle;
 	int		current_elems;
 
-	i = 0;
-	j = (stack->elements / 2) + 1;
+	moves = init_num_moves();
+	iter.i = 0;
+	iter.j = (stack->elements / 2) + 1;
 	//printf("start j: %i\n", j);
 	//printf("stack->elements: %i\n", stack->elements);
-	middle = j - 1;
+	middle = iter.j - 1;
 	head_a = stack->a;
 	//usleep(800000);
-		
 	while (stack->a)
 	{
-		print_both_stacks(stack, i, j);
-		//usleep(300000);
-		////printf("j: %i\n", j);
+		print_both_stacks(stack, iter.i, iter.j);
+		
 		current_elems = count_stack_elements(stack, 0);
-		if (j <= stack->elements)
-		{
-			printf("current_elems: %i\n", current_elems);
-			if (!is_index_before_first_half(stack, j) && current_elems > 2)
-			{
-				//current_elems = count_stack_elements
-				while (stack->a->index != j && stack->a->next->index != j)
-				{
-					f_reverse_rotate(&stack->a, 1, 0);
-					print_both_stacks(stack, i, j);
-					//printf("j: %i\n", j);
-				}
-			}
-			else if (current_elems > 2)
-			{
-				while (stack->a->index != j && stack->a->next->index != j)
-				{
-					f_rotate(&stack->a, 1, 0);
-					print_both_stacks(stack, i, j);
-					//printf("j: %i\n", j);
-				}
-			}
-			if (stack->a && stack->a->index == j)
-				{
-					f_push(&stack->a, &stack->b, 1, 2);
-					f_rotate(&stack->b, 1, 1);
-					print_both_stacks(stack, i, j);
-					j++;
-					//printf("j: %i\n", j);
-				}
-			if (stack->a && stack->a->next && stack->a->next->index == j)
-			{
-				f_swap(&stack->a, 0, 0);
-				f_push(&stack->a, &stack->b, 1, 2);
-				f_rotate(&stack->b, 1, 1);
-				print_both_stacks(stack, i, j);
-				j++;
-				//printf("j: %i\n", j);
-			}
-		}
-		if (i <= middle && stack->a)
-		{
-			if (!is_index_before_first_half(stack, i) && current_elems > 2)
-			{
-				//current_elems = count_stack_elements
-				while (stack->a->index != i && stack->a->next->index != i)
-				{
-					f_reverse_rotate(&stack->a, 1, 0);
-					print_both_stacks(stack, i, j);
-				}
-			}
-			else if (current_elems > 2)
-			{
-				while (stack->a->index != i && stack->a->next->index != i)
-				{
-					f_rotate(&stack->a, 1, 0);
-					print_both_stacks(stack, i, j);
-				}
-			}
-			if (stack->a && stack->a->index == i)
-			{
-				f_push(&stack->a, &stack->b, 1, 2);
-				print_both_stacks(stack, i, j);
-				i++;
-				//printf("i: %i\n", i);
-				////printf("j: %i\n", j);
-			}
-			if (stack->a && stack->a->next && stack->a->next->index == i)
-			{
-				f_swap(&stack->a, 0, 0);
-				f_push(&stack->a, &stack->b, 1, 2);
-				print_both_stacks(stack, i, j);
-				i++;
-				//printf("i: %i\n", i);
-			}
-		}
-		//usleep(100000);
-		//print_both_stacks(stack);
+		
 	}
-	i = 0;
-	while (stack->b && (i <= middle))
+	iter.i = 0;
+	while (stack->b && (iter.i <= middle))
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
 		//usleep(200000);
-		print_both_stacks(stack, i, j);
-		i++;
+		print_both_stacks(stack, iter.i, iter.j);
+		iter.i++;
 	}
 	while (stack->b && (middle <= stack->elements))
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
 		f_rotate(&stack->a, 1, 2);
 		//usleep(200000);
-		print_both_stacks(stack, i, j);
+		print_both_stacks(stack, iter.i, iter.j);
 		middle++;
 	}
-	//f_push(&stack->b, &stack->a, 1, 1);
 }
 
 int	is_index_current_or_next(t_stack *stack, int which, int index)
@@ -325,4 +248,12 @@ int	is_index_before_first_half(t_stack *stack, int index)
 		i++;
 	}
 	return (0);
+}
+
+t_moves	*init_num_moves(void)
+{
+	t_moves	*moves;
+
+	moves = (t_moves *)malloc(sizeof(t_moves));
+	return (moves);
 }

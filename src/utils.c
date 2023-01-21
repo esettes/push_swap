@@ -15,17 +15,7 @@ int	get_node_position(t_node *lst)
 	return (pos);
 }
 
-int	get_rotate_movements(t_node *lst, int index)
-{
-	int	pos;
-
-	pos = get_node_position(lst);
-	// get node position
-	// i - 1
-
-}
-
-int	get_reverse_movements()
+t_moves	*search_num_movements(void)
 {
 	
 }

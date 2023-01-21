@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/20 21:49:00 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/20 23:05:08 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ typedef struct	s_iter
 	int	j;
 }				t_iter;
 
+typedef struct	s_moves
+{
+	int	moves_i_rotate;
+	int	moves_i_reverse;
+	int	moves_j_rotate;
+	int	moves_j_reverse;
+}				t_moves;
+
 typedef struct s_node
 {
 	long int		data;
@@ -69,6 +77,7 @@ int     is_reverse_sorted(t_node **head);
 int		is_duplicated_arg(t_node **head);
 void    push_new_node(t_node **head_a, long int data);
 char 	**read_input_file(int fd, char **split_fd);
+int		get_node_position(t_node *lst);
 
 /**
  * @brief Swaps the first two elements of the head of stack.
