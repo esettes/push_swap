@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/20 23:06:56 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/22 00:09:15 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,26 @@ void	f_sort(t_stack *stack)
 	while (stack->a)
 	{
 		print_both_stacks(stack, iter.i, iter.j);
-		
 		current_elems = count_stack_elements(stack, 0);
+		if (stack->a && stack->a->index == iter.i && iter.i <= middle)
+		{
+			f_push(&stack->a, &stack->b, 1, 2);
+			print_both_stacks(stack, iter.i, iter.j);
+			iter.i++;
+		}
+		if (stack->a && stack->a->index == iter.j)
+		{
+			f_push(&stack->a, &stack->b, 1, 2);
+			f_rotate(&stack->b, 1, 1);
+			print_both_stacks(stack, iter.i, iter.j);
+			iter.j++;
+			//printf("j: %i\n", j);
+		}
+		count_num_movements(moves, stack->a, stack->elements);
+		if (stack->a && stack->a->index != iter.i && stack->a->index != iter.j)
+		{
+			do_less_rotation_moves(moves, &stack->a, iter);
+		}
 		
 	}
 	iter.i = 0;
@@ -153,13 +171,14 @@ void	f_sort(t_stack *stack)
 		print_both_stacks(stack, iter.i, iter.j);
 		middle++;
 	}
+	print_both_stacks(stack, iter.i, iter.j);
 }
 
 int	is_index_current_or_next(t_stack *stack, int which, int index)
 {
 	t_node	*current;
 
-	if (which = 0)
+	if (which == 0)
 		current = stack->a;
 	else
 		current = stack->b;
