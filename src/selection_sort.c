@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/22 00:09:15 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:41:07 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	free_stack(t_node **head);
 int	check_all_elements(t_stack *stack, int n);
 int	is_last_index_less(t_node *lst, int index);
 int	is_index_before_first_half(t_stack *stack, int index);
-int	count_stack_elements(t_stack *stack, int n);
 t_moves	*init_num_moves(void);
 
 

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/13 17:30:20 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:55:32 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,18 @@ int		is_duplicated_arg(t_node **head);
 void    push_new_node(t_node **head_a, long int data);
 char 	**read_input_file(int fd, char **split_fd);
 int		get_node_position(t_node *lst);
+/**
+ * @brief 
+ * 
+ * @param moves 
+ * @param lst 
+ * @param elems 
+ */
 void	count_num_movements(t_moves *moves, t_node *lst, int elems);
 void	do_less_rotation_moves(t_moves *moves, t_node **lst, t_iter it);
 
 /**
- * @brief Swaps the first two elements of the head of stack.
+ * Swaps the first two elements of the head of stack.
  * Nothing to do if stack have < 1 elements.
  * 
  * @param head list to swap
@@ -139,5 +146,15 @@ void	f_sort(t_stack *stack);
 long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 t_node	*pop_node(t_node **head);
 void    add_front(t_node **head_a, t_node *new_node);
+/**
+ * @brief Counts how many elements are currently in the indicated stack
+ * 
+ * @param stack Pointer to stack
+ * @param n 0 if is stack A, else if is stack B
+ * 
+ * @return number of stack elements
+ * 
+ */
+int	count_stack_elements(t_stack *stack, int n);
 
 #endif
