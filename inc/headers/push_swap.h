@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/13 18:55:32 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/13 19:43:07 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ void    push_new_node(t_node **head_a, long int data);
 char 	**read_input_file(int fd, char **split_fd);
 int		get_node_position(t_node *lst);
 /**
- * @brief 
+ * @brief Sets nums of movements for each iterator and it's rotation
+ * and reverse rotation.
  * 
- * @param moves 
+ * @param moves Struct
  * @param lst 
  * @param elems 
  */

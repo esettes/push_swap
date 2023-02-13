@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/13 18:41:07 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/13 19:41:19 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ void	f_sort(t_stack *stack)
 	//printf("stack->elements: %i\n", stack->elements);
 	middle = iter.j - 1;
 	head_a = stack->a;
-	//usleep(800000);
 	while (stack->a)
 	{
 		print_both_stacks(stack, iter.i, iter.j);
@@ -158,7 +157,6 @@ void	f_sort(t_stack *stack)
 	while (stack->b && (iter.i <= middle))
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
-		//usleep(200000);
 		print_both_stacks(stack, iter.i, iter.j);
 		iter.i++;
 	}
@@ -166,7 +164,6 @@ void	f_sort(t_stack *stack)
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
 		f_rotate(&stack->a, 1, 2);
-		//usleep(200000);
 		print_both_stacks(stack, iter.i, iter.j);
 		middle++;
 	}
