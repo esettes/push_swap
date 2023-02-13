@@ -6,7 +6,7 @@
 #    By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 17:00:44 by iostancu          #+#    #+#              #
-#    Updated: 2023/01/21 23:40:57 by iostancu         ###   ########.fr        #
+#    Updated: 2023/02/13 17:28:11 by iostancu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ fclean: dbgfiles
 	@$(MAKE) -C $(dir $(LIBFT)) fclean
 	@echo "${LWHITE}Clean GNL... ${LGREEN}✓$(RESET)\033[2;33m"
 	@$(MAKE) -C $(dir $(GNL)) fclean
+	@echo "${BWHITE}Clean all ${GREEN}[OK]$(RESET)"
 	@echo "\n"
 
 re: fclean all

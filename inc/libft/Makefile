@@ -6,7 +6,7 @@
 #    By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 17:01:06 by iostancu          #+#    #+#              #
-#    Updated: 2022/09/21 21:19:27 by iostancu         ###   ########.fr        #
+#    Updated: 2023/02/13 17:28:03 by iostancu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ clean:
 
 fclean:	clean
 		@${RM} ${NAME}
-		@echo "${BWHITE}Clean all ${GREEN}[OK]$(RESET)"
 
 re:		fclean all bonus
 

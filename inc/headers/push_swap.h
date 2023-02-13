@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/22 00:22:01 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:30:20 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include "gnl.h"
 #include "stdio.h"
 
-#define PRINT_    0
-#define COLORED    0
+#define PRINT_    1
+#define COLORED    1
 
 #if COLORED
 	#define RED_    "\x1b[31m"
