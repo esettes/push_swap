@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/13 19:41:19 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/13 20:38:38 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	f_sort(t_stack *stack)
 	t_iter	iter;
 	t_moves	*moves;
 	int		middle;
-	int		current_elems;
+	//int		current_elems;
 
 	moves = init_num_moves();
 	iter.i = 0;
@@ -131,7 +131,7 @@ void	f_sort(t_stack *stack)
 	while (stack->a)
 	{
 		print_both_stacks(stack, iter.i, iter.j);
-		current_elems = count_stack_elements(stack, 0);
+		//current_elems = count_stack_elements(stack, 0);
 		if (stack->a && stack->a->index == iter.i && iter.i <= middle)
 		{
 			f_push(&stack->a, &stack->b, 1, 2);
@@ -151,7 +151,6 @@ void	f_sort(t_stack *stack)
 		{
 			do_less_rotation_moves(moves, &stack->a, iter);
 		}
-		
 	}
 	iter.i = 0;
 	while (stack->b && (iter.i <= middle))
