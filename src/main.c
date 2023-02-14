@@ -23,21 +23,8 @@ int		main(int argc, char **argv)
 {
 	t_stack	*stack;
 	int		fd;
-	char	**input;
-	int 	i;
 	int		*arr;
 
-	i = 0;
-	//fd = open(argv[1], O_WRONLY);
-	//input = malloc(sizeof(char *) * 10000);
-	//read_input_file(fd, input);
-	//close(fd);
-	// while (input[i])
-	// {
-	// 	printf("%s\n", input[i]);
-	// 	i++;
-	// }
-	//if (argc < 2)
 	//arr = myRandInRange();
 	if (is_valid_arg(argv))
 	{
@@ -69,8 +56,8 @@ int		main(int argc, char **argv)
 		ft_putendl_fd(RED_,"Invalid arguments!", 1);
 		return (0);
 	}
-	free (arr);
-	return (1);
+	
+	return (0);
 }
 
 int		is_correct_argument(t_stack *stack)

@@ -13,27 +13,32 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft.h"
-#include "gnl.h"
-#include "stdio.h"
+# include "libft.h"
+# include "gnl.h"
+# include "stdio.h"
 
-#define RED_    "\x1b[31m"
-#define GREEN_  "\x1b[32m"
-#define YELLOW_ "\x1b[33m"
-#define BLUE_   "\x1b[34m"
-#define VIOLET_ "\x1b[35m"
-#define CYAN_   "\x1b[36m"
-#define RESET_  "\x1b[0m"
+# define RED_    "\x1b[31m"
+# define GREEN_  "\x1b[32m"
+# define YELLOW_ "\x1b[33m"
+# define BLUE_   "\x1b[34m"
+# define VIOLET_ "\x1b[35m"
+# define CYAN_   "\x1b[36m"
+# define RESET_  "\x1b[0m"
 
-typedef struct	s_iter
+# ifndef DOING_TESTS
+# define DOING_TESTS 0
+# endif
+
+typedef struct	s_count
 {
-	int	i;
-	int	j;
-}				t_iter;
+	int index;
+	int	count;
+}				t_count;
 
 typedef struct s_node
 {
 	long int		data;
+	struct s_count	*count;
 	struct s_node	*next;
 }				t_node;
 
@@ -102,5 +107,8 @@ void    f_rotate(t_node **head, int print, int stack);
 void    add_back(t_node *head, long int data);
 void    print_args(t_node *stack);
 void    print_both_stacks(t_stack *stack);
+int		get_min_value(t_node *head);
+
+long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 
 #endif

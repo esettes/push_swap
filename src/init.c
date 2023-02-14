@@ -98,11 +98,14 @@ void    print_args(t_node *stack)
 	t_node *current;
 
 	current = stack;
+	ft_putendl_fd(BLUE_ ,"Arguments: ", 1);
     while (current != NULL)
     {
-	    printf("%d\n",current->data);
+	    printf("%d, ",current->data);
         current = current->next;
 	}
+	printf("");
+	sleep(0.5);
 }
 
 void    print_both_stacks(t_stack *stack)

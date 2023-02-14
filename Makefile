@@ -32,12 +32,8 @@ COMPS	= $(LIBFT) $(GNL)
 
 HEADERS	= -I include -I ./inc/libft/inc/ -I ./inc/headers/ -I ./inc/gnl/inc/
 
-CC	= gcc
-CFLAGS	= -O0 -g3 -fsanitize=address #-Ofast  -fno-omit-frame-pointer # -Wall -Wextra -Werror 
-
-ifeq ($(OS), Linux)
-	VALGRIND = valgrind --tool=memcheck --leak-check=full --track-origins=yes -s
-endif
+CC	= clang#gcc
+CFLAGS	= -O0 -g3 #-fsanitize=address #-Ofast  -fno-omit-frame-pointer # -Wall -Wextra -Werror 
 
 all: obj $(COMPS) $(NAME)
 
@@ -47,7 +43,6 @@ obj:
 $(OBJDIR)%.o:$(SRCDIR)%.c
 	@ $(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
 
-#Change libx42_flags position at the end of the coommand
 $(NAME):	$(OBJS)
 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(COMPS) 
 	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)\033[2;33m"
@@ -81,6 +76,15 @@ fclean: dbgfiles
 	@echo "${LWHITE}Clean GNL... ${LGREEN}✓$(RESET)\033[2;33m"
 	@$(MAKE) -C $(dir $(GNL)) fclean
 	@echo "\n"
+
+test:
+	./$(NAME) 7 62 55 -1289 2187 27 3 -2 0 80971
+	@sleep 1
+	./$(NAME) 8 1 2 3 4 5
+	@sleep 1
+	./$(NAME) "8 1 2 3"
+	@sleep 1
+	./$(NAME) -3452 9 1982 782 281 9128 872 81 892 8291 30 832 981 274
 
 re: fclean all
 

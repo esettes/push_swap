@@ -1,0 +1,16 @@
+[compiler]
+linux:
+	gcc-10
+	clang-13
+macos:
+	gcc-11
+	clang-?
+
+[debug]
+linux:
+	valgrind --tool=memcheck --leak-check=full --track-origins=yes -s
+	sanitizers:
+		-fsanitize=leaks
+macos:
+	sanitizers:
+		-fsanitize=address

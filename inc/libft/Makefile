@@ -30,26 +30,22 @@ OBJB	= $(addprefix $(OBJDIR), $(B_SRCNAMES:.c=.o))
 
 NAME	= libft.a
 BONUS	= .
-CC  = gcc
+CC  = clang#gcc
 RM  = rm -f
-CFLAGS  = -g3 -o0 -Wall -Wextra -Werror
+CFLAGS  = -g3 -o0 -Wall -Wextra -Werror -I
 AR = ar rc
 
-HEADER	= -I include -I ./inc/
+LIBS	=  ./inc/
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
 	@mkdir -p $(OBJDIR)
-	@$(CC) $(CFLAGS) $(HEADER) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(LIBS) -o $@ -c $<
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(LIBS)
 	@${AR} ${NAME} ${OBJS}
-	@ranlib ${NAME}
+#	@ranlib ${NAME}
 	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)"
-#@echo "${BWHITE}Compilation ${GREEN}[OK]$(RESET)" 
 
-$(OBJDIR)%.o:$(B_SRCDIR)%.c
-	@mkdir -p $(OBJDIR)
-	@$(CC) $(CFLAGS) $(HEADER) -o $@ -c $<
 
 ${BONUS}:	${OBJS} ${OBJB}
 		@${AR}	${NAME} ${OBJB}
