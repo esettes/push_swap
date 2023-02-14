@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/29 21:21:42 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/15 22:59:18 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "fcntl.h"
 
 int		is_correct_argument(t_stack *stack);
-int		pop_node(t_node **head);
 long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void	free_stack(t_node **head);
 int		*myRandInRange();
@@ -23,29 +22,23 @@ int		main(int argc, char **argv)
 {
 	t_stack	*stack;
 	int		fd;
-	int		*arr;
+	char	**input;
+	int 	i;
 
-	//arr = myRandInRange();
+	i = 0;
 	if (is_valid_arg(argv))
 	{
 		stack = alloc_stacks(argc, argv);
-		//stack = alloc_stacks_arr(argc, arr);
 		if (!stack)
 			return (0);
 		if (is_correct_argument(stack))
 		{
-			ft_putendl_fd(GREEN_,"Valid arguments!", 1);
-			print_args(stack->a);
-			printf("* * * *\n");
-			f_rotate(&stack->a, 1, 1);
-			//f_push(&stack->a, &stack->b, 1, 2);
-			//f_push(&stack->a, &stack->b, 1, 2);
-			//print_args(stack->a);
-			print_both_stacks(stack);
+			selection_sort(stack);
+			f_sort(stack);
 		}
 		else
 		{
-			ft_putendl_fd(RED_,"Error", 1);
+			ft_putendl_fd(RED_,"Error", 2);
 		}
 		free_stack(&stack->a);
 		free_stack(&stack->b);
@@ -53,21 +46,20 @@ int		main(int argc, char **argv)
 	}
 	else
 	{
-		ft_putendl_fd(RED_,"Invalid arguments!", 1);
+		ft_putendl_fd(RED_,"Error", 2);
 		return (0);
 	}
-	
-	return (0);
+	return (1);
 }
 
 int		is_correct_argument(t_stack *stack)
 {
-	if (is_sorted_arg(stack->a))
+	if (is_sorted_arg(&stack->a))
 	{
 		//ft_putendl_fd(RED_,"Stack is sorted! Nothing to do.", 1);
 		return (0);
 	}
-	if (is_duplicated_arg(stack->a))
+	if (is_duplicated_arg(&stack->a))
 	{
 		//ft_putendl_fd(RED_,"An argument is duplicated.", 1);
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 00:24:32 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/23 04:11:39 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:27:54 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	f_swap(t_node **head, int stack, int called)
 void	f_swap_both(t_stack *stack)
 {
 	f_swap(&stack->a, 0, 1);
-	f_swap(&stack->b, 1, 1);
+	f_swap(&stack->b, 0, 1);
 	ft_putendl_fd(BLUE_,"ss", 1);
 }

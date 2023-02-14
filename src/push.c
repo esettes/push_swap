@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 00:47:46 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/23 04:11:32 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/01/15 22:43:27 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 void	f_push(t_node **src, t_node **dst, int print, int stack)
 {
 	t_node	*tmp;
+	long int	ret;
 
-	if (*dst == NULL)
-		return ;
 	if (*src)
 	{
-		tmp = *src;
-		*src = (*src)->next;
-		tmp->next = *dst;
-		*dst = tmp;
+		tmp = pop_node(src);
+		if (tmp == NULL)
+			return ;
+		add_front(dst, tmp);
 		if (print)
 		{
 			if (stack == 1)
