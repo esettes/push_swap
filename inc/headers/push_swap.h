@@ -77,16 +77,17 @@ int		is_reverse_sorted(t_node **head);
 int		is_duplicated_arg(t_node **head);
 void	push_new_node(t_node **head_a, long int data);
 char	**read_input_file(int fd, char **split_fd);
-int		get_node_position(t_node *lst);
+int		get_node_position(t_node *lst, int i);
 /**
- * @brief Sets nums of movements of rotation and reverse rotation
- * for each iterator.
+ * @brief Sets num of movements of rotation and reverse rotation
+ * to found each iterator.
  * 
  * @param moves Struct
- * @param lst Node to get position (num of movements)
+ * @param lst Node to get position by its index
+ * @param i Iterator to search
  * @param elems Num of elements in stack
  */
-void	count_num_movements(t_moves *moves, t_node *lst, int elems);
+void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems);
 /**
  * @brief Makes the movement depending of the smallest num of movements
  * 

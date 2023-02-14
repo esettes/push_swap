@@ -119,7 +119,7 @@ void	f_sort(t_stack *stack)
 	t_iter	iter;
 	t_moves	*moves;
 	int		middle;
-	//int		current_elems;
+	int		current_elems;
 
 	moves = init_num_moves();
 	iter.i = 0;
@@ -129,7 +129,7 @@ void	f_sort(t_stack *stack)
 	while (stack->a)
 	{
 		print_both_stacks(stack, iter.i, iter.j);
-		//current_elems = count_stack_elements(stack, 0);
+		current_elems = count_stack_elements(stack, 0);
 		if (stack->a && stack->a->index == iter.i && iter.i <= middle)
 		{
 			f_push(&stack->a, &stack->b, 1, 2);
@@ -144,7 +144,7 @@ void	f_sort(t_stack *stack)
 			iter.j++;
 			//printf("j: %i\n", j);
 		}
-		count_num_movements(moves, stack->a, stack->elements);
+		count_num_movements(moves, stack->a, iter, current_elems);
 		if (stack->a && stack->a->index != iter.i && stack->a->index != iter.j)
 		{
 			do_less_rotation_moves(moves, &stack->a, iter);
