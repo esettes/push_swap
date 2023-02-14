@@ -62,7 +62,7 @@ t_stack		*alloc_stacks_arr(int argc, int *arr)
 	return (stack);
 }
 
-void    add_value_back(t_node **head, long int data)
+void	add_value_back(t_node **head, long int data)
 {
 	t_node *current;
 
@@ -104,7 +104,7 @@ void	push_new_node(t_node **head_a, long int data)
 		new_node->next = NULL;
 }
 
-void    add_front(t_node **head_a, t_node *new_node)
+void	add_front(t_node **head_a, t_node *new_node)
 {
 	t_node	*tmp;
 
@@ -163,7 +163,7 @@ void    print_args(t_node *stack)
 	}
 }
 
-void    print_both_stacks(t_stack *stack, int i, int j)
+void	print_both_stacks(t_stack *stack, int i, int j)
 {
 	t_node *current_a;
 	t_node *current_b;

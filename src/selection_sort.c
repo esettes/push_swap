@@ -124,8 +124,6 @@ void	f_sort(t_stack *stack)
 	moves = init_num_moves();
 	iter.i = 0;
 	iter.j = (stack->elements / 2) + 1;
-	//printf("start j: %i\n", j);
-	//printf("stack->elements: %i\n", stack->elements);
 	middle = iter.j - 1;
 	head_a = stack->a;
 	while (stack->a)
@@ -167,6 +165,7 @@ void	f_sort(t_stack *stack)
 		middle++;
 	}
 	print_both_stacks(stack, iter.i, iter.j);
+	free(moves);
 }
 
 int	is_index_current_or_next(t_stack *stack, int which, int index)

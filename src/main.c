@@ -69,9 +69,17 @@ int		is_correct_argument(t_stack *stack)
 
 void	free_stack(t_node **head)
 {
-	while(*head != NULL)
+	t_node	*tmp;
+
+	while (*head)
 	{
-		pop_node(head);
+		tmp = *head;
+		*head = (*head)->next;
+		free(tmp);
 	}
 }
 
+void	free_struct_moves(t_moves *moves)
+{
+	free(moves);
+}
