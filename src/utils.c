@@ -41,12 +41,13 @@ void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems)
 	moves->moves_i_reverse = elems - position_i + 1;
 	moves->moves_j_rotate = position_j - 1;
 	moves->moves_j_reverse = elems - position_j + 1;
-	printf("Elem postion (i): %d\n", position_i);
+	/*printf("Elem postion (i): %d\n", position_i);
 	printf("Elem postion (j): %d\n", position_j);
 	printf("moves_i_rotate: %d\n", moves->moves_i_rotate);
 	printf("moves_i_reverse: %d\n", moves->moves_i_reverse);
 	printf("moves_j_rotate: %d\n", moves->moves_j_rotate);
 	printf("moves_j_reverse: %d\n", moves->moves_j_reverse);
+	*/
 	//usleep(250000);
 }
 
