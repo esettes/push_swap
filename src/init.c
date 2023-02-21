@@ -198,6 +198,6 @@ void	print_both_stacks(t_stack *stack, int i, int j)
 	}
 	printf("i: \t%i\n", i);
 	printf("j: \t%i\n", j);
-	usleep(250000);
+	usleep(550000);
 	#endif
 }

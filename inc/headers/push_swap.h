@@ -79,6 +79,10 @@ void	push_new_node(t_node **head_a, long int data);
 char	**read_input_file(int fd, char **split_fd);
 int		get_node_position(t_node *lst, int i);
 /**
+ * @brief Return true if a node in head of stack A is pushed to stack B
+*/
+int		pushed_current_index(t_stack *stack, t_iter *iter, int middle);
+/**
  * @brief Sets num of movements of rotation and reverse rotation
  * to found each iterator.
  * 
@@ -148,6 +152,7 @@ void	f_rotate_both(t_stack *stack);
 
 void	add_back(t_node **head, t_node *new_node);
 void	add_value_back(t_node **head, long int data);
+
 void	print_args(t_node *stack);
 void	print_both_stacks(t_stack *stack, int i, int j);
 void	selection_sort(t_stack *stacks);
