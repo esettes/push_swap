@@ -17,8 +17,8 @@
 #include "gnl.h"
 #include "stdio.h"
 
-#define PRINT_    0
-#define COLORED    0
+#define PRINT_    1
+#define COLORED    1
 
 #if COLORED
 	#define RED_    "\x1b[31m"

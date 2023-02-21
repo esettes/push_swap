@@ -132,12 +132,11 @@ void	f_sort(t_stack *stack)
 		current_elems = count_stack_elements(stack, 0);
 		if (pushed_current_index(stack, &iter, middle) == 0)
 		{
-
-		}
-		count_num_movements(moves, stack->a, iter, current_elems);
-		if (stack->a && stack->a->index != iter.i && stack->a->index != iter.j)
-		{
-			do_less_rotation_moves(moves, &stack->a, iter);
+			count_num_movements(moves, stack->a, iter, current_elems);
+			if (stack->a && stack->a->index != iter.i && stack->a->index != iter.j)
+			{
+				do_less_rotation_moves(moves, &stack->a, iter);
+			}
 		}
 	}
 	iter.i = 0;

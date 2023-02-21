@@ -22,3 +22,10 @@ int	pushed_current_index(t_stack *stack, t_iter *iter, int middle)
 	}
 	return (is_pushed);
 }
+
+// While some of the vars of t_moves is not 0 (or -1), do the needed rotations rotation
+void	do_rotations()
+{
+	
+	
+}
