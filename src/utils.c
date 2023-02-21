@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/13 21:31:27 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/20 19:51:53 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems)
 	moves->moves_i_reverse = elems - position_i + 1;
 	moves->moves_j_rotate = position_j - 1;
 	moves->moves_j_reverse = elems - position_j + 1;
-	/*printf("Elem postion (i): %d\n", position_i);
+	printf("Elem postion (i): %d\n", position_i);
 	printf("Elem postion (j): %d\n", position_j);
 	printf("moves_i_rotate: %d\n", moves->moves_i_rotate);
 	printf("moves_i_reverse: %d\n", moves->moves_i_reverse);
 	printf("moves_j_rotate: %d\n", moves->moves_j_rotate);
 	printf("moves_j_reverse: %d\n", moves->moves_j_reverse);
-	*/
-	//usleep(250000);
+	
+	usleep(3050000);
 }
 
 void	*get_rotation_type(int sel)
