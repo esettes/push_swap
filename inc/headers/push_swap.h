@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/20 19:51:01 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:12:38 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems);
  * @param lst Pointer to entirely stack
  * @param it Struct iterator
 */
-void	do_less_rotation_moves(t_moves *moves, t_node **lst, t_iter it);
+void	do_less_rotation_moves(int elems, t_moves *moves, t_node **lst, t_iter it);
 
 /**
  * Swaps the first two elements of the head of stack.

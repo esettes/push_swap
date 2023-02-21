@@ -179,25 +179,25 @@ void	print_both_stacks(t_stack *stack, int i, int j)
 	{
 		if (current_a && current_b)
 		{
-			printf(" %ld \t %ld\n",current_a->index, current_b->index);
+			printf(" %ld \t %ld\n",current_a->data, current_b->data);
 			current_a = current_a->next;
 			current_b = current_b->next;
 			aux++;
 		}
 		else if (current_b)
 		{
-			printf("   \t %ld\n", current_b->index);
+			printf("   \t %ld\n", current_b->data);
 			current_b = current_b->next;
 		}
 		else if (current_a)
 		{
-			printf(" %ld \t  \n",current_a->index);
+			printf(" %ld \t  \n",current_a->data);
 			current_a = current_a->next;
 		}
 		aux++;
 	}
 	printf("i: \t%i\n", i);
 	printf("j: \t%i\n", j);
-	usleep(550000);
+	usleep(300000);
 	#endif
 }

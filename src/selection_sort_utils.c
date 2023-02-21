@@ -12,7 +12,7 @@ int	pushed_current_index(t_stack *stack, t_iter *iter, int middle)
 		iter->i++;
 		is_pushed = 1;
 	}
-	if (stack->a && stack->a->index == iter->j)
+	if (stack->a && stack->a->index == iter->j && iter->j <= stack->elements)
 	{
 		f_push(&stack->a, &stack->b, 1, 2);
 		f_rotate(&stack->b, 1, 1);

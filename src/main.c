@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/15 22:59:18 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:51:33 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		main(int argc, char **argv)
 		}
 		else
 		{
-			ft_putendl_fd(RED_,"Error", 2);
+			//ft_putendl_fd(RED_,"Error", 2);
 		}
 		free_stack(&stack->a);
 		free_stack(&stack->b);
@@ -61,7 +61,7 @@ int		is_correct_argument(t_stack *stack)
 	}
 	if (is_duplicated_arg(&stack->a))
 	{
-		//ft_putendl_fd(RED_,"An argument is duplicated.", 1);
+		ft_putendl_fd(RED_,"Error", 1);
 		return (0);
 	}
 	return (1);

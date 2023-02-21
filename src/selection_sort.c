@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/13 20:38:38 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:13:07 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	f_sort(t_stack *stack)
 			count_num_movements(moves, stack->a, iter, current_elems);
 			if (stack->a && stack->a->index != iter.i && stack->a->index != iter.j)
 			{
-				do_less_rotation_moves(moves, &stack->a, iter);
+				do_less_rotation_moves(stack->elements, moves, &stack->a, iter);
 			}
 		}
 	}

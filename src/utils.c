@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/20 19:51:53 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:17:04 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,17 @@ void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems)
 {
 	int	position_i;
 	int	position_j;
+	int	temp_multiply;
 
-	position_i = get_node_position(lst, i.i);
+	temp_multiply = 1;
+	if (i.j == elems)
+		temp_multiply += 90000;
+	position_i = get_node_position(lst, i.i) - 1;
 	position_j = get_node_position(lst, i.j);
-	moves->moves_i_rotate = position_i - 1;
+	moves->moves_i_rotate = position_i + 1;
 	moves->moves_i_reverse = elems - position_i + 1;
-	moves->moves_j_rotate = position_j - 1;
-	moves->moves_j_reverse = elems - position_j + 1;
+	moves->moves_j_rotate = position_j + temp_multiply;
+	moves->moves_j_reverse = elems - position_j + temp_multiply;
 	printf("Elem postion (i): %d\n", position_i);
 	printf("Elem postion (j): %d\n", position_j);
 	printf("moves_i_rotate: %d\n", moves->moves_i_rotate);
@@ -48,7 +52,7 @@ void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems)
 	printf("moves_j_rotate: %d\n", moves->moves_j_rotate);
 	printf("moves_j_reverse: %d\n", moves->moves_j_reverse);
 	
-	usleep(3050000);
+	usleep(500000);
 }
 
 void	*get_rotation_type(int sel)
@@ -62,7 +66,7 @@ void	*get_rotation_type(int sel)
 	return (ptr);
 }
 
-void	do_less_rotation_moves(t_moves *moves, t_node **lst, t_iter it)
+void	do_less_rotation_moves(int elems, t_moves *moves, t_node **lst, t_iter it)
 {
 	int	i_rot;
 	int	i_rev;
@@ -81,11 +85,11 @@ void	do_less_rotation_moves(t_moves *moves, t_node **lst, t_iter it)
 	{
 		do_rotation(get_rotation_type(1), it.i, lst);
 		}
-	else if ((j_rot < i_rev) && (j_rot < i_rot) && (j_rot < j_rev))
+	else if ((j_rot < i_rev) && (j_rot < i_rot) && (j_rot < j_rev) && (it.j < elems))
 	{
 		do_rotation(get_rotation_type(0), it.j, lst);
 		}
-	else if ((j_rev < i_rev) && (j_rev < j_rot) && (j_rev < i_rot))
+	else if ((j_rev < i_rev) && (j_rev < j_rot) && (j_rev < i_rot) && (it.j < elems))
 	{
 		do_rotation(get_rotation_type(1), it.j, lst);
 		}
@@ -103,9 +107,20 @@ void	do_rotation(void (*f)(t_node **, int, int), int index, t_node **lst)
 	t_node	*current;
 
 	current = (*lst);
-	while (current && current->index != index)
+	usleep(1000000);
+	printf("-\n---- Before rotations ----\n");
+	printf("index: %d\n", index);
+	while (lst && (*lst)->index != index)
 	{
 		f(lst, 1, 0);
-		current = current->next;
+		printf("lst index: %d\n", (*lst)->index);
+		usleep(700000);
+//		current = current->next;
+		
 	}
+	
+	printf("-\n---- After rotations ----\n");
+	printf("index: %d\n", index);
+	
+	usleep(1000000);
 }
