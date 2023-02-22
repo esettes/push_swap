@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   selection_sort.c                                   :+:      :+:    :+:   */
+/*   set_indexes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/21 20:13:07 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:36:35 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	is_last_index_less(t_node *lst, int index);
 int	is_index_before_first_half(t_stack *stack, int index);
 t_moves	*init_num_moves(void);
 
-
-void	selection_sort(t_stack *stacks)
+void	set_index_to_each_elem(t_stack *stacks)
 {
 	t_iter	iter;
 	int		index;

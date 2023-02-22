@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   list_movements.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 15:47:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 16:31:20 by iostancu         ###   ########.fr       */
+/*   Created: 2023/02/22 16:23:39 by iostancu          #+#    #+#             */
+/*   Updated: 2023/02/22 16:27:40 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef LIST_MOVEMENTS_H
+# define LIST_MOVEMENTS_H
 
-int	check_fd_end(char *s)
-{
-	if (s == NULL)// || ft_strncmp(s, "\n", 1) == 0)// || 
-		//ft_strncmp(s, " ", 1) == 0)
-		return (1);
-	else
-		return (0);
-}
+#include "ps_structs.h"
 
-char 	**read_input_file(int fd, char **split_fd)
-{
-	int		i;
+void	push_new_node(t_node **head_a, long int data);
+void	add_back(t_node **head, t_node *new_node);
+void	add_value_back(t_node **head, long int data);
+t_node	*pop_node(t_node **head);
+void	add_front(t_node **head_a, t_node *new_node);
 
-	i = 0;
-
-	while (1)
-	{
-		split_fd[i] = get_next_line(fd);
-		printf("%s\n", split_fd[i]);
-		if (check_fd_end(split_fd[i]))
-			break ;
-		i++;
-	}
-	return (split_fd);
-}
-
+#endif

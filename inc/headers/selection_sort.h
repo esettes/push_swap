@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   selection_sort.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 15:47:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 16:31:20 by iostancu         ###   ########.fr       */
+/*   Created: 2023/02/22 16:19:13 by iostancu          #+#    #+#             */
+/*   Updated: 2023/02/22 16:28:34 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef	SELECTION_SORT_H
+# define SELECTION_SORT_H
 
-int	check_fd_end(char *s)
-{
-	if (s == NULL)// || ft_strncmp(s, "\n", 1) == 0)// || 
-		//ft_strncmp(s, " ", 1) == 0)
-		return (1);
-	else
-		return (0);
-}
+#include "ps_structs.h"
 
-char 	**read_input_file(int fd, char **split_fd)
-{
-	int		i;
+void	selection_sort(t_stack *stacks);
+void	f_sort(t_stack *stack);
 
-	i = 0;
-
-	while (1)
-	{
-		split_fd[i] = get_next_line(fd);
-		printf("%s\n", split_fd[i]);
-		if (check_fd_end(split_fd[i]))
-			break ;
-		i++;
-	}
-	return (split_fd);
-}
-
+#endif

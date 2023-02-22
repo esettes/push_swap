@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/21 19:51:33 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:35:55 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		main(int argc, char **argv)
 			return (0);
 		if (is_correct_argument(stack))
 		{
-			selection_sort(stack);
+			set_index_to_each_elem(stack);
 			f_sort(stack);
 		}
 		else

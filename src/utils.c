@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/21 20:17:04 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:45:52 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems)
 	moves->moves_i_reverse = elems - position_i + 1;
 	moves->moves_j_rotate = position_j + temp_multiply;
 	moves->moves_j_reverse = elems - position_j + temp_multiply;
-	printf("Elem postion (i): %d\n", position_i);
+	/*printf("Elem postion (i): %d\n", position_i);
 	printf("Elem postion (j): %d\n", position_j);
 	printf("moves_i_rotate: %d\n", moves->moves_i_rotate);
 	printf("moves_i_reverse: %d\n", moves->moves_i_reverse);
 	printf("moves_j_rotate: %d\n", moves->moves_j_rotate);
 	printf("moves_j_reverse: %d\n", moves->moves_j_reverse);
 	
-	usleep(500000);
+	usleep(500000);*/
 }
 
 void	*get_rotation_type(int sel)
@@ -107,20 +107,20 @@ void	do_rotation(void (*f)(t_node **, int, int), int index, t_node **lst)
 	t_node	*current;
 
 	current = (*lst);
-	usleep(1000000);
-	printf("-\n---- Before rotations ----\n");
-	printf("index: %d\n", index);
+	//usleep(1000000);
+	//printf("-\n---- Before rotations ----\n");
+	//printf("index: %d\n", index);
 	while (lst && (*lst)->index != index)
 	{
 		f(lst, 1, 0);
-		printf("lst index: %d\n", (*lst)->index);
-		usleep(700000);
+		//printf("lst index: %d\n", (*lst)->index);
+		//usleep(700000);
 //		current = current->next;
 		
 	}
+	//
+	//printf("-\n---- After rotations ----\n");
+	//printf("index: %d\n", index);
 	
-	printf("-\n---- After rotations ----\n");
-	printf("index: %d\n", index);
-	
-	usleep(1000000);
+	//usleep(1000000);
 }
