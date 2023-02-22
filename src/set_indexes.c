@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 16:36:35 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:07:40 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ int	is_last_index_less(t_node *lst, int index);
 int	is_index_before_first_half(t_stack *stack, int index);
 t_moves	*init_num_moves(void);
 
+/**
+ * @brief Sorts the stack in a temporal stack to sets indexes to each elem
+ */
 void	set_index_to_each_elem(t_stack *stacks)
 {
 	t_iter	iter;
 	int		index;
 	t_node	*next;
 	t_node	*aux;
-	t_node *head;
+	t_node	*head;
 
 	iter.i = 0;
 	iter.j = 0;
@@ -53,7 +56,10 @@ void	set_index_to_each_elem(t_stack *stacks)
 	}
 	aux->index = index;
 	aux = head;
+	set_bucket_sort_values(stacks, aux);
 	set_index_to_original_stack(stacks->a, aux);
+	printf(" +++++ MIN VAL: %d +++++\n", stacks->min_val);
+	printf(" +++++ MAX VAL: %d +++++\n", stacks->max_val);
 	free_stack(&aux);
 }
 

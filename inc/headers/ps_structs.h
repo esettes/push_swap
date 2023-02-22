@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:21:39 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 16:22:55 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:43:04 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ typedef struct	s_stack
 	int		elements;
 	int		current_a_elems;
 	int		current_b_elems;
+	int		bucket_range;
+	int		max_val;
+	int		min_val;
 	int		is_even;
 }				t_stack;
 

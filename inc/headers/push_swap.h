@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 16:35:31 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:07:51 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "libft.h"
 #include "gnl.h"
 #include "stdio.h"
-#include "selection_sort.h"
 #include "ps_structs.h"
 #include "list_movements.h"
 #include "stack_movements.h"
@@ -85,5 +84,7 @@ long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
  */
 int		count_stack_elements(t_stack *stack, int n);
 void	set_index_to_each_elem(t_stack *stacks);
+void	f_sort(t_stack *stack);
+void	set_bucket_sort_values(t_stack *stack, t_node *lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 16:35:55 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:39:28 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int		is_correct_argument(t_stack *stack);
 long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void	free_stack(t_node **head);
-int		*myRandInRange();
 
 int		main(int argc, char **argv)
 {
