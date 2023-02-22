@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 19:07:40 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:45:53 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	set_index_to_each_elem(t_stack *stacks)
 	aux = head;
 	set_bucket_sort_values(stacks, aux);
 	set_index_to_original_stack(stacks->a, aux);
-	printf(" +++++ MIN VAL: %d +++++\n", stacks->min_val);
-	printf(" +++++ MAX VAL: %d +++++\n", stacks->max_val);
 	free_stack(&aux);
 }
 

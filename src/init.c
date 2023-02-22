@@ -85,6 +85,10 @@ void	print_both_stacks(t_stack *stack, int i, int j)
 	current_a = stack->a;
 	current_b = stack->b;
 	aux = 0;
+	printf("MIN VAL: %d \n", stack->min_val);
+	printf("MAX VAL: %d \n", stack->max_val);
+	printf("Bucket range: %d \n", stack->bucket_range);
+	printf("\n+ + + + + + + +\n\n");
 	printf("|A|\t|B|\n");
 	while (aux <= stack->elements + 1)
 	{
