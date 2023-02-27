@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/01/15 22:58:47 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:26:18 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_valid_arg(char **stack)
 	return (1);
 }
 
-int     is_sorted_arg(t_node **head)
+int     is_sorted_stack(t_node **head)
 {
 	t_node *current;
 	t_node *next;

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 21:46:50 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:26:25 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 t_stack	*alloc_stacks(int argc, char **argv);
 t_stack	*alloc_stacks_arr(int argc, int *arr);
 int		is_valid_arg(char **stack);
-int		is_sorted_arg(t_node **head);
+int		is_sorted_stack(t_node **head);
 int		is_reverse_sorted(t_node **head);
 int		is_duplicated_arg(t_node **head);
 char	**read_input_file(int fd, char **split_fd);
@@ -83,8 +83,20 @@ long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
  * @return number of stack elements
  */
 int		count_stack_elements(t_stack *stack, int n);
+/**
+ * @param stack Struct
+ * @param n 0 if ckech stack A, 1 if check stack B
+ * @return True if all initial elements are in indicated stack, False if not
+ */
+int		check_all_elements(t_stack *stack, int n);
 void	set_index_to_each_elem(t_stack *stacks);
 void	f_sort(t_stack *stack);
+/**
+ * @brief Main function that calls others related to bucket sort initialization
+ * 
+ * @param stack 
+ * @param lst 
+ */
 void	set_bucket_sort_values(t_stack *stack, t_node *lst);
 
 #endif

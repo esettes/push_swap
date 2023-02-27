@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 16:39:28 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:26:31 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		main(int argc, char **argv)
 
 int		is_correct_argument(t_stack *stack)
 {
-	if (is_sorted_arg(&stack->a))
+	if (is_sorted_stack(&stack->a))
 	{
 		//ft_putendl_fd(RED_,"Stack is sorted! Nothing to do.", 1);
 		return (0);

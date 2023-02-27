@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 21:45:53 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:23:14 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@ void	swap_selection(t_node *a, t_node *b);
 t_node	*create_aux_stack(t_node *original);
 void	set_index_to_original_stack(t_node *original, t_node *aux);
 void	free_stack(t_node **head);
-int	check_all_elements(t_stack *stack, int n);
 int	is_last_index_less(t_node *lst, int index);
 int	is_index_before_first_half(t_stack *stack, int index);
 t_moves	*init_num_moves(void);
