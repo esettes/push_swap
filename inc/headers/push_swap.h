@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/27 17:26:25 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:46:31 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		count_stack_elements(t_stack *stack, int n);
 int		check_all_elements(t_stack *stack, int n);
 void	set_index_to_each_elem(t_stack *stacks);
 void	f_sort(t_stack *stack);
+void	f_bucket_sort(t_stack *stack);
 /**
  * @brief Main function that calls others related to bucket sort initialization
  * 

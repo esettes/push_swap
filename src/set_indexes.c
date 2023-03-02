@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/27 17:23:14 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:01:57 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,9 @@ void	set_index_to_original_stack(t_node *original, t_node *aux)
 		{
 			if (head_a->data == aux_head->data)
 			{
+				aux_head->b_index = head_a->b_index;
 				aux_head->index = head_a->index;
+				aux_head->is_sorted = 0;
 				break ;
 			}
 			aux_head = aux_head->next;
