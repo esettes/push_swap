@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:08:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/02 17:09:01 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:14:37 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	f_bucket_sort(t_stack *stack)
 	int		bucket_i;
 
 	bucket_i = 0;
-	// continuing sorting while stack is not sorted and there aren't all elements
 	while (stack->a)
 	{
 		
@@ -83,14 +82,6 @@ void	search_current_index_value(t_stack *stack, int i)
 	}
 }
 
-// /**
-//  * @return Bucket index that I'm currently loop.
-//  */
-// int	bucket_index_loop()
-// {
-	
-// }
-
 /**
  * @brief If current bucket index is sorted, push all elements to stack A.
  * Later, adds +1 to current bucket index.
@@ -99,6 +90,10 @@ void	push_current_bucket_sorted(t_stack *stack, int *index)
 {
 	if (is_reverse_sorted(&stack->b))
 	{
+		// * * * * * * *
+		// search the previous index and move it at the list end.
+		// Then push and reverse rotate stack 
+		// * * * * * * * 
 		while (stack->b)
 		{
 			f_push(&stack->b, &stack->a, 1, 1);
