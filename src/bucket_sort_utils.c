@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/08 20:30:07 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/09 00:35:51 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ void	set_bucket_sort_values(t_stack *stack, t_node *lst)
 	set_min_and_max_values(stack, lst);
 	stack->bucket_range = get_bucket_range(stack);
 	set_bucket_indexes(stack, lst);
+	set_elems_for_each_bucket(stack);
+}
+
+void	set_elems_for_each_bucket(t_stack *stack, t_node *lst)
+{
+	t_bucket	b_elems;
+
+	
 }
 
 void	set_min_and_max_values(t_stack *stack, t_node *lst)
