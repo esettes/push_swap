@@ -6,14 +6,14 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:08:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/03 22:28:50 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:38:04 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 void	search_current_index_value(t_stack *stack, int i);
 void	push_current_bucket_sorted(t_stack *stack, int *index);
-int		is_current_bucket_sorted(t_stack *stack, int index);
+int		is_current_bucket_sorted(t_node **stack, int index);
 int		get_bucket_index_of_last_elem(t_node *stack);
 
 void	f_bucket_sort(t_stack *stack)
@@ -56,10 +56,10 @@ void	search_current_index_value(t_stack *stack, int i)
 			f_reverse_rotate(stack->a, 1, 1);
 			print_both_stacks(stack, i, 0);
 		}
-		if (stack->a->b_index == i)
-		{
-			f_
-		}
+		// if (stack->a->b_index == i)
+		// {
+		// 	f_
+		// }
 	}
 }
 
@@ -96,13 +96,15 @@ void	push_current_bucket_sorted(t_stack *stack, int *index)
 	*index += 1;
 }
 
-int	is_current_bucket_sorted(t_stack *stack, int index)
+int	is_current_bucket_sorted(t_node **stack, int index)
 {
 	t_node	*next;
 
-	while (stack->a && stack->a->b_index != index)
+	
+	while (stack && *(stack->b) != index)
 	{
-		stack->a = stack->a->next;
+		stack = stack->next;
+		stack->data
 	}
 	next = stack->a->next;
 	while (next && stack->a->b_index == index)
