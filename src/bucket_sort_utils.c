@@ -6,29 +6,47 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/09 00:35:51 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:02:49 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_min_and_max_values(t_stack *stack, t_node *lst);
-int		get_bucket_range(t_stack *stack);
-void	set_bucket_indexes(t_stack *stack, t_node *lst);
+void		set_min_and_max_values(t_stack *stack, t_node *lst);
+int			get_bucket_range(t_stack *stack);
+void		set_bucket_indexes(t_stack *stack, t_node *lst);
+t_bucket	*get_elems_for_each_bucket(t_stack *stack, t_node *lst);
 
 void	set_bucket_sort_values(t_stack *stack, t_node *lst)
 {
 	set_min_and_max_values(stack, lst);
 	stack->bucket_range = get_bucket_range(stack);
 	set_bucket_indexes(stack, lst);
-	set_elems_for_each_bucket(stack);
+	stack->b_elems = get_elems_for_each_bucket(stack, lst);
 }
 
-void	set_elems_for_each_bucket(t_stack *stack, t_node *lst)
+t_bucket	*get_elems_for_each_bucket(t_stack *stack, t_node *lst)
 {
-	t_bucket	b_elems;
+	t_bucket	*b_elems;
+	t_bucket	*head;
+	int			i;
+	int			b_index;
 
-	
+	b_elems = malloc(sizeof(t_bucket) * (stack->max_bucket + 1)); // elements
+	if (!b_elems)
+		return (NULL);
+	i = 0;
+	while (i <= stack->max_bucket)
+		b_elems[i++].num_elems = 0;
+	while (lst)
+	{
+		b_index = lst->b_index;
+		b_elems[b_index].b_index = b_index;
+		b_elems[b_index].num_elems += 1;
+		lst = lst->next;
+		//printf(" * * * * * b_elements[%i]: %i * * * * \n", b_elems[b_index].b_index, b_elems[b_index].num_elems);
+	}
+	return (b_elems);
 }
 
 void	set_min_and_max_values(t_stack *stack, t_node *lst)

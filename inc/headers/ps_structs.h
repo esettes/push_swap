@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:21:39 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/09 00:34:58 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:52:41 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct s_bucket
 {
 	int				b_index;
 	int				num_elems;
-	struct s_bucket	*next;
 }				t_bucket;
 /**
  * @brief 
@@ -51,7 +50,7 @@ typedef struct	s_stack
 {
 	t_node		*a;
 	t_node		*b;
-	t_bucket	b_elems;
+	t_bucket	*b_elems;
 	int			elements;
 	int			bucket_range;
 	int			max_val;

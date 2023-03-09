@@ -19,7 +19,7 @@ t_stack    *alloc_stacks(int argc, char **argv)
 	ret = ft_strtol(argv[i], &ptr, 10);
 	stack->a->data = ret;
 	stack->a->next = NULL;
-	stack->is_even = 0;
+	// stack->is_even = 0;
 	// stack->b->data = '\0';
 	// stack->b->index = '\0';
 	// stack->b->next = NULL;
@@ -34,8 +34,8 @@ t_stack    *alloc_stacks(int argc, char **argv)
 	}
 	i--;
 	stack->elements = i;
-	if (i % 2 == 0)
-		stack->is_even = 1;
+	// if (i % 2 == 0)
+	// 	stack->is_even = 1;
 	return (stack);
 }
 
