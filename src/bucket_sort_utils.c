@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/09 21:02:49 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/10 00:31:08 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ t_bucket	*get_elems_for_each_bucket(t_stack *stack, t_node *lst)
 		return (NULL);
 	i = 0;
 	while (i <= stack->max_bucket)
-		b_elems[i++].num_elems = 0;
+	{
+		b_elems[i].num_elems = 0;
+		b_elems[i].is_sorted = 0;
+		i++;
+	}
 	while (lst)
 	{
 		b_index = lst->b_index;

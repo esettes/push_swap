@@ -62,7 +62,7 @@ t_stack		*alloc_stacks_arr(int argc, int *arr)
 	return (stack);
 }
 
-void    print_args(t_node *stack)
+void	print_args(t_node *stack)
 {
 	t_node *current;
 
