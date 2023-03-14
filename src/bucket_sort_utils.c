@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/14 18:51:34 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:53:32 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,32 @@ void	set_bucket_indexes(t_stack *stack, t_node *lst)
 	usleep(500000);
 }
 
-void	sort_three_elems(t_stack *stack)
+void	sort_three_elems(t_stack *stack, t_node *node)
 {
-	
+	t_node	*head;
+	t_node	*next;
+	t_node	*next_next;
+
+	head = node;
+	next = node->next;
+	next_next = next->next;
+	while (!is_sorted_stack(&stack->a))
+	{
+		if ((stack->a->index > stack->a->next->index && stack->a->index < stack->a->next->next->index)|| (stack->a->index < stack->a->next->index && stack->a->index < stack->a->next->next->index))
+		{
+			f_swap(&stack->a, 0, 0);
+			print_both_stacks(stack, 0, 0);
+		}
+		if (stack->a->index > stack->a->next->index && stack->a->index > stack->a->next->next->index)
+		{
+			f_rotate(&stack->a, 1, 0);
+			print_both_stacks(stack, 0, 0);
+		}	
+		if (stack->a->index < stack->a->next->index && stack->a->index > stack->a->next->next->index)
+		{
+			f_reverse_rotate(&stack->a, 1, 1);
+			print_both_stacks(stack, 0, 0);
+		}
+	}
+	print_both_stacks(stack, 0, 0);
 }
