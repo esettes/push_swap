@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/10 00:31:08 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:51:34 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,34 @@ t_bucket	*get_elems_for_each_bucket(t_stack *stack, t_node *lst)
 		b_elems[b_index].b_index = b_index;
 		b_elems[b_index].num_elems += 1;
 		lst = lst->next;
-		//printf(" * * * * * b_elements[%i]: %i * * * * \n", b_elems[b_index].b_index, b_elems[b_index].num_elems);
+		printf(" * * * * * b_elements[%i]: %i * * * * \n", b_elems[b_index].b_index, b_elems[b_index].num_elems);
 	}
 	return (b_elems);
 }
+
+// void	set_min_and_max_values(t_stack *stack, t_node *lst)
+// {
+// 	int		i;
+// 	t_node	*tmp;
+// 	t_node	*next;
+
+// 	i = 0;
+// 	tmp = lst;
+// 	stack->min_val = lst->data;
+// 	stack->max_val = lst->data;
+// 	while (tmp)
+// 	{
+// 		if (stack->max_val < tmp->data)
+// 		{
+// 			stack->max_val = tmp->data;
+// 		}
+// 		else if (tmp->data < stack->min_val)
+// 		{
+// 			stack->min_val = tmp->data;
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// }
 
 void	set_min_and_max_values(t_stack *stack, t_node *lst)
 {
@@ -61,17 +85,17 @@ void	set_min_and_max_values(t_stack *stack, t_node *lst)
 
 	i = 0;
 	tmp = lst;
-	stack->min_val = lst->data;
-	stack->max_val = lst->data;
+	stack->min_val = 0;
+	stack->max_val = 0;
 	while (tmp)
 	{
-		if (stack->max_val < tmp->data)
+		if (stack->max_val < tmp->index)
 		{
-			stack->max_val = tmp->data;
+			stack->max_val = tmp->index;
 		}
-		else if (tmp->data < stack->min_val)
+		else if (tmp->index < stack->min_val)
 		{
-			stack->min_val = tmp->data;
+			stack->min_val = tmp->index;
 		}
 		tmp = tmp->next;
 	}
@@ -80,12 +104,46 @@ void	set_min_and_max_values(t_stack *stack, t_node *lst)
 int	get_bucket_range(t_stack *stack)
 {
 	printf(" +++++ Stack elements: %d +++++\n", stack->elements);
-	stack->bucket_range	= (stack->max_val - stack->min_val) / stack->elements;
+	if (stack->elements <= 100)
+		stack->bucket_range	= stack->elements / 3;
+	else
+		stack->bucket_range	= stack->elements / 7;
 	printf(" +++++ Bucket range: %d +++++\n", stack->bucket_range);
 	if (stack->bucket_range == 0)
 		stack->bucket_range = 1;
 	return (stack->bucket_range);
 }
+
+// int	get_bucket_range(t_stack *stack)
+// {
+// 	printf(" +++++ Stack elements: %d +++++\n", stack->elements);
+// 	stack->bucket_range	= (stack->max_val - stack->min_val) / stack->elements;
+// 	printf(" +++++ Bucket range: %d +++++\n", stack->bucket_range);
+// 	if (stack->bucket_range == 0)
+// 		stack->bucket_range = 1;
+// 	return (stack->bucket_range);
+// }
+
+// void	set_bucket_indexes(t_stack *stack, t_node *lst)
+// {
+// 	int	max_bucket;
+
+// 	max_bucket = 0;
+// 	while (lst)
+// 	{
+// 		//usleep(500000);
+// 		//printf("+++ For %d, bucket range: %d\n", lst->data, stack->bucket_range);
+// 		printf("lst->data: %d\n", lst->data);
+// 		printf("stack->bucket_range: %d\n", stack->bucket_range);
+// 		lst->b_index = (lst->data - stack->min_val) / stack->bucket_range;
+// 		printf("For %d, bucketindex: %d\n", lst->data, lst->b_index);
+// 		max_bucket = lst->b_index;
+// 		lst = lst->next;
+// 	}
+// 	stack->max_bucket = max_bucket;
+// 	printf("max bucket: %d\n", stack->max_bucket);
+// 	usleep(500000);
+// }
 
 void	set_bucket_indexes(t_stack *stack, t_node *lst)
 {
@@ -96,14 +154,19 @@ void	set_bucket_indexes(t_stack *stack, t_node *lst)
 	{
 		//usleep(500000);
 		//printf("+++ For %d, bucket range: %d\n", lst->data, stack->bucket_range);
-		printf("lst->data: %d\n", lst->data);
+		printf("lst->index: %d\n", lst->index);
 		printf("stack->bucket_range: %d\n", stack->bucket_range);
-		lst->b_index = (lst->data - stack->min_val) / stack->bucket_range;
-		printf("For %d, bucketindex: %d\n", lst->data, lst->b_index);
+		lst->b_index = (lst->index - stack->min_val) / stack->bucket_range;
+		printf("For %d, bucketindex: %d\n", lst->index, lst->b_index);
 		max_bucket = lst->b_index;
 		lst = lst->next;
 	}
 	stack->max_bucket = max_bucket;
 	printf("max bucket: %d\n", stack->max_bucket);
 	usleep(500000);
+}
+
+void	sort_three_elems(t_stack *stack)
+{
+	
 }
