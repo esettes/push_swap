@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:08:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/14 18:50:57 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:03:04 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	f_bucket_sort(t_stack *stack)
 			free(aux);
 			break ;
 		}
-		search_elems_of_current_b_index(stack, bucket_i, aux);
+		//search_elems_of_current_b_index(stack, bucket_i, aux);
+		
 		previous_bucket = bucket_i;
 		//printf("*** checking sorted bucket in MAIN BUCKET FUNCTION... \n");
 		//printf("*** stack->b_elems[%i].is_sorted... %i \n", stack->b_elems[bucket_i].is_sorted);
@@ -60,6 +61,27 @@ void	f_bucket_sort(t_stack *stack)
 		// }
 	}
 	free(aux);
+}
+
+void	push_all_elems_except_last_three(t_stack *stack)
+{
+	while (count_stack_elements_2(&stack->a, 0) > 3)
+	{
+		
+		if (stack->a->index < (stack->elements - 2))
+		{
+			f_push(&stack->a, &stack->b, 1, 2);
+			print_both_stacks(stack, 0, 0);
+		}
+		else
+		{
+			f_rotate(&stack->a, 1, 0);
+			print_both_stacks(stack, 0, 0);
+		}
+		printf("stack elems -------- %i \n ", count_stack_elements(stack, 0));
+		usleep(750000);
+		stack->a = stack->a->next;
+	}
 }
 
 int	are_all_buckets_sorted(t_stack *stack)

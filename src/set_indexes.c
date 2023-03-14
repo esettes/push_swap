@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/02 17:01:57 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:02:44 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,29 @@ int	count_stack_elements(t_stack *stack, int n)
 	while (current != NULL)
 	{
 		current = current->next;
+		i++;
+	}
+	return (i);
+}
+
+int	count_stack_elements_2(t_node **stack, int n)
+{
+	t_node	**current;
+	int		i;
+
+	if (n == 0)
+	{
+		i = 0;
+		current = stack;
+	}
+	else
+	{
+		i = 1;
+		current = stack;
+	}
+	while (current != NULL)
+	{
+		*current = (*current)->next;
 		i++;
 	}
 	return (i);

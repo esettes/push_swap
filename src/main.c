@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/14 19:38:50 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/14 20:56:36 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int		main(int argc, char **argv)
 		{
 			set_index_to_each_elem(stack);
 			//f_bucket_sort(stack);
-			sort_three_elems(stack, stack->a);
+			//sort_three_elems(stack, stack->a);
+			push_all_elems_except_last_three(stack);
 		}
 		else
 		{

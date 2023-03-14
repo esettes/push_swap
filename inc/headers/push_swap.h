@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/14 19:38:14 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:02:23 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
  * @return number of stack elements
  */
 int		count_stack_elements(t_stack *stack, int n);
+int	count_stack_elements_2(t_node **stack, int n);
 /**
  * @param stack Struct
  * @param n 0 if ckech stack A, 1 if check stack B
@@ -100,5 +101,6 @@ void	f_bucket_sort(t_stack *stack);
  */
 void	set_bucket_sort_values(t_stack *stack, t_node *lst);
 void	sort_three_elems(t_stack *stack, t_node *node);
+void	push_all_elems_except_last_three(t_stack *stack);
 
 #endif

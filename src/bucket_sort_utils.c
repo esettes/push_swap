@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/14 19:53:32 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/14 20:44:04 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,15 +154,15 @@ void	set_bucket_indexes(t_stack *stack, t_node *lst)
 	{
 		//usleep(500000);
 		//printf("+++ For %d, bucket range: %d\n", lst->data, stack->bucket_range);
-		printf("lst->index: %d\n", lst->index);
-		printf("stack->bucket_range: %d\n", stack->bucket_range);
+		//printf("lst->index: %d\n", lst->index);
+		//printf("stack->bucket_range: %d\n", stack->bucket_range);
 		lst->b_index = (lst->index - stack->min_val) / stack->bucket_range;
-		printf("For %d, bucketindex: %d\n", lst->index, lst->b_index);
+		//printf("For %d, bucketindex: %d\n", lst->index, lst->b_index);
 		max_bucket = lst->b_index;
 		lst = lst->next;
 	}
 	stack->max_bucket = max_bucket;
-	printf("max bucket: %d\n", stack->max_bucket);
+	//printf("max bucket: %d\n", stack->max_bucket);
 	usleep(500000);
 }
 
