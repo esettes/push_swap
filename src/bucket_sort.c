@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:08:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/15 23:05:38 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:09:57 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,7 @@ void	f_bucket_sort(t_stack *stack)
 			free(aux);
 			break ;
 		}
-		//search_elems_of_current_b_index(stack, bucket_i, aux);
-		
 		previous_bucket = bucket_i;
-		//printf("*** checking sorted bucket in MAIN BUCKET FUNCTION... \n");
-		//printf("*** stack->b_elems[%i].is_sorted... %i \n", stack->b_elems[bucket_i].is_sorted);
 		if (stack->b_elems[bucket_i].is_sorted != 0)
 		{
 			bucket_i++;

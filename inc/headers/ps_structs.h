@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:21:39 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/10 00:29:04 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/16 00:01:50 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ typedef struct	s_iter
 	int	i;
 	int	j;
 }				t_iter;
+
+typedef struct	s_temp_node
+{
+	int	top;
+	int	bottom;
+}				t_temp_node;
 
 typedef struct	s_moves
 {

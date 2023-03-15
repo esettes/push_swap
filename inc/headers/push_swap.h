@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/15 23:02:29 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:48:09 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,7 @@ void	set_bucket_sort_values(t_stack *stack, t_node *lst);
 void	sort_three_elems(t_stack *stack, t_node *node);
 void	push_all_elems_except_last_three(t_stack *stack);
 void	f_insertion_sort(t_stack *stack);
+
+int	get_node_position_from_bottom(t_stack *stack, int b_index);
+int	get_node_position_from_top(t_stack *stack, int b_index);
 #endif
