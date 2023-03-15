@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/14 21:02:44 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:08:10 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,17 @@ void	set_index_to_original_stack(t_node *original, t_node *aux)
 	}
 }
 
-void	f_sort(t_stack *stack)
+/**
+ * TO-DO Search and save 1 element of bucket X, and compare it with another element of bucket X,
+ * count which of them need less rotations and do it
+ */
+void	f_insertion_sort(t_stack *stack)
 {
 	t_node	*head_a;
 	t_iter	iter;
 	t_moves	*moves;
 	int		middle;
 	int		current_elems;
-
 	moves = init_num_moves();
 	iter.i = 0;
 	iter.j = (stack->elements / 2) + 1;
@@ -137,29 +140,128 @@ void	f_sort(t_stack *stack)
 		if (pushed_current_index(stack, &iter, middle) == 0)
 		{
 			count_num_movements(moves, stack->a, iter, current_elems);
-			if (stack->a && stack->a->index != iter.i && stack->a->index != iter.j)
+			if (stack->a && stack->a->index != iter.i)
 			{
 				do_less_rotation_moves(stack->elements, moves, &stack->a, iter);
 			}
 		}
 	}
 	iter.i = 0;
-	while (stack->b && (iter.i <= middle))
+	while (stack->b)
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
 		print_both_stacks(stack, iter.i, iter.j);
 		iter.i++;
 	}
-	while (stack->b && (middle <= stack->elements))
-	{
-		f_push(&stack->b, &stack->a, 1, 1);
-		f_rotate(&stack->a, 1, 2);
-		print_both_stacks(stack, iter.i, iter.j);
-		middle++;
-	}
 	print_both_stacks(stack, iter.i, iter.j);
 	free(moves);
 }
+
+// void	f_insertion_sort(t_stack *stack)
+// {
+// 	t_node	*head_a;
+// 	int		i;
+// 	int		j;
+// 	int		middle;
+
+// 	while (!is_sorted_stack(&stack->a) || !check_all_elements(stack, 0))
+// 	{
+// 		i = 0;
+// 		j = stack->elements / 2;
+// 		middle = j;
+// 		head_a = stack->a;
+// 		while (i <= stack->elements && stack->a)
+// 		{
+// 			if (stack->a && stack->a->index == i)
+// 			{
+// 				f_push(&stack->a, &stack->b, 1, 2);
+// 				print_both_stacks(stack, i, j);
+// 				i++;
+// 			}
+// 			else if (stack->a && stack->a->next && stack->a->next->index == i)
+// 			{
+// 				f_swap(&stack->a, 0, 0);
+// 				f_push(&stack->a, &stack->b, 1, 2);
+// 				print_both_stacks(stack, i, j);
+// 				i++;
+// 			}
+// 			else
+// 			{
+// 				if (stack->a)
+// 				{
+// 					if (!is_index_before_first_half(stack, i))
+// 					{
+// 						while (stack->a->index != i)
+// 						{
+// 							f_reverse_rotate(&stack->a, 1, 0);
+// 							print_both_stacks(stack, i, j);
+// 						}
+// 					}
+// 					else
+// 					{
+// 						while (stack->a->index != i)
+// 						{
+// 							f_rotate(&stack->a, 1, 0);
+// 							print_both_stacks(stack, i, j);
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 		if (!stack->a)
+// 			break ;
+// 	}
+// 	i = 0;
+// 	while (stack->b)// && (i < middle))
+// 	{
+// 		f_push(&stack->b, &stack->a, 1, 1);
+// 		print_both_stacks(stack, i, j);
+// 	}
+// }
+
+// void	f_sort(t_stack *stack)
+// {
+// 	t_node	*head_a;
+// 	t_iter	iter;
+// 	t_moves	*moves;
+// 	int		middle;
+// 	int		current_elems;
+
+// 	moves = init_num_moves();
+// 	iter.i = 0;
+// 	iter.j = (stack->elements / 2) + 1;
+// 	middle = iter.j - 1;
+// 	head_a = stack->a;
+// 	while (stack->a)
+// 	{
+// 		print_both_stacks(stack, iter.i, iter.j);
+// 		current_elems = count_stack_elements(stack, 0);
+// 		if (pushed_current_index(stack, &iter, middle) == 0)
+// 		{
+// 			count_num_movements(moves, stack->a, iter, current_elems);
+// 			if (stack->a && stack->a->index != iter.i && stack->a->index != iter.j)
+// 			{
+// 				do_less_rotation_moves(stack->elements, moves, &stack->a, iter);
+// 			}
+// 		}
+// 	}
+// 	iter.i = 0;
+// 	while (stack->b && (iter.i <= middle))
+// 	{
+// 		f_push(&stack->b, &stack->a, 1, 1);
+// 		print_both_stacks(stack, iter.i, iter.j);
+// 		iter.i++;
+// 	}
+// 	while (stack->b && (middle <= stack->elements))
+// 	{
+// 		f_push(&stack->b, &stack->a, 1, 1);
+// 		f_rotate(&stack->a, 1, 2);
+// 		print_both_stacks(stack, iter.i, iter.j);
+// 		middle++;
+// 	}
+// 	print_both_stacks(stack, iter.i, iter.j);
+// 	free(moves);
+// }
 
 int	is_index_current_or_next(t_stack *stack, int which, int index)
 {

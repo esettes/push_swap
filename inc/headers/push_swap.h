@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/14 21:02:23 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:02:29 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include "list_movements.h"
 #include "stack_movements.h"
 
-#define PRINT_    1
-#define COLORED    1
+#define PRINT_	0
+#define COLORED	0
 
 #if COLORED
 	#define RED_    "\x1b[31m"
@@ -73,7 +73,7 @@ void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems);
 void	do_less_rotation_moves(int elems, t_moves *moves, t_node **lst, t_iter it);
 void	print_args(t_node *stack);
 void	print_both_stacks(t_stack *stack, int i, int j);
-long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
+long	ft_strtol(const char *restrict ptr, char **restrict endptr, int base);
 /**
  * @brief Counts how many elements are currently in the indicated stack
  * 
@@ -83,7 +83,7 @@ long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
  * @return number of stack elements
  */
 int		count_stack_elements(t_stack *stack, int n);
-int	count_stack_elements_2(t_node **stack, int n);
+int		count_stack_elements_2(t_node **stack, int n);
 /**
  * @param stack Struct
  * @param n 0 if ckech stack A, 1 if check stack B
@@ -91,7 +91,6 @@ int	count_stack_elements_2(t_node **stack, int n);
  */
 int		check_all_elements(t_stack *stack, int n);
 void	set_index_to_each_elem(t_stack *stacks);
-void	f_sort(t_stack *stack);
 void	f_bucket_sort(t_stack *stack);
 /**
  * @brief Main function that calls others related to bucket sort initialization
@@ -102,5 +101,5 @@ void	f_bucket_sort(t_stack *stack);
 void	set_bucket_sort_values(t_stack *stack, t_node *lst);
 void	sort_three_elems(t_stack *stack, t_node *node);
 void	push_all_elems_except_last_three(t_stack *stack);
-
+void	f_insertion_sort(t_stack *stack);
 #endif

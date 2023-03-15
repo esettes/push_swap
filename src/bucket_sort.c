@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:08:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/14 21:03:04 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:05:38 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	push_all_elems_except_last_three(t_stack *stack)
 			f_rotate(&stack->a, 1, 0);
 			print_both_stacks(stack, 0, 0);
 		}
-		printf("stack elems -------- %i \n ", count_stack_elements(stack, 0));
-		usleep(750000);
+		// printf("stack elems -------- %i \n ", count_stack_elements(stack, 0));
+		// usleep(750000);
 		stack->a = stack->a->next;
 	}
 }
@@ -144,8 +144,8 @@ void	search_elems_of_current_b_index(t_stack *stack, int i, t_node *aux)
 	}
 	if (stack->a->b_index == i)
 	{
-		printf("*** checking sorted bucket in SEARCH ELEMS FOR EACH... \n");
-		usleep(450000);
+		// printf("*** checking sorted bucket in SEARCH ELEMS FOR EACH... \n");
+		// usleep(450000);
 		if (is_current_bucket_sorted(stack, stack->a, i))
 			return ;
 		aux = get_last_elem_of_list(stack->a);
@@ -248,7 +248,7 @@ int	is_current_bucket_sorted(t_stack *stack, t_node *lst, int index)
 	}
 	if (count == stack->b_elems[index].num_elems)
 	{
-		printf(".´·`... Bucket <%i> elements: %i, cunted: %i ....´·`. \n", index, stack->b_elems[index].num_elems, count);
+		//printf(".´·`... Bucket <%i> elements: %i, cunted: %i ....´·`. \n", index, stack->b_elems[index].num_elems, count);
 		stack->b_elems[index].is_sorted = 1;
 		return (1);
 	}

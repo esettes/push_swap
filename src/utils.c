@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 15:45:52 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:01:49 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,29 +77,14 @@ void	do_less_rotation_moves(int elems, t_moves *moves, t_node **lst, t_iter it)
 	i_rev = moves->moves_i_reverse;
 	j_rot = moves->moves_j_rotate;
 	j_rev = moves->moves_j_reverse;
-	if ((i_rot < i_rev) && (i_rot < j_rot) && (i_rot < j_rev))
+	if (i_rot < i_rev)
 	{
 		do_rotation(get_rotation_type(0), it.i, lst);
 	}
-	else if ((i_rev < i_rot) && (i_rev < j_rot) && (i_rev < j_rev))
+	else
 	{
 		do_rotation(get_rotation_type(1), it.i, lst);
-		}
-	else if ((j_rot < i_rev) && (j_rot < i_rot) && (j_rot < j_rev) && (it.j < elems))
-	{
-		do_rotation(get_rotation_type(0), it.j, lst);
-		}
-	else if ((j_rev < i_rev) && (j_rev < j_rot) && (j_rev < i_rot) && (it.j < elems))
-	{
-		do_rotation(get_rotation_type(1), it.j, lst);
-		}
-	else
-		//{
-			//if (i_rot == j_rot && i_rot < i_rev)
-				do_rotation(get_rotation_type(0), it.i, lst);
-			//else
-			//	do_rotation(get_rotation_type(1), it.j, lst);
-		//}
+	}
 }
 
 void	do_rotation(void (*f)(t_node **, int, int), int index, t_node **lst)
