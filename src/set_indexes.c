@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/16 00:02:21 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:06:58 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,19 +142,15 @@ void	f_insertion_sort(t_stack *stack)
 		print_both_stacks(stack, iter.i, iter.j);
 		current_elems = count_stack_elements(stack, 0);
 		// Get 2 elements from current bucket position
-		node.top = get_node_position_from_top(stack, b_index);
-		node.bottom = get_node_position_from_bottom(stack, b_index);
+		node.top = get_node_position_from_top(stack->a, b_index);
+		node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
+		printf("node.top position: %i\n", node.top);
+		printf("node.bottom position: %i\n", node.bottom);
+		usleep(300000);
 		// Get how many movements each one needs.
 		
 		// Do rotations to put elem at stack head
-		if (pushed_current_index(stack, &iter, middle) == 0)
-		{
-			count_num_movements(moves, stack->a, iter, current_elems);
-			if (stack->a && stack->a->index != iter.i)
-			{
-				do_less_rotation_moves(stack->elements, moves, &stack->a, iter);
-			}
-		}
+		do_less_rotation_moves(node, stack, b_index);		
 	}
 	iter.i = 0;
 	while (stack->b)
@@ -167,31 +163,38 @@ void	f_insertion_sort(t_stack *stack)
 	free(moves);
 }
 
-int	get_node_position_from_top(t_stack *stack, int b_index)
+int	get_node_position_from_top(t_node *lst, int b_index)
 {
-	int	pos;
+	t_node	*tmp;
+	int		pos;
 
 	pos = 0;
-	while (stack->a)
+	tmp = lst;
+	while (tmp)
 	{
-		if (stack->a->b_index == b_index)
-			return (b_index);
-		stack->a = stack->a->next;
+		if (tmp->b_index == b_index)
+			return (pos);
+		tmp = tmp->next;
+		pos++;
 	}
+	return (pos);
 }
 
-int	get_node_position_from_bottom(t_stack *stack, int b_index)
+int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
 {
-	int	pos;
+	t_node	*tmp;
+	int		pos;
 
 	pos = 0;
-	while (stack->a)
+	tmp = lst;
+	while (tmp)
 	{
-		if (stack->a->b_index == b_index)
-			pos = b_index;
-		stack->a = stack->a->next;
+		if (tmp->b_index == b_index)
+			return (elems - pos);
+		tmp = tmp->next;
+		pos++;
 	}
-	return (b_index);
+	return (elems - pos);
 }
 
 // void	f_insertion_sort(t_stack *stack)

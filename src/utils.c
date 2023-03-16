@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/15 23:01:49 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:07:31 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,26 +66,43 @@ void	*get_rotation_type(int sel)
 	return (ptr);
 }
 
-void	do_less_rotation_moves(int elems, t_moves *moves, t_node **lst, t_iter it)
+void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 {
-	int	i_rot;
-	int	i_rev;
-	int	j_rot;
-	int	j_rev;
-
-	i_rot = moves->moves_i_rotate;
-	i_rev = moves->moves_i_reverse;
-	j_rot = moves->moves_j_rotate;
-	j_rev = moves->moves_j_reverse;
-	if (i_rot < i_rev)
-	{
-		do_rotation(get_rotation_type(0), it.i, lst);
-	}
+	if (aux.top < aux.bottom)
+		do_rotation(get_rotation_type(1), b_index, &stack->a);
 	else
-	{
-		do_rotation(get_rotation_type(1), it.i, lst);
-	}
+		do_rotation(get_rotation_type(0), b_index, &stack->a);
 }
+
+void	push_or_move_stack_B(t_stack *stack)
+{
+	while (stack->b->index > stack->a->index)
+	{
+		f_rotate(&stack->b, 1, 1);
+	}
+	f_push(&stack->a, &stack->b, 1, 2);
+}
+
+// void	do_less_rotation_moves(int elems, t_moves *moves, t_node **lst, t_iter it)
+// {
+// 	int	i_rot;
+// 	int	i_rev;
+// 	int	j_rot;
+// 	int	j_rev;
+
+// 	i_rot = moves->moves_i_rotate;
+// 	i_rev = moves->moves_i_reverse;
+// 	j_rot = moves->moves_j_rotate;
+// 	j_rev = moves->moves_j_reverse;
+// 	if (i_rot < i_rev)
+// 	{
+// 		do_rotation(get_rotation_type(0), it.i, lst);
+// 	}
+// 	else
+// 	{
+// 		do_rotation(get_rotation_type(1), it.i, lst);
+// 	}
+// }
 
 void	do_rotation(void (*f)(t_node **, int, int), int index, t_node **lst)
 {
@@ -95,7 +112,7 @@ void	do_rotation(void (*f)(t_node **, int, int), int index, t_node **lst)
 	//usleep(1000000);
 	//printf("-\n---- Before rotations ----\n");
 	//printf("index: %d\n", index);
-	while (lst && (*lst)->index != index)
+	while (lst && (*lst)->b_index != index)
 	{
 		f(lst, 1, 0);
 		//printf("lst index: %d\n", (*lst)->index);

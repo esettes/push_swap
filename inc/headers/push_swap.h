@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/15 23:48:09 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:06:08 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include "list_movements.h"
 #include "stack_movements.h"
 
-#define PRINT_	0
-#define COLORED	0
+#define PRINT_	1
+#define COLORED	1
 
 #if COLORED
 	#define RED_    "\x1b[31m"
@@ -70,7 +70,7 @@ void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems);
  * @param lst Pointer to entirely stack
  * @param it Struct iterator
 */
-void	do_less_rotation_moves(int elems, t_moves *moves, t_node **lst, t_iter it);
+void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index);
 void	print_args(t_node *stack);
 void	print_both_stacks(t_stack *stack, int i, int j);
 long	ft_strtol(const char *restrict ptr, char **restrict endptr, int base);
@@ -103,6 +103,9 @@ void	sort_three_elems(t_stack *stack, t_node *node);
 void	push_all_elems_except_last_three(t_stack *stack);
 void	f_insertion_sort(t_stack *stack);
 
-int	get_node_position_from_bottom(t_stack *stack, int b_index);
-int	get_node_position_from_top(t_stack *stack, int b_index);
+int		get_node_position_from_bottom(t_node *lst, int b_index, int elems);
+int		get_node_position_from_top(t_node *lst, int b_index);
+void	push_or_move_stack_B(t_stack *stack);
+
+
 #endif
