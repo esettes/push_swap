@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/16 23:07:31 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/22 23:09:53 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,26 @@ void	*get_rotation_type(int sel)
 
 void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 {
+	int	i;
+
+	i = 0;
 	if (aux.top < aux.bottom)
-		do_rotation(get_rotation_type(1), b_index, &stack->a);
+	{
+		while (aux.top != 0)
+		{
+			do_rotation(get_rotation_type(1), b_index, &stack->a);
+			aux.top--;
+		}
+	}
 	else
+	{
+		while (aux.bottom != (stack->elements - 1))
+		{
+			do_rotation(get_rotation_type(0), b_index, &stack->a);
+			aux.bottom++;
+		}
 		do_rotation(get_rotation_type(0), b_index, &stack->a);
+	}
 }
 
 void	push_or_move_stack_B(t_stack *stack)
@@ -81,6 +97,26 @@ void	push_or_move_stack_B(t_stack *stack)
 		f_rotate(&stack->b, 1, 1);
 	}
 	f_push(&stack->a, &stack->b, 1, 2);
+}
+
+int	is_current_bucket_sorted(t_stack *stack, int b_index)
+{
+	while (stack->b)
+	{
+		if (stack->b->b_index == b_index)
+		{
+			if (stack->b->index < stack->b->next->index)
+				return (0);
+		}
+		stack->b = stack->b->next;
+	}
+	while (stack->a)
+	{
+		if (stack->a->b_index == b_index)
+			return (0);
+		stack->a = stack->a->next;
+	}
+	return (1);
 }
 
 // void	do_less_rotation_moves(int elems, t_moves *moves, t_node **lst, t_iter it)

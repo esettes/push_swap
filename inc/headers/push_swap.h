@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/16 23:06:08 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:57:06 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,6 @@ void	f_insertion_sort(t_stack *stack);
 int		get_node_position_from_bottom(t_node *lst, int b_index, int elems);
 int		get_node_position_from_top(t_node *lst, int b_index);
 void	push_or_move_stack_B(t_stack *stack);
-
+int		is_current_bucket_sorted(t_stack *stack, int b_index);
 
 #endif

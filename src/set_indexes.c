@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/16 23:06:58 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:57:49 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,18 +139,23 @@ void	f_insertion_sort(t_stack *stack)
 	head_a = stack->a;
 	while (stack->a)
 	{
-		print_both_stacks(stack, iter.i, iter.j);
-		current_elems = count_stack_elements(stack, 0);
-		// Get 2 elements from current bucket position
-		node.top = get_node_position_from_top(stack->a, b_index);
-		node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
-		printf("node.top position: %i\n", node.top);
-		printf("node.bottom position: %i\n", node.bottom);
-		usleep(300000);
-		// Get how many movements each one needs.
-		
-		// Do rotations to put elem at stack head
-		do_less_rotation_moves(node, stack, b_index);		
+		// while current bucket is not sorted
+		while (!is_current_bucket_sorted(stack, b_index))
+		{
+			print_both_stacks(stack, iter.i, iter.j);
+			current_elems = count_stack_elements(stack, 0);
+			// Get 2 elements from current bucket position
+			node.top = get_node_position_from_top(stack->a, b_index);
+			node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
+			printf("node.top position: %i\n", node.top);
+			printf("node.bottom position: %i\n", node.bottom);
+			usleep(300000);
+			// Get how many movements each one needs.
+			
+			// Do rotations to put elem at stack head
+			do_less_rotation_moves(node, stack, b_index);
+		}
+		b_index++;
 	}
 	iter.i = 0;
 	while (stack->b)
@@ -190,7 +195,7 @@ int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
 	while (tmp)
 	{
 		if (tmp->b_index == b_index)
-			return (elems - pos);
+			return (elems - pos - 1);
 		tmp = tmp->next;
 		pos++;
 	}
