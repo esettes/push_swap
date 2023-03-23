@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/22 21:57:49 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/23 21:38:45 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,8 @@ void	f_insertion_sort(t_stack *stack)
 			
 			// Do rotations to put elem at stack head
 			do_less_rotation_moves(node, stack, b_index);
+			// in B move the least element to head and push A to B
+			
 		}
 		b_index++;
 	}
@@ -166,6 +168,11 @@ void	f_insertion_sort(t_stack *stack)
 	}
 	print_both_stacks(stack, iter.i, iter.j);
 	free(moves);
+}
+
+void	put_least_elem_of_b_to_head(t_stack *stack)
+{
+	
 }
 
 int	get_node_position_from_top(t_node *lst, int b_index)
@@ -189,17 +196,18 @@ int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
 {
 	t_node	*tmp;
 	int		pos;
+	int		elem_pos;
 
 	pos = 0;
 	tmp = lst;
 	while (tmp)
 	{
 		if (tmp->b_index == b_index)
-			return (elems - pos - 1);
+			elem_pos = pos;
 		tmp = tmp->next;
 		pos++;
 	}
-	return (elems - pos);
+	return (elem_pos);
 }
 
 // void	f_insertion_sort(t_stack *stack)

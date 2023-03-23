@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/22 23:09:53 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:54:11 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 	int	i;
 
 	i = 0;
-	if (aux.top < aux.bottom)
+	if (aux.top < aux.bottom && aux.top < (stack->elements / 2))
 	{
 		while (aux.top != 0)
 		{
@@ -101,20 +101,26 @@ void	push_or_move_stack_B(t_stack *stack)
 
 int	is_current_bucket_sorted(t_stack *stack, int b_index)
 {
-	while (stack->b)
+	t_node	*tmp;
+	int		pos;
+
+	pos = 0;
+	tmp = stack->b;
+	while (tmp)
 	{
-		if (stack->b->b_index == b_index)
+		if (tmp->b_index == b_index)
 		{
-			if (stack->b->index < stack->b->next->index)
+			if (tmp->index < tmp->next->index)
 				return (0);
 		}
-		stack->b = stack->b->next;
+		tmp = tmp->next;
 	}
-	while (stack->a)
+	tmp = stack->a;
+	while (tmp)
 	{
-		if (stack->a->b_index == b_index)
+		if (tmp->b_index == b_index)
 			return (0);
-		stack->a = stack->a->next;
+		tmp = tmp->next;
 	}
 	return (1);
 }
