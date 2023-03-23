@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/23 20:54:11 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:23:27 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,20 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 	i = 0;
 	if (aux.top < aux.bottom && aux.top < (stack->elements / 2))
 	{
-		while (aux.top != 0)
-		{
+		// while (aux.top != 0)
+		// {
 			do_rotation(get_rotation_type(1), b_index, &stack->a);
-			aux.top--;
-		}
+		//	aux.top--;
+		//}
 	}
 	else
 	{
-		while (aux.bottom != (stack->elements - 1))
-		{
+		// while (aux.bottom != (stack->elements - 1))
+		// {
 			do_rotation(get_rotation_type(0), b_index, &stack->a);
-			aux.bottom++;
-		}
-		do_rotation(get_rotation_type(0), b_index, &stack->a);
+		//	aux.bottom++;
+		//}
+		//do_rotation(get_rotation_type(0), b_index, &stack->a);
 	}
 }
 
@@ -151,20 +151,8 @@ void	do_rotation(void (*f)(t_node **, int, int), int index, t_node **lst)
 	t_node	*current;
 
 	current = (*lst);
-	//usleep(1000000);
-	//printf("-\n---- Before rotations ----\n");
-	//printf("index: %d\n", index);
 	while (lst && (*lst)->b_index != index)
 	{
 		f(lst, 1, 0);
-		//printf("lst index: %d\n", (*lst)->index);
-		//usleep(700000);
-//		current = current->next;
-		
 	}
-	//
-	//printf("-\n---- After rotations ----\n");
-	//printf("index: %d\n", index);
-	
-	//usleep(1000000);
 }

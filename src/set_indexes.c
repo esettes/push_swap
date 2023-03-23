@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/23 21:38:45 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:17:23 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,41 @@ void	f_insertion_sort(t_stack *stack)
 
 void	put_least_elem_of_b_to_head(t_stack *stack)
 {
-	
+	int	least_pos;
+
+	least_pos = get_least_elem_position(stack, stack->b);
+	if (least_pos < stack->elements / 2)
+	{
+		do_rotation(get_rotation_type(1), 1, &stack->b);
+	}
+	else
+	{
+		do_rotation(get_rotation_type(0), 1, &stack->b);
+	}
+}
+
+int	get_least_elem_position(t_stack *stack, t_node *lst)
+{
+	t_node	*tmp;
+	int		least;
+	int		least_pos;
+	int		pos;
+
+	least = 0;
+	pos = 0;
+	least_pos = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		if (least < tmp->index)
+		{
+			least = tmp->index;
+			least_pos = pos;
+		}
+		tmp = tmp->next;
+		pos++;
+	}
+	return (least_pos);
 }
 
 int	get_node_position_from_top(t_node *lst, int b_index)
