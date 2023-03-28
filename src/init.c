@@ -1,7 +1,6 @@
 #include "push_swap.h"
 long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void    push_new_node(t_node **head_a, long int data);
-void    print_node(t_node *stack);
 
 t_stack    *alloc_stacks(int argc, char **argv)
 {
@@ -13,29 +12,21 @@ t_stack    *alloc_stacks(int argc, char **argv)
 	i = 1;
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->a = (t_node *)malloc(sizeof(t_node));
-	// stack->b = (t_node *)malloc(sizeof(t_node));
 	stack->b = NULL;
 	ptr = NULL;
 	ret = ft_strtol(argv[i], &ptr, 10);
 	stack->a->data = ret;
 	stack->a->next = NULL;
-	// stack->is_even = 0;
-	// stack->b->data = '\0';
-	// stack->b->index = '\0';
-	// stack->b->next = NULL;
 	i++;
 	while (argv[i])
 	{
 		ptr = NULL;
 		ret = ft_strtol(argv[i], &ptr, 10);
 		add_value_back(&stack->a, ret);
-		//add_back(stack->b, 0);
 		i++;
 	}
 	i--;
 	stack->elements = i;
-	// if (i % 2 == 0)
-	// 	stack->is_even = 1;
 	return (stack);
 }
 

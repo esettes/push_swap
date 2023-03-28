@@ -6,54 +6,11 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/28 23:04:33 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:08:56 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
-int	get_node_position(t_node *lst, int i)
-{
-	t_node	*tmp;
-	int		pos;
-
-	pos = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		if (i == tmp->index)
-			return (pos);
-		tmp = tmp->next;
-		pos++;
-	}
-	return (pos);
-}
-
-void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems)
-{
-	int	position_i;
-	int	position_j;
-	int	temp_multiply;
-
-	temp_multiply = 1;
-	if (i.j == elems)
-		temp_multiply += 90000;
-	position_i = get_node_position(lst, i.i) - 1;
-	position_j = get_node_position(lst, i.j);
-	moves->moves_i_rotate = position_i + 1;
-	moves->moves_i_reverse = elems - position_i + 1;
-	moves->moves_j_rotate = position_j + temp_multiply;
-	moves->moves_j_reverse = elems - position_j + temp_multiply;
-	/*printf("Elem postion (i): %d\n", position_i);
-	printf("Elem postion (j): %d\n", position_j);
-	printf("moves_i_rotate: %d\n", moves->moves_i_rotate);
-	printf("moves_i_reverse: %d\n", moves->moves_i_reverse);
-	printf("moves_j_rotate: %d\n", moves->moves_j_rotate);
-	printf("moves_j_reverse: %d\n", moves->moves_j_reverse);
-	
-	usleep(500000);*/
-}
 
 void	*get_rotation_type(int sel)
 {
@@ -93,15 +50,6 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 	}
 }
 
-void	push_or_move_stack_B(t_stack *stack)
-{
-	while (stack->b->index > stack->a->index)
-	{
-		f_rotate(&stack->b, 1, 1);
-	}
-	f_push(&stack->a, &stack->b, 1, 2);
-}
-
 int	is_current_bucket_sorted(t_stack *stack, int b_index)
 {
 	t_node	*tmp;
@@ -135,27 +83,6 @@ int	is_current_bucket_sorted(t_stack *stack, int b_index)
 	}
 	return (1);
 }
-
-// void	do_less_rotation_moves(int elems, t_moves *moves, t_node **lst, t_iter it)
-// {
-// 	int	i_rot;
-// 	int	i_rev;
-// 	int	j_rot;
-// 	int	j_rev;
-
-// 	i_rot = moves->moves_i_rotate;
-// 	i_rev = moves->moves_i_reverse;
-// 	j_rot = moves->moves_j_rotate;
-// 	j_rev = moves->moves_j_reverse;
-// 	if (i_rot < i_rev)
-// 	{
-// 		do_rotation(get_rotation_type(0), it.i, lst);
-// 	}
-// 	else
-// 	{
-// 		do_rotation(get_rotation_type(1), it.i, lst);
-// 	}
-// }
 
 void	do_rotation(void (*f)(t_node **, int, int), int pos, t_node **lst)
 {

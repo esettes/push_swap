@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/28 23:01:54 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:07:31 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@ void	swap_selection(t_node *a, t_node *b);
 t_node	*create_aux_stack(t_node *original);
 void	set_index_to_original_stack(t_node *original, t_node *aux);
 void	free_stack(t_node **head);
-int	is_last_index_less(t_node *lst, int index);
-int	is_index_before_first_half(t_stack *stack, int index);
 t_moves	*init_num_moves(void);
 
 /**
@@ -265,19 +263,6 @@ int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
 	return (elem_pos);
 }
 
-int	is_index_current_or_next(t_stack *stack, int which, int index)
-{
-	t_node	*current;
-
-	if (which == 0)
-		current = stack->a;
-	else
-		current = stack->b;
-	if (current->index == index || current->next->index == index)
-		return (1);
-	return (0);
-}
-
 int	check_all_elements(t_stack *stack, int n)
 {
 	t_node	*current;
@@ -347,40 +332,6 @@ int	count_stack_elements_2(t_node **stack, int n)
 		i++;
 	}
 	return (i);
-}
-
-int	is_last_index_less(t_node *lst, int index)
-{
-	t_node	*tmp;
-
-	tmp = lst;
-	while (lst->next)
-	{
-		lst = lst->next;
-	}
-	if (lst->index < index)
-		return (1);
-	lst = tmp;
-	return (0);
-}
-
-int	is_index_before_first_half(t_stack *stack, int index)
-{
-	t_node	*tmp;
-	int		elements;
-	int		i;
-
-	i = 0;
-	elements = count_stack_elements(stack, 0);
-	tmp = stack->a;
-	while (i <= (elements / 2))
-	{
-		if (tmp->index == index)
-			return (1);
-		tmp = tmp->next;
-		i++;
-	}
-	return (0);
 }
 
 t_moves	*init_num_moves(void)
