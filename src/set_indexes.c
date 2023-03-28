@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/28 22:28:13 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:46:30 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,9 +145,9 @@ void	f_insertion_sort(t_stack *stack)
 			current_elems = count_stack_elements(stack, 0);
 			node.top = get_node_position_from_top(stack->a, b_index);
 			node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
-			// printf("node.top position: %i\n", node.top);
-			// printf("node.bottom position: %i\n", node.bottom);
-			// usleep(300000);
+			//  printf("node.top position: %i\n", node.top);
+			//  printf("node.bottom position: %i\n", node.bottom);
+			//  usleep(300000);
 			// Get how many movements each one needs.
 			
 			// Do rotations to put elem at stack head
@@ -177,13 +177,15 @@ void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
 	int	least_pos;
 
 	least_pos = get_least_elem_position(stack, stack->b);
+	// printf(" least pos == %i \n\n", least_pos);
+	// usleep(900000);
 	if (least_pos < stack->elements / 2)
 	{
 		do_rotation(get_rotation_type(1), least_pos, &stack->b);
 	}
 	else
 	{
-		do_rotation(get_rotation_type(0), least_pos + 1, &stack->b);
+		do_rotation(get_rotation_type(0), least_pos, &stack->b);
 	}
 }
 
@@ -221,8 +223,8 @@ int	get_least_elem_position(t_stack *stack, t_node *lst)
 		
 		pos++;
 	}
-	//printf("position of the least element: %i\n", least);
-	//usleep(600000);
+	printf("position of the least element: %i\n", least);
+	usleep(600000);
 	return (least_pos);
 }
 
