@@ -6,12 +6,12 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/23 23:23:27 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:24:39 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-void	do_rotation(void (*f)(t_node **, int, int), int index, t_node **lst);
+
 
 int	get_node_position(t_node *lst, int i)
 {
@@ -75,7 +75,7 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 	{
 		// while (aux.top != 0)
 		// {
-			do_rotation(get_rotation_type(1), b_index, &stack->a);
+			do_rotation(get_rotation_type(1), aux.top, &stack->a);
 		//	aux.top--;
 		//}
 	}
@@ -83,7 +83,7 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 	{
 		// while (aux.bottom != (stack->elements - 1))
 		// {
-			do_rotation(get_rotation_type(0), b_index, &stack->a);
+			do_rotation(get_rotation_type(0), aux.bottom, &stack->a);
 		//	aux.bottom++;
 		//}
 		//do_rotation(get_rotation_type(0), b_index, &stack->a);
@@ -102,15 +102,23 @@ void	push_or_move_stack_B(t_stack *stack)
 int	is_current_bucket_sorted(t_stack *stack, int b_index)
 {
 	t_node	*tmp;
+	t_bucket	*tmp_bucket;
 	int		pos;
 
 	pos = 0;
 	tmp = stack->b;
+	tmp_bucket = stack->b_elems;
+	if (stack->b_elems[b_index].num_elems == 1)
+	{
+		return (1);
+	}
 	while (tmp)
 	{
 		if (tmp->b_index == b_index)
 		{
-			if (tmp->index < tmp->next->index)
+			if (stack->b_elems[b_index].num_elems == 1)
+				return (1);
+			if (tmp->next && tmp->index < tmp->next->index)
 				return (0);
 		}
 		tmp = tmp->next;
@@ -146,13 +154,13 @@ int	is_current_bucket_sorted(t_stack *stack, int b_index)
 // 	}
 // }
 
-void	do_rotation(void (*f)(t_node **, int, int), int index, t_node **lst)
+void	do_rotation(void (*f)(t_node **, int, int), int pos, t_node **lst)
 {
-	t_node	*current;
-
-	current = (*lst);
-	while (lst && (*lst)->b_index != index)
+	if (!*lst)
+		return ;
+	while (lst && pos != 0)
 	{
 		f(lst, 1, 0);
+		pos--;
 	}
 }

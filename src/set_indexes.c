@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/23 23:17:23 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:26:39 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,15 +147,19 @@ void	f_insertion_sort(t_stack *stack)
 			// Get 2 elements from current bucket position
 			node.top = get_node_position_from_top(stack->a, b_index);
 			node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
-			printf("node.top position: %i\n", node.top);
-			printf("node.bottom position: %i\n", node.bottom);
-			usleep(300000);
+			// printf("node.top position: %i\n", node.top);
+			// printf("node.bottom position: %i\n", node.bottom);
+			// usleep(300000);
 			// Get how many movements each one needs.
 			
 			// Do rotations to put elem at stack head
 			do_less_rotation_moves(node, stack, b_index);
+			print_both_stacks(stack, iter.i, iter.j);
 			// in B move the least element to head and push A to B
-			
+			put_least_elem_of_b_to_head(stack, b_index);
+			print_both_stacks(stack, iter.i, iter.j);
+			f_push(&stack->a, &stack->b, 1, 2);
+			print_both_stacks(stack, iter.i, iter.j);
 		}
 		b_index++;
 	}
@@ -170,42 +174,57 @@ void	f_insertion_sort(t_stack *stack)
 	free(moves);
 }
 
-void	put_least_elem_of_b_to_head(t_stack *stack)
+void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
 {
 	int	least_pos;
 
 	least_pos = get_least_elem_position(stack, stack->b);
 	if (least_pos < stack->elements / 2)
 	{
-		do_rotation(get_rotation_type(1), 1, &stack->b);
+		do_rotation(get_rotation_type(1), least_pos, &stack->b);
 	}
 	else
 	{
-		do_rotation(get_rotation_type(0), 1, &stack->b);
+		do_rotation(get_rotation_type(0), least_pos + 1, &stack->b);
 	}
 }
 
 int	get_least_elem_position(t_stack *stack, t_node *lst)
 {
 	t_node	*tmp;
+	t_node	*next;
 	int		least;
 	int		least_pos;
 	int		pos;
 
-	least = 0;
-	pos = 0;
 	least_pos = 0;
+	pos = 0;
 	tmp = lst;
+	if (tmp)
+	{
+		least = tmp->index;
+		next = tmp->next;
+	}
 	while (tmp)
 	{
-		if (least < tmp->index)
+		if (next)
 		{
-			least = tmp->index;
-			least_pos = pos;
+			if (tmp->index < next->index)
+			{
+				least_pos = pos;
+			}
+			else if (next->index < tmp->index)
+			{
+				least_pos = pos + 1;
+			}
+			next = next->next;
 		}
 		tmp = tmp->next;
+		
 		pos++;
 	}
+	//printf("position of the least element: %i\n", least);
+	//usleep(600000);
 	return (least_pos);
 }
 
@@ -243,112 +262,6 @@ int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
 	}
 	return (elem_pos);
 }
-
-// void	f_insertion_sort(t_stack *stack)
-// {
-// 	t_node	*head_a;
-// 	int		i;
-// 	int		j;
-// 	int		middle;
-
-// 	while (!is_sorted_stack(&stack->a) || !check_all_elements(stack, 0))
-// 	{
-// 		i = 0;
-// 		j = stack->elements / 2;
-// 		middle = j;
-// 		head_a = stack->a;
-// 		while (i <= stack->elements && stack->a)
-// 		{
-// 			if (stack->a && stack->a->index == i)
-// 			{
-// 				f_push(&stack->a, &stack->b, 1, 2);
-// 				print_both_stacks(stack, i, j);
-// 				i++;
-// 			}
-// 			else if (stack->a && stack->a->next && stack->a->next->index == i)
-// 			{
-// 				f_swap(&stack->a, 0, 0);
-// 				f_push(&stack->a, &stack->b, 1, 2);
-// 				print_both_stacks(stack, i, j);
-// 				i++;
-// 			}
-// 			else
-// 			{
-// 				if (stack->a)
-// 				{
-// 					if (!is_index_before_first_half(stack, i))
-// 					{
-// 						while (stack->a->index != i)
-// 						{
-// 							f_reverse_rotate(&stack->a, 1, 0);
-// 							print_both_stacks(stack, i, j);
-// 						}
-// 					}
-// 					else
-// 					{
-// 						while (stack->a->index != i)
-// 						{
-// 							f_rotate(&stack->a, 1, 0);
-// 							print_both_stacks(stack, i, j);
-// 						}
-// 					}
-// 				}
-// 			}
-// 		}
-// 		if (!stack->a)
-// 			break ;
-// 	}
-// 	i = 0;
-// 	while (stack->b)// && (i < middle))
-// 	{
-// 		f_push(&stack->b, &stack->a, 1, 1);
-// 		print_both_stacks(stack, i, j);
-// 	}
-// }
-
-// void	f_sort(t_stack *stack)
-// {
-// 	t_node	*head_a;
-// 	t_iter	iter;
-// 	t_moves	*moves;
-// 	int		middle;
-// 	int		current_elems;
-
-// 	moves = init_num_moves();
-// 	iter.i = 0;
-// 	iter.j = (stack->elements / 2) + 1;
-// 	middle = iter.j - 1;
-// 	head_a = stack->a;
-// 	while (stack->a)
-// 	{
-// 		print_both_stacks(stack, iter.i, iter.j);
-// 		current_elems = count_stack_elements(stack, 0);
-// 		if (pushed_current_index(stack, &iter, middle) == 0)
-// 		{
-// 			count_num_movements(moves, stack->a, iter, current_elems);
-// 			if (stack->a && stack->a->index != iter.i && stack->a->index != iter.j)
-// 			{
-// 				do_less_rotation_moves(stack->elements, moves, &stack->a, iter);
-// 			}
-// 		}
-// 	}
-// 	iter.i = 0;
-// 	while (stack->b && (iter.i <= middle))
-// 	{
-// 		f_push(&stack->b, &stack->a, 1, 1);
-// 		print_both_stacks(stack, iter.i, iter.j);
-// 		iter.i++;
-// 	}
-// 	while (stack->b && (middle <= stack->elements))
-// 	{
-// 		f_push(&stack->b, &stack->a, 1, 1);
-// 		f_rotate(&stack->a, 1, 2);
-// 		print_both_stacks(stack, iter.i, iter.j);
-// 		middle++;
-// 	}
-// 	print_both_stacks(stack, iter.i, iter.j);
-// 	free(moves);
-// }
 
 int	is_index_current_or_next(t_stack *stack, int which, int index)
 {
