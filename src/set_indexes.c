@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/28 22:26:39 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:28:13 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,12 +139,10 @@ void	f_insertion_sort(t_stack *stack)
 	head_a = stack->a;
 	while (stack->a)
 	{
-		// while current bucket is not sorted
 		while (!is_current_bucket_sorted(stack, b_index))
 		{
 			print_both_stacks(stack, iter.i, iter.j);
 			current_elems = count_stack_elements(stack, 0);
-			// Get 2 elements from current bucket position
 			node.top = get_node_position_from_top(stack->a, b_index);
 			node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
 			// printf("node.top position: %i\n", node.top);
