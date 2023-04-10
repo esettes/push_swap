@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/28 20:36:26 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:47:17 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,30 +52,6 @@ t_bucket	*get_elems_for_each_bucket(t_stack *stack, t_node *lst)
 	return (b_elems);
 }
 
-// void	set_min_and_max_values(t_stack *stack, t_node *lst)
-// {
-// 	int		i;
-// 	t_node	*tmp;
-// 	t_node	*next;
-
-// 	i = 0;
-// 	tmp = lst;
-// 	stack->min_val = lst->data;
-// 	stack->max_val = lst->data;
-// 	while (tmp)
-// 	{
-// 		if (stack->max_val < tmp->data)
-// 		{
-// 			stack->max_val = tmp->data;
-// 		}
-// 		else if (tmp->data < stack->min_val)
-// 		{
-// 			stack->min_val = tmp->data;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// }
-
 void	set_min_and_max_values(t_stack *stack, t_node *lst)
 {
 	int		i;
@@ -110,37 +86,6 @@ int	get_bucket_range(t_stack *stack)
 		stack->bucket_range = 1;
 	return (stack->bucket_range);
 }
-
-// int	get_bucket_range(t_stack *stack)
-// {
-// 	printf(" +++++ Stack elements: %d +++++\n", stack->elements);
-// 	stack->bucket_range	= (stack->max_val - stack->min_val) / stack->elements;
-// 	printf(" +++++ Bucket range: %d +++++\n", stack->bucket_range);
-// 	if (stack->bucket_range == 0)
-// 		stack->bucket_range = 1;
-// 	return (stack->bucket_range);
-// }
-
-// void	set_bucket_indexes(t_stack *stack, t_node *lst)
-// {
-// 	int	max_bucket;
-
-// 	max_bucket = 0;
-// 	while (lst)
-// 	{
-// 		//usleep(500000);
-// 		//printf("+++ For %d, bucket range: %d\n", lst->data, stack->bucket_range);
-// 		printf("lst->data: %d\n", lst->data);
-// 		printf("stack->bucket_range: %d\n", stack->bucket_range);
-// 		lst->b_index = (lst->data - stack->min_val) / stack->bucket_range;
-// 		printf("For %d, bucketindex: %d\n", lst->data, lst->b_index);
-// 		max_bucket = lst->b_index;
-// 		lst = lst->next;
-// 	}
-// 	stack->max_bucket = max_bucket;
-// 	printf("max bucket: %d\n", stack->max_bucket);
-// 	usleep(500000);
-// }
 
 void	set_bucket_indexes(t_stack *stack, t_node *lst)
 {

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/28 23:07:31 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/10 20:37:54 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,6 @@ void	set_index_to_original_stack(t_node *original, t_node *aux)
 	}
 }
 
-/**
- * TO-DO Search and save 1 element of bucket X, and compare it with another element of bucket X,
- * count which of them need less rotations and do it
- */
 void	f_insertion_sort(t_stack *stack)
 {
 	t_node		*head_a;
@@ -139,9 +135,7 @@ void	f_insertion_sort(t_stack *stack)
 	{
 		while (!is_current_bucket_sorted(stack, b_index))
 		{
-			print_both_stacks(stack, iter.i, iter.j);
-			printf("Current bucket index ****: %i\n", b_index);
-			usleep(600000);
+			print_both_stacks(stack, b_index, iter.j);
 			current_elems = count_stack_elements(stack, 0);
 			node.top = get_node_position_from_top(stack->a, b_index);
 			node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
@@ -152,12 +146,12 @@ void	f_insertion_sort(t_stack *stack)
 			
 			// Do rotations to put elem at stack head
 			do_less_rotation_moves(node, stack, b_index);
-			print_both_stacks(stack, iter.i, iter.j);
+			print_both_stacks(stack, b_index, iter.j);
 			// in B move the least element to head and push A to B
 			put_least_elem_of_b_to_head(stack, b_index);
-			print_both_stacks(stack, iter.i, iter.j);
+			print_both_stacks(stack, b_index, iter.j);
 			f_push(&stack->a, &stack->b, 1, 2);
-			print_both_stacks(stack, iter.i, iter.j);
+			print_both_stacks(stack, b_index, iter.j);
 		}
 		b_index++;
 	}
@@ -165,28 +159,45 @@ void	f_insertion_sort(t_stack *stack)
 	while (stack->b)
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
-		print_both_stacks(stack, iter.i, iter.j);
+		print_both_stacks(stack, b_index, iter.j);
 		iter.i++;
 	}
-	print_both_stacks(stack, iter.i, iter.j);
+	print_both_stacks(stack, b_index, iter.j);
 	free(moves);
 }
 
 void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
 {
 	int	least_pos;
+	int	elems;
 
-	least_pos = get_least_elem_position(stack, stack->b);
+	//least_pos = get_least_elem_position(stack, stack->b);
+	elems = count_stack_elements(stack, 1);
+	while (stack->b && elems > 2 && stack->b->index != stack->min_val)
+	{
+		f_rotate(&stack->b, 1, 1);
+		print_both_stacks(stack, b_index, least_pos);
+	}
 	// printf(" least pos == %i \n\n", least_pos);
 	// usleep(900000);
-	if (least_pos < stack->elements / 2)
-	{
-		do_rotation(get_rotation_type(1), least_pos, &stack->b);
-	}
-	else
-	{
-		do_rotation(get_rotation_type(0), least_pos, &stack->b);
-	}
+	// if (least_pos < stack->elements / 2)
+	// {
+	// 	do_rotation(get_rotation_type(1), least_pos, &stack->b);
+	// }
+	// else
+	// {
+		//do_rotation(get_rotation_type(0), least_pos, &stack->b);
+		// while (least_pos != 0)
+		// {
+		// 	printf("put_least_elem_of_b_to_head, least pos == %i \n\n", least_pos);
+		// 	usleep(1200000);
+		// 	f_rotate(&stack->b, 1, 1);
+		// 	print_both_stacks(stack, b_index, least_pos);
+		// 	printf("put_least_elem_of_b_to_head, least pos == %i \n\n", least_pos);
+		// 	least_pos--;
+		// 	usleep(1200000);
+		// }
+	//}
 }
 
 int	get_least_elem_position(t_stack *stack, t_node *lst)
@@ -212,19 +223,22 @@ int	get_least_elem_position(t_stack *stack, t_node *lst)
 			if (tmp->index < next->index)
 			{
 				least_pos = pos;
+				printf("lower data-> %i \n\n", tmp->index);
+				usleep(1200000);
 			}
 			else if (next->index < tmp->index)
 			{
 				least_pos = pos + 1;
+				printf("lower data-> %i \n\n", tmp->index);
+				usleep(1200000);
 			}
 			next = next->next;
+			pos++;
 		}
 		tmp = tmp->next;
 		
-		pos++;
+		
 	}
-	printf("position of the least element: %i\n", least);
-	usleep(600000);
 	return (least_pos);
 }
 

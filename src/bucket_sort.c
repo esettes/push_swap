@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:08:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/22 21:59:25 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:47:58 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,70 +123,6 @@ int	is_elem_of_current_bucket_index_here(t_node *lst, int i)
 	return (0);
 }
 
-// void	search_elems_of_current_b_index(t_stack *stack, int i, t_node *aux)
-// {
-// 	// keep if this loop if the current bucket is not shorted (?)
-// 	if (is_current_bucket_sorted(stack, stack->a, i))
-// 			return ;
-// 	//while is not current b_index, push to B and rotate B
-// 	/*
-// 	* * * * * if its an element of a previous index, dont move it !! * * * * * * * *
-// 	*/
-// 	while (stack->a->b_index != i)
-// 	{
-// 		f_push(&stack->a, &stack->b, 1, 2);
-// 		f_rotate(&stack->b, 1, 1);
-// 		print_both_stacks(stack, i, 0);
-// 	}
-// 	if (stack->a->b_index == i)
-// 	{
-// 		// printf("*** checking sorted bucket in SEARCH ELEMS FOR EACH... \n");
-// 		// usleep(450000);
-// 		if (is_current_bucket_sorted(stack, stack->a, i))
-// 			return ;
-// 		aux = get_last_elem_of_list(stack->a);
-// 		// aux_b_index = get_bucket_index_of_last_elem(stack->a);
-// 		// aux_index = get_index_of_last_elem(stack->a);
-// 		if (aux->b_index == i)
-// 		{
-// 			if (stack->a->data > aux->data)
-// 			{
-// 				f_rotate(&stack->a, 1, 0);
-// 			}
-// 			else if (stack->a->data < aux->data)
-// 			{
-// 				f_reverse_rotate(&stack->a, 1, 1);
-// 				f_push(&stack->a, &stack->b, 1, 2);
-// 				f_rotate(&stack->a, 1, 0);
-// 			}
-// 			print_both_stacks(stack, i, 0);
-// 			if (stack->b->index == aux->index + 1)
-// 			{
-// 				f_push(&stack->b, &stack->a, 1, 1);
-// 				f_rotate(&stack->a, 1, 0);
-// 			}
-// 			else if (stack->b->next->index == aux->index + 1)
-// 			{
-// 				f_swap(&stack->b, 1, 0);
-// 				f_push(&stack->b, &stack->a, 1, 1);
-// 				f_rotate(&stack->a, 1, 0);
-// 			}
-// 			print_both_stacks(stack, i, 0);
-// 		}
-// 		if (aux->b_index != i)
-// 		{
-// 			f_reverse_rotate(&stack->a, 1, 1);
-// 			print_both_stacks(stack, i, 0);
-// 		}
-		
-// 	}
-// 	// if it have current b_index then
-// 	//		if its bigger than the last elem of the list, rotate A
-// 	//		if its smaller than the last elem, reverse rotate, push to B and rotate A
-// 	//		check if in B is the consecutive element, if its, push to A and rotate A
-// }
-
-
 /**
  * @brief If current bucket index is sorted, push all elements to stack A.
  * Later, adds +1 to current bucket index.
@@ -220,37 +156,6 @@ void	push_current_bucket_sorted(t_stack *stack, int *index)
 	*index += 1;
 }
 
-// int	is_current_bucket_sorted(t_stack *stack, t_node *lst, int index)
-// {
-// 	t_node	*next;
-// 	int		count;
-
-// 	count = 1;
-// 	while (lst && lst->b_index != index)
-// 	{
-// 		lst = lst->next;
-// 	}
-
-// 		// printf("HEYYYY \n");
-// 		// usleep(450000);
-// 	next = lst->next;
-// 	while (next && lst->b_index == index)// && next->b_index == index)
-// 	{
-// 		if (lst->data > next->data)
-// 			return (0);
-// 		lst = next;
-// 		next = lst->next;
-// 		count++;
-// 	}
-// 	if (count == stack->b_elems[index].num_elems)
-// 	{
-// 		//printf(".´·`... Bucket <%i> elements: %i, cunted: %i ....´·`. \n", index, stack->b_elems[index].num_elems, count);
-// 		stack->b_elems[index].is_sorted = 1;
-// 		return (1);
-// 	}
-// 	return (0);
-// }
-
 int	get_bucket_index_of_last_elem(t_node *stack)
 {
 	while (stack)
@@ -277,4 +182,3 @@ t_node	*get_last_elem_of_list(t_node *stack)
 	}
 	return (stack);
 }
-

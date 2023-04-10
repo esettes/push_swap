@@ -103,8 +103,9 @@ void	print_both_stacks(t_stack *stack, int i, int j)
 		}
 		aux++;
 	}
-	printf("i: \t%i\n", i);
+	//printf("i: \t%i\n", i);
 	printf("j: \t%i\n", j);
+	printf("b_index: \t%i\n", i);
 	usleep(450000);
 	#endif
 }

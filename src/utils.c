@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/28 23:08:56 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:11:51 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 	}
 	else
 	{
-		printf(" aux.top == %i \n\n", aux.top);
-		usleep(900000);
+		// printf(" aux.top == %i \n\n", aux.top);
+		// usleep(900000);
 		do_rotation(get_rotation_type(0), temp_bottom, &stack->a);
 		print_both_stacks(stack, 0, 0);
 	}
@@ -69,8 +69,10 @@ int	is_current_bucket_sorted(t_stack *stack, int b_index)
 		{
 			if (stack->b_elems[b_index].num_elems == 1)
 				return (1);
-			if (tmp->next && tmp->index < tmp->next->index)
+			if (tmp->next && tmp->index > tmp->next->index)
+			{
 				return (0);
+			}
 		}
 		tmp = tmp->next;
 	}
@@ -78,7 +80,11 @@ int	is_current_bucket_sorted(t_stack *stack, int b_index)
 	while (tmp)
 	{
 		if (tmp->b_index == b_index)
+		{
+		// 	printf("There's elements of bucket index [%i] in stack A! ********  \n\n", b_index);
+		// 	usleep(1600000);
 			return (0);
+		}
 		tmp = tmp->next;
 	}
 	return (1);
