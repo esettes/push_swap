@@ -86,19 +86,19 @@ void	print_both_stacks(t_stack *stack, int i, int j)
 	{
 		if (current_a && current_b)
 		{
-			printf(" %ld, %i \t %ld, %i\n",current_a->data, current_a->b_index, current_b->data, current_b->b_index);
+			printf(" %ld, %i \t %ld, %i\n",current_a->index, current_a->b_index, current_b->index, current_b->b_index);
 			current_a = current_a->next;
 			current_b = current_b->next;
 			aux++;
 		}
 		else if (current_b)
 		{
-			printf("   \t %ld, %i\n", current_b->data, current_b->b_index);
+			printf("   \t %ld, %i\n", current_b->index, current_b->b_index);
 			current_b = current_b->next;
 		}
 		else if (current_a)
 		{
-			printf(" %ld, %i \t  \n",current_a->data, current_a->b_index);
+			printf(" %ld, %i \t  \n",current_a->index, current_a->b_index);
 			current_a = current_a->next;
 		}
 		aux++;

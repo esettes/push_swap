@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/11 21:51:27 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/11 23:51:41 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,10 @@ void	f_insertion_sort(t_stack *stack)
 			current_elems = count_stack_elements(stack, 0);
 			node.top = get_node_position_from_top(stack->a, b_index);
 			node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
-			printf("node.top position: %i\n", node.top);
-			printf("node.bottom position: %i\n", node.bottom);
-			printf("+++ b_index: %i\n", b_index);
-			usleep(1100000);
+			// printf("node.top position: %i\n", node.top);
+			// printf("node.bottom position: %i\n", node.bottom);
+			// printf("+++ b_index: %i\n", b_index);
+			// usleep(1100000);
 			// Get how many movements each one needs.
 			
 			// Do rotations to put elem at stack head
@@ -153,7 +153,7 @@ void	f_insertion_sort(t_stack *stack)
 			put_least_elem_of_b_to_head(stack, b_index);
 			print_both_stacks(stack, b_index, iter.j);
 			f_push(&stack->a, &stack->b, 1, 2);
-			put_least_elem_of_b_to_head(stack, b_index);
+			//put_least_elem_of_b_to_head(stack, b_index);
 			print_both_stacks(stack, b_index, iter.j);
 		}
 		b_index++;
@@ -171,15 +171,31 @@ void	f_insertion_sort(t_stack *stack)
 
 void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
 {
+	t_node	*tmp;
+	int		max_val;
 	int	least_pos;
 	int	elems;
 
 	//least_pos = get_least_elem_position(stack, stack->b);
 	elems = count_stack_elements(stack, 1);
-	while (stack->b && elems > 2 && stack->b->index != stack->min_val)
+	//min_val = 0;
+	tmp = stack->b;
+	if (tmp)
+		max_val = tmp->index;
+	while (tmp)
+	{
+		if (tmp->next && tmp->next->index > max_val)
+		{
+			max_val = tmp->next->index;
+		}
+		tmp = tmp->next;
+	}
+	while (stack->b && elems > 2 && stack->b->index != max_val)
 	{
 		f_rotate(&stack->b, 1, 1);
 		print_both_stacks(stack, b_index, least_pos);
+		
+		
 	}
 	// printf(" least pos == %i \n\n", least_pos);
 	// usleep(900000);
@@ -226,14 +242,14 @@ int	get_least_elem_position(t_stack *stack, t_node *lst)
 			if (tmp->index < next->index)
 			{
 				least_pos = pos;
-				printf("lower data-> %i \n\n", tmp->index);
-				usleep(1200000);
+				// printf("lower data-> %i \n\n", tmp->index);
+				// usleep(1200000);
 			}
 			else if (next->index < tmp->index)
 			{
 				least_pos = pos + 1;
-				printf("lower data-> %i \n\n", tmp->index);
-				usleep(1200000);
+				// printf("lower data-> %i \n\n", tmp->index);
+				// usleep(1200000);
 			}
 			next = next->next;
 			pos++;

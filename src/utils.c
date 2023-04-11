@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/11 21:51:08 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:54:50 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 	i = 0;
 	current_elems = count_stack_elements(stack, 0);
 	temp_bottom = current_elems - aux.bottom;
-	printf("t---- current_elems: %i\n",  current_elems);
-	printf("t---- aux.bottom: %i\n",  aux.bottom);
-	printf("t---- temp_bottom: %i\n",  temp_bottom);
-	usleep(1000000);
+	// printf("t---- current_elems: %i\n",  current_elems);
+	// printf("t---- aux.bottom: %i\n",  aux.bottom);
+	// printf("t---- temp_bottom: %i\n",  temp_bottom);
+	// usleep(1000000);
 	if (aux.top < temp_bottom)
 	{
 		// do_rotation(get_rotation_type(0), aux.top, &stack->a);
@@ -44,9 +44,9 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 		while (aux.top != 0)
 		{
 			f_rotate(&stack->a, 1, 1);
-			printf("node.top position: %i\n", aux.top);
-			usleep(1000000);
-			print_both_stacks(stack, 0, 0);
+			// printf("node.top position: %i\n", aux.top);
+			// usleep(1000000);
+			// print_both_stacks(stack, 0, 0);
 			aux.top--;
 		}
 		
@@ -59,9 +59,9 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 		while (temp_bottom != 0)
 		{
 			f_reverse_rotate(&stack->a, 1, 1);
-			printf("temp_bottom position: %i\n", temp_bottom);
-			usleep(1000000);
-			print_both_stacks(stack, 0, 0);
+			// printf("temp_bottom position: %i\n", temp_bottom);
+			// usleep(1000000);
+			// print_both_stacks(stack, 0, 0);
 			temp_bottom--;
 		}
 	}

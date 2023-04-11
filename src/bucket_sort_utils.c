@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/29 22:47:17 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/11 23:09:20 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	set_min_and_max_values(t_stack *stack, t_node *lst)
 int	get_bucket_range(t_stack *stack)
 {
 	if (stack->elements <= 100)
-		stack->bucket_range	= stack->elements / 3;
+		stack->bucket_range	= stack->elements / 5;
 	else
-		stack->bucket_range	= stack->elements / 7;
+		stack->bucket_range	= stack->elements / 11;
 	if (stack->bucket_range == 0)
 		stack->bucket_range = 1;
 	return (stack->bucket_range);
