@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/10 20:37:54 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:07:59 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,9 @@ void	f_insertion_sort(t_stack *stack)
 			current_elems = count_stack_elements(stack, 0);
 			node.top = get_node_position_from_top(stack->a, b_index);
 			node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
-			 printf("node.top position: %i\n", node.top);
-			 printf("node.bottom position: %i\n", node.bottom);
-			 usleep(300000);
+			// printf("node.top position: %i\n", node.top);
+			// printf("node.bottom position: %i\n", node.bottom);
+			// usleep(1500000);
 			// Get how many movements each one needs.
 			
 			// Do rotations to put elem at stack head
