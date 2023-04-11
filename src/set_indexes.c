@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/11 21:20:54 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:51:27 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_node	*create_aux_stack(t_node *original);
 void	set_index_to_original_stack(t_node *original, t_node *aux);
 void	free_stack(t_node **head);
 t_moves	*init_num_moves(void);
+int		are_elems_of_current_bucket_in_a(t_stack *stack, int b_index);
 
 /**
  * @brief Sorts the stack in a temporal stack to sets indexes to each elem
@@ -133,7 +134,7 @@ void	f_insertion_sort(t_stack *stack)
 	head_a = stack->a;
 	while (stack->a)
 	{
-		while (!is_current_bucket_sorted(stack, b_index))
+		while (are_elems_of_current_bucket_in_a(stack, b_index))
 		{
 			print_both_stacks(stack, b_index, iter.j);
 			current_elems = count_stack_elements(stack, 0);

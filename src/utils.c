@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/11 21:09:43 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:51:08 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,65 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 {
 	int	i;
 	int	temp_bottom;
+	int	current_elems;
 
 	i = 0;
-	temp_bottom = stack->elements - aux.bottom;
+	current_elems = count_stack_elements(stack, 0);
+	temp_bottom = current_elems - aux.bottom;
+	printf("t---- current_elems: %i\n",  current_elems);
+	printf("t---- aux.bottom: %i\n",  aux.bottom);
+	printf("t---- temp_bottom: %i\n",  temp_bottom);
+	usleep(1000000);
 	if (aux.top < temp_bottom)
 	{
-		do_rotation(get_rotation_type(0), aux.top, &stack->a);
-		print_both_stacks(stack, 0, 0);
+		// do_rotation(get_rotation_type(0), aux.top, &stack->a);
+		// print_both_stacks(stack, 0, 0);
+
+		while (aux.top != 0)
+		{
+			f_rotate(&stack->a, 1, 1);
+			printf("node.top position: %i\n", aux.top);
+			usleep(1000000);
+			print_both_stacks(stack, 0, 0);
+			aux.top--;
+		}
+		
 	}
 	else
 	{
-		do_rotation(get_rotation_type(1), temp_bottom, &stack->a);
-		print_both_stacks(stack, 0, 0);
+		
+		// do_rotation(get_rotation_type(1), temp_bottom, &stack->a);
+		// print_both_stacks(stack, 0, 0);
+		while (temp_bottom != 0)
+		{
+			f_reverse_rotate(&stack->a, 1, 1);
+			printf("temp_bottom position: %i\n", temp_bottom);
+			usleep(1000000);
+			print_both_stacks(stack, 0, 0);
+			temp_bottom--;
+		}
 	}
+}
+
+int	are_elems_of_current_bucket_in_a(t_stack *stack, int b_index)
+{
+	t_node	*tmp;
+
+	tmp = stack->a;
+	while (tmp)
+	{
+		if (tmp->b_index == b_index)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
 int	is_current_bucket_sorted(t_stack *stack, int b_index)
 {
 	t_node	*tmp;
-	t_bucket	*tmp_bucket;
-	int		pos;
 
-	pos = 0;
 	tmp = stack->b;
-	tmp_bucket = stack->b_elems;
 	if (stack->b_elems[b_index].num_elems == 1)
 	{
 		return (1);
