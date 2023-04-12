@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:08:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/29 22:47:58 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/12 20:45:47 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@ void	search_elems_of_current_b_index(t_stack *stack, int i, t_node *aux);
 void	push_current_bucket_sorted(t_stack *stack, int *index);
 //int		is_current_bucket_sorted(t_stack *stack, t_node *lst, int index);
 int		get_bucket_index_of_last_elem(t_node *stack);
-int		get_index_of_last_elem(t_node *stack);
 int		are_all_buckets_sorted(t_stack *stack);
 t_node	*get_last_elem_of_list(t_node *stack);
 int		is_elem_of_current_bucket_index_here(t_node *lst, int i);

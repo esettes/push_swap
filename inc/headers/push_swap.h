@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/11 23:09:44 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/12 20:46:02 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ void	put_least_elem_of_b_to_head(t_stack *stack, int b_index);
 int		get_least_elem_position(t_stack *stack, t_node *lst);
 void	do_rotation(void (*f)(t_node **, int, int), int pos, t_node **lst);
 void	*get_rotation_type(int sel);
+int		get_index_of_last_elem(t_node *stack);
 
 #endif

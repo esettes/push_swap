@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/11 23:51:41 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/12 20:47:18 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,10 +163,39 @@ void	f_insertion_sort(t_stack *stack)
 	{
 		f_push(&stack->b, &stack->a, 1, 1);
 		print_both_stacks(stack, b_index, iter.j);
+		f_rotate(&stack->a, 1, 0);
+		print_both_stacks(stack, b_index, iter.j);
 		iter.i++;
 	}
+	f_rotate(&stack->a, 1, 1);
 	print_both_stacks(stack, b_index, iter.j);
 	free(moves);
+}
+
+void	sort_stack_A(t_stack *stack, int b_index)
+{
+	int	last_val;
+
+	while (stack->b)
+	{
+		last_val = get_index_of_last_elem(stack->a);
+		if (!are_elems_of_current_bucket_in_a(stack, b_index))
+		{
+			f_push(&stack->b, &stack->a, 1, 1);
+			print_both_stacks(stack, b_index, 0);
+		}
+		else if (stack->b->index > stack->a->index && stack->b->index > last_val)
+		{
+			f_rotate(&stack->a, 1, 0);
+			print_both_stacks(stack, b_index, 0);
+			f_push(&stack->b, &stack->a, 1, 1);
+			print_both_stacks(stack, b_index, 0);
+		}
+		else if (stack->b->index < stack->a->index)
+		{
+			
+		}
+	}
 }
 
 void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
@@ -184,7 +213,7 @@ void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
 		max_val = tmp->index;
 	while (tmp)
 	{
-		if (tmp->next && tmp->next->index > max_val)
+		if (tmp->next && tmp->next->index < max_val)
 		{
 			max_val = tmp->next->index;
 		}
