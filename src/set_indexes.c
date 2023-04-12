@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/12 22:25:45 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:48:43 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void	sort_stack_A(t_stack *stack)
 					// }
 					// else
 					// {
-						f_rotate(&stack->a, 1, 0);
+						f_reverse_rotate(&stack->a, 1, 0);
 						print_both_stacks(stack, b_index, 0);
 						f_push(&stack->b, &stack->a, 1, 1);
 						print_both_stacks(stack, b_index, 0);
@@ -210,11 +210,11 @@ void	sort_stack_A(t_stack *stack)
 				}
 				else if (stack->b->index > stack->a->index && stack->b->index < last_val)
 				{
-					f_reverse_rotate(&stack->a, 1, 1);
+					f_rotate(&stack->a, 1, 1);
 					print_both_stacks(stack, b_index, 0);
 					f_push(&stack->b, &stack->a, 1, 1);
 					print_both_stacks(stack, b_index, 0);
-					f_rotate(&stack->a, 1, 1);
+					f_reverse_rotate(&stack->a, 1, 1);
 					print_both_stacks(stack, b_index, 0);
 					f_rotate(&stack->a, 1, 1);
 					print_both_stacks(stack, b_index, 0);
