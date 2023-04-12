@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/12 20:46:02 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:14:18 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ int		get_least_elem_position(t_stack *stack, t_node *lst);
 void	do_rotation(void (*f)(t_node **, int, int), int pos, t_node **lst);
 void	*get_rotation_type(int sel);
 int		get_index_of_last_elem(t_node *stack);
+int		are_elems_of_current_bucket_in_stack(t_node *stack, int b_index);
 
 #endif

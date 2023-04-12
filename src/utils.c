@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/11 21:54:50 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:14:01 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index)
 	}
 }
 
-int	are_elems_of_current_bucket_in_a(t_stack *stack, int b_index)
+int	are_elems_of_current_bucket_in_stack(t_node *stack, int b_index)
 {
 	t_node	*tmp;
 
-	tmp = stack->a;
+	tmp = stack;
 	while (tmp)
 	{
 		if (tmp->b_index == b_index)

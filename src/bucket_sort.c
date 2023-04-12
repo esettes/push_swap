@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:08:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/12 20:45:47 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:26:57 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int	get_bucket_index_of_last_elem(t_node *stack)
 
 int	get_index_of_last_elem(t_node *stack)
 {
-	while (stack)
+	while (stack->next)
 	{
 		stack = stack->next;
 	}
