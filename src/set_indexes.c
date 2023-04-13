@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/13 20:18:26 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:45:47 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ void	f_insertion_sort(t_stack *stack)
 	t_node		*head_a;
 	t_iter		iter;
 	t_moves		*moves;
-	t_temp_node	node;
+	t_temp	node;
+	int			last_val;
 	int			middle;
 	int			current_elems;
 	int			b_index;
@@ -148,29 +149,37 @@ void	f_insertion_sort(t_stack *stack)
 			// Get how many movements each one needs.
 			
 			// Do rotations to put elem at stack head
-			do_less_rotation_moves(node, stack, b_index);
+			do_less_rotation_moves(node, stack, &stack->a, b_index);
 			print_both_stacks(stack, b_index, iter.j);
 			// in B move the least element to head and push A to B
 			put_least_elem_of_b_to_head(stack, b_index);
 			print_both_stacks(stack, b_index, iter.j);
-			f_push(&stack->a, &stack->b, 1, 2);
+			// if (stack->b)
+			// 	last_val = get_index_of_last_elem(stack->b);
+			// // if last elem of B > head A, then put last elem of B to head, push A to B, and ra x2
+			// if (stack->b && last_val > stack->a->index)
+			// {
+			// 	f_reverse_rotate(&stack->b, 1, 1);
+			// 	print_both_stacks(stack, b_index, iter.j);
+			// 	f_push(&stack->a, &stack->b, 1, 2);
+			// 	print_both_stacks(stack, b_index, iter.j);
+			// 	f_rotate(&stack->b, 1, 1);
+			// 	print_both_stacks(stack, b_index, iter.j);
+			// 	f_rotate(&stack->b, 1, 1);
+			// 	print_both_stacks(stack, b_index, iter.j);
+			// }
+			// else
+				f_push(&stack->a, &stack->b, 1, 2);
 			//put_least_elem_of_b_to_head(stack, b_index);
 			print_both_stacks(stack, b_index, iter.j);
 		}
+		// before b_index++, get the smallest value of the current bucket
+		set_min_value_for_each_bucket(stack, stack->b, b_index);
+		set_max_value_for_each_bucket(stack, stack->b, b_index);
 		b_index++;
 	}
 	f_rotate(&stack->b, 1, 0);
 	sort_stack_A(stack);
-	// iter.i = 0;
-	// while (stack->b)
-	// {
-	// 	f_push(&stack->b, &stack->a, 1, 1);
-	// 	print_both_stacks(stack, b_index, iter.j);
-	// 	f_rotate(&stack->a, 1, 0);
-	// 	print_both_stacks(stack, b_index, iter.j);
-	// 	iter.i++;
-	// }
-	// f_rotate(&stack->a, 1, 1);
 	print_both_stacks(stack, b_index, iter.j);
 	free(moves);
 }
@@ -179,36 +188,55 @@ void	sort_stack_A(t_stack *stack)
 {
 	int	last_val;
 	int	b_index;
+	int	index;
+	t_temp	node;
 
 	b_index = 0;
+	index = stack->max_val;
 	while (stack->b)
 	{
-		while (are_elems_of_current_bucket_in_stack(stack->b, b_index))
+		while (stack->b != index)
 		{
-			if (!stack->a)
-			{
-				f_push(&stack->b, &stack->a, 1, 1);
-				print_both_stacks(stack, b_index, 0);
-			}
-			else
-			{
-				if (stack->b->index > stack->a->index)
-				{
-					f_push(&stack->b, &stack->a, 1, 1);
-					print_both_stacks(stack, b_index, 0);
-					f_rotate(&stack->a, 1, 0);
-					print_both_stacks(stack, b_index, 0);
-				}
-				else
-				{
-					f_push(&stack->b, &stack->a, 1, 1);
-					print_both_stacks(stack, b_index, 0);
-				}
-			}
+			
 		}
 		b_index++;
 	}
 }
+
+// void	sort_stack_A(t_stack *stack)
+// {
+// 	int	last_val;
+// 	int	b_index;
+
+// 	b_index = 0;
+// 	while (stack->b)
+// 	{
+// 		while (are_elems_of_current_bucket_in_stack(stack->b, b_index))
+// 		{
+// 			if (!stack->a)
+// 			{
+// 				f_push(&stack->b, &stack->a, 1, 1);
+// 				print_both_stacks(stack, b_index, 0);
+// 			}
+// 			else
+// 			{
+// 				if (stack->b->index > stack->a->index)
+// 				{
+// 					f_push(&stack->b, &stack->a, 1, 1);
+// 					print_both_stacks(stack, b_index, 0);
+// 					f_rotate(&stack->a, 1, 0);
+// 					print_both_stacks(stack, b_index, 0);
+// 				}
+// 				else
+// 				{
+// 					f_push(&stack->b, &stack->a, 1, 1);
+// 					print_both_stacks(stack, b_index, 0);
+// 				}
+// 			}
+// 		}
+// 		b_index++;
+// 	}
+// }
 
 // void	sort_stack_A(t_stack *stack)
 // {
@@ -393,6 +421,41 @@ int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
 	while (tmp)
 	{
 		if (tmp->b_index == b_index)
+			elem_pos = pos;
+		tmp = tmp->next;
+		pos++;
+	}
+	return (elem_pos);
+}
+
+int	get_node_index_position_from_top(t_node *lst, int index)
+{
+	t_node	*tmp;
+	int		pos;
+
+	pos = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->index == index)
+			return (pos);
+		tmp = tmp->next;
+		pos++;
+	}
+	return (pos);
+}
+
+int	get_node_index_position_from_bottom(t_node *lst, int index, int elems)
+{
+	t_node	*tmp;
+	int		pos;
+	int		elem_pos;
+
+	pos = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->index == index)
 			elem_pos = pos;
 		tmp = tmp->next;
 		pos++;

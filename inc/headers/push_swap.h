@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/12 22:57:01 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:43:51 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include "list_movements.h"
 #include "stack_movements.h"
 
-#define PRINT_	1
-#define COLORED	1
+#define PRINT_	0
+#define COLORED	0
 
 #if COLORED
 	#define RED_    "\x1b[31m"
@@ -70,7 +70,7 @@ void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems);
  * @param lst Pointer to entirely stack
  * @param it Struct iterator
 */
-void	do_less_rotation_moves(t_temp_node aux, t_stack *stack, int b_index);
+void	do_less_rotation_moves(t_temp aux, t_stack *s, t_node **l, int index);
 void	print_args(t_node *stack);
 void	print_both_stacks(t_stack *stack, int i, int j);
 long	ft_strtol(const char *restrict ptr, char **restrict endptr, int base);
@@ -112,5 +112,7 @@ void	do_rotation(void (*f)(t_node **, int, int), int pos, t_node **lst);
 void	*get_rotation_type(int sel);
 int		get_index_of_last_elem(t_node *stack);
 int		are_elems_of_current_bucket_in_stack(t_node *stack, int b_index);
+void	set_min_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index);
+void	set_max_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index);
 
 #endif

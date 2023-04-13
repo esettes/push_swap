@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/11 23:09:20 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:35:47 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,44 @@ t_bucket	*get_elems_for_each_bucket(t_stack *stack, t_node *lst)
 		lst = lst->next;
 	}
 	return (b_elems);
+}
+
+void	set_min_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index)
+{
+	int	min_val;
+
+	if (lst)
+		min_val = lst->index;
+	while (lst)
+	{
+		if (lst->next && lst->b_index == b_index && lst->next->b_index == b_index)
+		{
+			if (lst->next->index < min_val)
+				min_val = lst->next->index;
+		}
+		lst = lst->next;
+	}
+	stack->b_elems[b_index].min_val = min_val;
+	printf("+ + + + + stack->b_elems[%i].min_val = %i \n\n", b_index, stack->b_elems[b_index].min_val);
+}
+
+void	set_max_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index)
+{
+	int	max_val;
+
+	if (lst)
+		max_val = lst->index;
+	while (lst)
+	{
+		if (lst->next && lst->b_index == b_index && lst->next->b_index == b_index)
+		{
+			if (lst->next->index > max_val)
+				max_val = lst->next->index;
+		}
+		lst = lst->next;
+	}
+	stack->b_elems[b_index].max_val = max_val;
+	printf("+ + + + + stack->b_elems[%i].max_val = %i \n\n", b_index, stack->b_elems[b_index].max_val);
 }
 
 void	set_min_and_max_values(t_stack *stack, t_node *lst)
