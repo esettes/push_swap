@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/13 22:45:47 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:03:29 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	f_insertion_sort(t_stack *stack)
 			// Get how many movements each one needs.
 			
 			// Do rotations to put elem at stack head
-			do_less_rotation_moves(node, stack, &stack->a, b_index);
+			do_less_rotation_moves(node, stack, &stack->a, -1);
 			print_both_stacks(stack, b_index, iter.j);
 			// in B move the least element to head and push A to B
 			put_least_elem_of_b_to_head(stack, b_index);
@@ -195,11 +195,15 @@ void	sort_stack_A(t_stack *stack)
 	index = stack->max_val;
 	while (stack->b)
 	{
-		while (stack->b != index)
-		{
-			
-		}
-		b_index++;
+		node.top = get_node_index_position_from_top(stack->b, index);
+		node.bottom = get_node_index_position_from_bottom(stack->b, index, stack->elements);
+		printf("node.top position: %i\n", node.top);
+		printf("node.bottom position: %i\n", node.bottom);
+		usleep(1100000);
+		do_less_rotation_moves(node, stack, &stack->b, index);
+		f_push(&stack->b, &stack->a, 1, 1);
+		print_both_stacks(stack, b_index, index);
+		index--;
 	}
 }
 

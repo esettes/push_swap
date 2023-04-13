@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/13 22:44:22 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:00:34 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	do_less_rotation_moves(t_temp aux, t_stack *s, t_node **l, int index)
 	int	current_elems;
 
 	i = 0;
-	current_elems = count_stack_elements(s, 0);
+	if (index > 0)
+		current_elems = count_stack_elements(s, 1);
+	else
+		current_elems = count_stack_elements(s, 0);
 	temp_bottom = current_elems - aux.bottom;
 	// printf("t---- current_elems: %i\n",  current_elems);
 	// printf("t---- aux.bottom: %i\n",  aux.bottom);

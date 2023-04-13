@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/13 22:43:51 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:52:07 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include "list_movements.h"
 #include "stack_movements.h"
 
-#define PRINT_	0
-#define COLORED	0
+#define PRINT_	1
+#define COLORED	1
 
 #if COLORED
 	#define RED_    "\x1b[31m"
@@ -114,5 +114,7 @@ int		get_index_of_last_elem(t_node *stack);
 int		are_elems_of_current_bucket_in_stack(t_node *stack, int b_index);
 void	set_min_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index);
 void	set_max_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index);
+int		get_node_index_position_from_bottom(t_node *lst, int index, int elems);
+int		get_node_index_position_from_top(t_node *lst, int index);
 
 #endif
