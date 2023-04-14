@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/13 22:35:47 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:34:09 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	set_min_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index)
 		lst = lst->next;
 	}
 	stack->b_elems[b_index].min_val = min_val;
-	printf("+ + + + + stack->b_elems[%i].min_val = %i \n\n", b_index, stack->b_elems[b_index].min_val);
+	//printf("+ + + + + stack->b_elems[%i].min_val = %i \n\n", b_index, stack->b_elems[b_index].min_val);
 }
 
 void	set_max_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index)
@@ -87,7 +87,7 @@ void	set_max_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index)
 		lst = lst->next;
 	}
 	stack->b_elems[b_index].max_val = max_val;
-	printf("+ + + + + stack->b_elems[%i].max_val = %i \n\n", b_index, stack->b_elems[b_index].max_val);
+	//printf("+ + + + + stack->b_elems[%i].max_val = %i \n\n", b_index, stack->b_elems[b_index].max_val);
 }
 
 void	set_min_and_max_values(t_stack *stack, t_node *lst)
@@ -116,7 +116,9 @@ void	set_min_and_max_values(t_stack *stack, t_node *lst)
 
 int	get_bucket_range(t_stack *stack)
 {
-	if (stack->elements <= 100)
+	if (stack->elements <= 15)
+		stack->bucket_range	= stack->elements / 7;
+	else if (stack->elements <= 100)
 		stack->bucket_range	= stack->elements / 5;
 	else
 		stack->bucket_range	= stack->elements / 11;
@@ -162,7 +164,7 @@ void	sort_three_elems(t_stack *stack, t_node *node)
 		}	
 		if (stack->a->index < stack->a->next->index && stack->a->index > stack->a->next->next->index)
 		{
-			f_reverse_rotate(&stack->a, 1, 1);
+			f_reverse_rotate(&stack->a, 1, 0);
 			print_both_stacks(stack, 0, 0);
 		}
 	}

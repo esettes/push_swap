@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/13 23:00:34 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:33:38 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,28 @@ void	do_less_rotation_moves(t_temp aux, t_stack *s, t_node **l, int index)
 	int	i;
 	int	temp_bottom;
 	int	current_elems;
+	int	stack_type;
 
 	i = 0;
 	if (index > 0)
+	{
 		current_elems = count_stack_elements(s, 1);
+		stack_type = 1;
+	}
 	else
+	{
 		current_elems = count_stack_elements(s, 0);
+		stack_type = 0;
+	}
 	temp_bottom = current_elems - aux.bottom;
-	// printf("t---- current_elems: %i\n",  current_elems);
-	// printf("t---- aux.bottom: %i\n",  aux.bottom);
-	// printf("t---- temp_bottom: %i\n",  temp_bottom);
-	// usleep(1000000);
 	if (aux.top < temp_bottom)
 	{
-		// do_rotation(get_rotation_type(0), aux.top, &stack->a);
-		// print_both_stacks(stack, 0, 0);
-
 		while (aux.top != 0)
 		{
-			f_rotate(l, 1, 0);
-			// printf("node.top position: %i\n", aux.top);
-			// usleep(1000000);
+			f_rotate(l, 1, stack_type);
 			print_both_stacks(s, 0, 0);
 			aux.top--;
 		}
-		
 	}
 	else
 	{
@@ -61,7 +58,7 @@ void	do_less_rotation_moves(t_temp aux, t_stack *s, t_node **l, int index)
 		// print_both_stacks(stack, 0, 0);
 		while (temp_bottom != 0)
 		{
-			f_reverse_rotate(l, 1, 0);
+			f_reverse_rotate(l, 1, stack_type);
 			// printf("temp_bottom position: %i\n", temp_bottom);
 			// usleep(1000000);
 			print_both_stacks(s, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:08:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/13 20:37:17 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:34:52 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	push_current_b_index(t_stack *stack, int i)
 			if (!stack->a->data || stack->b->data > stack->a->data)
 			{
 				f_push(&stack->b, &stack->a, 1, 1);
-				f_reverse_rotate(&stack->a, 1, 1);
+				f_reverse_rotate(&stack->a, 1, 0);
 			}
 			//if (stack->b->data < )
 		}
@@ -122,38 +122,6 @@ int	is_elem_of_current_bucket_index_here(t_node *lst, int i)
 	return (0);
 }
 
-/**
- * @brief If current bucket index is sorted, push all elements to stack A.
- * Later, adds +1 to current bucket index.
- */
-void	push_current_bucket_sorted(t_stack *stack, int *index)
-{
-	if (is_reverse_sorted(&stack->b) || stack->bucket_range == 1)
-	{
-		// if (index == 0)
-		// {
-		// 	while (stack->a->b_index != *index)
-		// 		f_reverse_rotate(&stack->a, 1, 1);
-		// }
-		if (*index > 0)
-		{
-			// * * * * * * *
-			// search the previous index and move it at the end of the list.
-			// Then push and reverse rotate stack 
-			// * * * * * * * 
-			while (stack->a->b_index != *index - 1)
-				f_reverse_rotate(&stack->a, 1, 1);
-			
-		}
-		while (stack->b)
-		{
-			f_push(&stack->b, &stack->a, 1, 1);
-			f_reverse_rotate(&stack->a, 1, 1);
-			print_both_stacks(stack, *index, 0);
-		}
-	}
-	*index += 1;
-}
 
 int	get_bucket_index_of_last_elem(t_node *stack)
 {

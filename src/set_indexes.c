@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/14 20:50:29 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/14 23:34:00 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	f_insertion_sort(t_stack *stack)
 			// usleep(1100000);
 			do_less_rotation_moves(node, stack, &stack->a, -1);
 			print_both_stacks(stack, b_index, iter.j);
-			put_least_elem_of_b_to_head(stack, b_index);
+			//put_least_elem_of_b_to_head(stack, b_index);
 			print_both_stacks(stack, b_index, iter.j);
 			f_push(&stack->a, &stack->b, 1, 2);
 			print_both_stacks(stack, b_index, iter.j);
@@ -162,7 +162,7 @@ void	f_insertion_sort(t_stack *stack)
 		//set_max_value_for_each_bucket(stack, stack->b, b_index);
 		b_index++;
 	}
-	f_rotate(&stack->b, 1, 0);
+	f_rotate(&stack->b, 1, 1);
 	sort_three_elems(stack, stack->a);
 	sort_stack_A(stack);
 	print_both_stacks(stack, b_index, iter.j);
@@ -178,19 +178,20 @@ void	sort_stack_A(t_stack *stack)
 	t_temp	node;
 
 	b_index = 0;
-	index = stack->max_val - 3;
-	while (stack->b)
+	index = stack->elements - 3;
+	elems_in_b = count_stack_elements(stack, 1);
+	while (elems_in_b >= 0)
 	{
 		elems_in_b = count_stack_elements(stack, 1);
-		node.top = get_node_index_position_from_top(stack->b, index);
-		node.bottom = get_node_index_position_from_bottom(stack->b, index, elems_in_b);
-		printf("node.top position: %i\n", node.top);
-		printf("node.bottom position: %i\n", node.bottom);
-		usleep(1100000);
-		do_less_rotation_moves(node, stack, &stack->b, index);
+		node.top = get_node_index_position_from_top(stack->b, elems_in_b);
+		node.bottom = get_node_index_position_from_bottom(stack->b, elems_in_b, elems_in_b);
+		// printf("node.top position: %i\n", node.top);
+		// printf("node.bottom position: %i\n", node.bottom);
+		// usleep(1100000);
+		do_less_rotation_moves(node, stack, &stack->b, elems_in_b);
 		f_push(&stack->b, &stack->a, 1, 1);
-		print_both_stacks(stack, b_index, index);
-		index--;
+		print_both_stacks(stack, b_index, elems_in_b);
+
 	}
 }
 
