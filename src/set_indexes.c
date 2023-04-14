@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/13 23:03:29 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/14 20:50:29 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,51 +134,36 @@ void	f_insertion_sort(t_stack *stack)
 	iter.j = (stack->elements / 2) + 1;
 	middle = iter.j - 1;
 	head_a = stack->a;
-	while (stack->a)
+	current_elems = count_stack_elements(stack, 0);
+	while (stack->a && current_elems > 3)
 	{
-		while (are_elems_of_current_bucket_in_stack(stack->a, b_index))
+		while (are_elems_of_current_bucket_in_stack(stack->a, b_index) &&
+			current_elems > 3)
 		{
+			
 			print_both_stacks(stack, b_index, iter.j);
-			current_elems = count_stack_elements(stack, 0);
+			
 			node.top = get_node_position_from_top(stack->a, b_index);
 			node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
 			// printf("node.top position: %i\n", node.top);
 			// printf("node.bottom position: %i\n", node.bottom);
 			// printf("+++ b_index: %i\n", b_index);
 			// usleep(1100000);
-			// Get how many movements each one needs.
-			
-			// Do rotations to put elem at stack head
 			do_less_rotation_moves(node, stack, &stack->a, -1);
 			print_both_stacks(stack, b_index, iter.j);
-			// in B move the least element to head and push A to B
 			put_least_elem_of_b_to_head(stack, b_index);
 			print_both_stacks(stack, b_index, iter.j);
-			// if (stack->b)
-			// 	last_val = get_index_of_last_elem(stack->b);
-			// // if last elem of B > head A, then put last elem of B to head, push A to B, and ra x2
-			// if (stack->b && last_val > stack->a->index)
-			// {
-			// 	f_reverse_rotate(&stack->b, 1, 1);
-			// 	print_both_stacks(stack, b_index, iter.j);
-			// 	f_push(&stack->a, &stack->b, 1, 2);
-			// 	print_both_stacks(stack, b_index, iter.j);
-			// 	f_rotate(&stack->b, 1, 1);
-			// 	print_both_stacks(stack, b_index, iter.j);
-			// 	f_rotate(&stack->b, 1, 1);
-			// 	print_both_stacks(stack, b_index, iter.j);
-			// }
-			// else
-				f_push(&stack->a, &stack->b, 1, 2);
-			//put_least_elem_of_b_to_head(stack, b_index);
+			f_push(&stack->a, &stack->b, 1, 2);
 			print_both_stacks(stack, b_index, iter.j);
+			current_elems = count_stack_elements(stack, 0);
 		}
 		// before b_index++, get the smallest value of the current bucket
-		set_min_value_for_each_bucket(stack, stack->b, b_index);
-		set_max_value_for_each_bucket(stack, stack->b, b_index);
+		//set_min_value_for_each_bucket(stack, stack->b, b_index);
+		//set_max_value_for_each_bucket(stack, stack->b, b_index);
 		b_index++;
 	}
 	f_rotate(&stack->b, 1, 0);
+	sort_three_elems(stack, stack->a);
 	sort_stack_A(stack);
 	print_both_stacks(stack, b_index, iter.j);
 	free(moves);
@@ -189,14 +174,16 @@ void	sort_stack_A(t_stack *stack)
 	int	last_val;
 	int	b_index;
 	int	index;
+	int	elems_in_b;
 	t_temp	node;
 
 	b_index = 0;
-	index = stack->max_val;
+	index = stack->max_val - 3;
 	while (stack->b)
 	{
+		elems_in_b = count_stack_elements(stack, 1);
 		node.top = get_node_index_position_from_top(stack->b, index);
-		node.bottom = get_node_index_position_from_bottom(stack->b, index, stack->elements);
+		node.bottom = get_node_index_position_from_bottom(stack->b, index, elems_in_b);
 		printf("node.top position: %i\n", node.top);
 		printf("node.bottom position: %i\n", node.bottom);
 		usleep(1100000);
@@ -504,7 +491,7 @@ int	count_stack_elements(t_stack *stack, int n)
 	}
 	else
 	{
-		i = 1;
+		i = 0;
 		current = stack->b;
 	}
 	while (current != NULL)
