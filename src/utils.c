@@ -23,9 +23,9 @@ void	*get_rotation_type(int sel)
 	return (ptr);
 }
 
-void	do_less_rotation_moves(t_temp aux, t_stack *s, t_node **l, int index)
+int	do_less_rotation_moves(t_temp aux, t_stack *s, t_node **l, int index)
 {
-	int	i;
+	int	rotations;
 	int	temp_bottom;
 	int	current_elems;
 	int	stack_type;

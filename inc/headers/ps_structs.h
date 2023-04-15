@@ -33,6 +33,12 @@ typedef struct	s_moves
 	int	moves_j_reverse;
 }				t_moves;
 
+typedef struct s_rotations
+{
+	int	a;
+	int	b;
+}				t_rotations;
+
 typedef struct s_node
 {
 	long int		data;

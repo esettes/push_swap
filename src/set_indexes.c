@@ -119,10 +119,11 @@ void	set_index_to_original_stack(t_node *original, t_node *aux)
 
 void	f_insertion_sort(t_stack *stack)
 {
-	t_temp	node;
-	int		last_val;
-	int		current_elems;
-	int		b_index;
+	t_temp		node;
+	t_rotations	rotations;
+	int			last_val;
+	int			current_elems;
+	int			b_index;
 
 	b_index = 0;
 	current_elems = count_stack_elements(stack, 0);
