@@ -119,29 +119,19 @@ void	set_index_to_original_stack(t_node *original, t_node *aux)
 
 void	f_insertion_sort(t_stack *stack)
 {
-	t_node		*head_a;
-	t_iter		iter;
-	t_moves		*moves;
 	t_temp	node;
-	int			last_val;
-	int			middle;
-	int			current_elems;
-	int			b_index;
+	int		last_val;
+	int		current_elems;
+	int		b_index;
 
 	b_index = 0;
-	moves = init_num_moves();
-	iter.i = 0;
-	iter.j = (stack->elements / 2) + 1;
-	middle = iter.j - 1;
-	head_a = stack->a;
 	current_elems = count_stack_elements(stack, 0);
 	while (stack->a && current_elems > 3)
 	{
 		while (are_elems_of_current_bucket_in_stack(stack->a, b_index) &&
 			current_elems > 3)
 		{
-			
-			print_both_stacks(stack, b_index, iter.j);
+			print_both_stacks(stack, b_index, 0);
 			
 			node.top = get_node_position_from_top(stack->a, b_index);
 			node.bottom = get_node_position_from_bottom(stack->a, b_index, stack->elements);
@@ -150,23 +140,23 @@ void	f_insertion_sort(t_stack *stack)
 			// printf("+++ b_index: %i\n", b_index);
 			// usleep(1100000);
 			do_less_rotation_moves(node, stack, &stack->a, -1);
-			print_both_stacks(stack, b_index, iter.j);
+			/*
+			 * TODO Count num of rotations, then for search elem in stack A and search smallest element
+			* to put it on head of stack B, use the sabe command (rr).
+			*/
+			print_both_stacks(stack, b_index, 0);
 			//put_least_elem_of_b_to_head(stack, b_index);
-			print_both_stacks(stack, b_index, iter.j);
+			print_both_stacks(stack, b_index, 0);
 			f_push(&stack->a, &stack->b, 1, 2);
-			print_both_stacks(stack, b_index, iter.j);
+			print_both_stacks(stack, b_index,0);
 			current_elems = count_stack_elements(stack, 0);
 		}
-		// before b_index++, get the smallest value of the current bucket
-		//set_min_value_for_each_bucket(stack, stack->b, b_index);
-		//set_max_value_for_each_bucket(stack, stack->b, b_index);
 		b_index++;
 	}
 	f_rotate(&stack->b, 1, 1);
 	sort_three_elems(stack, stack->a);
 	sort_stack_A(stack);
-	print_both_stacks(stack, b_index, iter.j);
-	free(moves);
+	print_both_stacks(stack, b_index, 0);
 }
 
 void	sort_stack_A(t_stack *stack)
@@ -180,7 +170,7 @@ void	sort_stack_A(t_stack *stack)
 	b_index = 0;
 	index = stack->elements - 3;
 	elems_in_b = count_stack_elements(stack, 1);
-	while (elems_in_b >= 0)
+	while (stack->b)
 	{
 		elems_in_b = count_stack_elements(stack, 1);
 		node.top = get_node_index_position_from_top(stack->b, elems_in_b);
@@ -195,114 +185,14 @@ void	sort_stack_A(t_stack *stack)
 	}
 }
 
-// void	sort_stack_A(t_stack *stack)
-// {
-// 	int	last_val;
-// 	int	b_index;
-
-// 	b_index = 0;
-// 	while (stack->b)
-// 	{
-// 		while (are_elems_of_current_bucket_in_stack(stack->b, b_index))
-// 		{
-// 			if (!stack->a)
-// 			{
-// 				f_push(&stack->b, &stack->a, 1, 1);
-// 				print_both_stacks(stack, b_index, 0);
-// 			}
-// 			else
-// 			{
-// 				if (stack->b->index > stack->a->index)
-// 				{
-// 					f_push(&stack->b, &stack->a, 1, 1);
-// 					print_both_stacks(stack, b_index, 0);
-// 					f_rotate(&stack->a, 1, 0);
-// 					print_both_stacks(stack, b_index, 0);
-// 				}
-// 				else
-// 				{
-// 					f_push(&stack->b, &stack->a, 1, 1);
-// 					print_both_stacks(stack, b_index, 0);
-// 				}
-// 			}
-// 		}
-// 		b_index++;
-// 	}
-// }
-
-// void	sort_stack_A(t_stack *stack)
-// {
-// 	int	last_val;
-// 	int	b_index;
-
-// 	b_index = 0;
-// 	while (stack->b)
-// 	{
-// 		while (are_elems_of_current_bucket_in_stack(stack->b, b_index))
-// 		{
-// 			if (stack->a)
-// 			{
-// 				last_val = get_index_of_last_elem(stack->a);
-// 				if (!are_elems_of_current_bucket_in_stack(stack->a, b_index))
-// 				{
-// 					f_push(&stack->b, &stack->a, 1, 1);
-// 					print_both_stacks(stack, b_index, 0);
-// 				}
-// 				else if (stack->b->index > stack->a->index && stack->b->index > last_val)
-// 				{
-// 					// if (stack->a > last_val)
-// 					// {
-						
-// 					// }
-// 					// else
-// 					// {
-// 						f_reverse_rotate(&stack->a, 1, 0);
-// 						print_both_stacks(stack, b_index, 0);
-// 						f_push(&stack->b, &stack->a, 1, 1);
-// 						print_both_stacks(stack, b_index, 0);
-// 					//}
-					
-// 				}
-// 				else if (stack->b->index > stack->a->index && stack->b->index < last_val)
-// 				{
-// 					f_rotate(&stack->a, 1, 1);
-// 					print_both_stacks(stack, b_index, 0);
-// 					f_push(&stack->b, &stack->a, 1, 1);
-// 					print_both_stacks(stack, b_index, 0);
-// 					f_reverse_rotate(&stack->a, 1, 1);
-// 					print_both_stacks(stack, b_index, 0);
-// 					f_rotate(&stack->a, 1, 1);
-// 					print_both_stacks(stack, b_index, 0);
-// 				}
-// 				//rra && push to a && ra ra
-// 				else if (stack->b->index < stack->a->index)
-// 				{
-// 					f_push(&stack->b, &stack->a, 1, 1);
-// 					print_both_stacks(stack, b_index, 0);
-// 					f_rotate(&stack->a, 1, 1);
-// 					print_both_stacks(stack, b_index, 0);
-// 				}
-// 			}
-// 			else
-// 			{
-// 				f_push(&stack->b, &stack->a, 1, 1);
-// 				print_both_stacks(stack, b_index, 0);
-// 			}
-// 		}
-// 		b_index++;
-// 	}
-// }
 
 void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
 {
 	t_node	*tmp;
 	int		max_val;
-	int	least_pos;
 	int	elems;
 
-	//least_pos = get_least_elem_position(stack, stack->b);
 	elems = count_stack_elements(stack, 1);
-	//min_val = 0;
 	tmp = stack->b;
 	if (tmp)
 		max_val = tmp->index;
@@ -317,7 +207,7 @@ void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
 	while (stack->b && elems > 2 && stack->b->index != max_val)
 	{
 		f_rotate(&stack->b, 1, 1);
-		print_both_stacks(stack, b_index, least_pos);
+		print_both_stacks(stack, b_index, 0);
 		
 		
 	}
@@ -343,117 +233,6 @@ void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
 	//}
 }
 
-int	get_least_elem_position(t_stack *stack, t_node *lst)
-{
-	t_node	*tmp;
-	t_node	*next;
-	int		least;
-	int		least_pos;
-	int		pos;
-
-	least_pos = 0;
-	pos = 0;
-	tmp = lst;
-	if (tmp)
-	{
-		least = tmp->index;
-		next = tmp->next;
-	}
-	while (tmp)
-	{
-		if (next)
-		{
-			if (tmp->index < next->index)
-			{
-				least_pos = pos;
-				// printf("lower data-> %i \n\n", tmp->index);
-				// usleep(1200000);
-			}
-			else if (next->index < tmp->index)
-			{
-				least_pos = pos + 1;
-				// printf("lower data-> %i \n\n", tmp->index);
-				// usleep(1200000);
-			}
-			next = next->next;
-			pos++;
-		}
-		tmp = tmp->next;
-		
-		
-	}
-	return (least_pos);
-}
-
-int	get_node_position_from_top(t_node *lst, int b_index)
-{
-	t_node	*tmp;
-	int		pos;
-
-	pos = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		if (tmp->b_index == b_index)
-			return (pos);
-		tmp = tmp->next;
-		pos++;
-	}
-	return (pos);
-}
-
-int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
-{
-	t_node	*tmp;
-	int		pos;
-	int		elem_pos;
-
-	pos = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		if (tmp->b_index == b_index)
-			elem_pos = pos;
-		tmp = tmp->next;
-		pos++;
-	}
-	return (elem_pos);
-}
-
-int	get_node_index_position_from_top(t_node *lst, int index)
-{
-	t_node	*tmp;
-	int		pos;
-
-	pos = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		if (tmp->index == index)
-			return (pos);
-		tmp = tmp->next;
-		pos++;
-	}
-	return (pos);
-}
-
-int	get_node_index_position_from_bottom(t_node *lst, int index, int elems)
-{
-	t_node	*tmp;
-	int		pos;
-	int		elem_pos;
-
-	pos = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		if (tmp->index == index)
-			elem_pos = pos;
-		tmp = tmp->next;
-		pos++;
-	}
-	return (elem_pos);
-}
 
 int	check_all_elements(t_stack *stack, int n)
 {

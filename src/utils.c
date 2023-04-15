@@ -67,6 +67,119 @@ void	do_less_rotation_moves(t_temp aux, t_stack *s, t_node **l, int index)
 	}
 }
 
+
+int	get_least_elem_position(t_stack *stack, t_node *lst)
+{
+	t_node	*tmp;
+	t_node	*next;
+	int		least;
+	int		least_pos;
+	int		pos;
+
+	least_pos = 0;
+	pos = 0;
+	tmp = lst;
+	if (tmp)
+	{
+		least = tmp->index;
+		next = tmp->next;
+	}
+	while (tmp)
+	{
+		if (next)
+		{
+			if (tmp->index < next->index)
+			{
+				least_pos = pos;
+				// printf("lower data-> %i \n\n", tmp->index);
+				// usleep(1200000);
+			}
+			else if (next->index < tmp->index)
+			{
+				least_pos = pos + 1;
+				// printf("lower data-> %i \n\n", tmp->index);
+				// usleep(1200000);
+			}
+			next = next->next;
+			pos++;
+		}
+		tmp = tmp->next;
+		
+		
+	}
+	return (least_pos);
+}
+
+int	get_node_position_from_top(t_node *lst, int b_index)
+{
+	t_node	*tmp;
+	int		pos;
+
+	pos = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->b_index == b_index)
+			return (pos);
+		tmp = tmp->next;
+		pos++;
+	}
+	return (pos);
+}
+
+int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
+{
+	t_node	*tmp;
+	int		pos;
+	int		elem_pos;
+
+	pos = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->b_index == b_index)
+			elem_pos = pos;
+		tmp = tmp->next;
+		pos++;
+	}
+	return (elem_pos);
+}
+
+int	get_node_index_position_from_top(t_node *lst, int index)
+{
+	t_node	*tmp;
+	int		pos;
+
+	pos = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->index == index)
+			return (pos);
+		tmp = tmp->next;
+		pos++;
+	}
+	return (pos);
+}
+
+int	get_node_index_position_from_bottom(t_node *lst, int index, int elems)
+{
+	t_node	*tmp;
+	int		pos;
+	int		elem_pos;
+
+	pos = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->index == index)
+			elem_pos = pos;
+		tmp = tmp->next;
+		pos++;
+	}
+	return (elem_pos);
+}
+
 int	are_elems_of_current_bucket_in_stack(t_node *stack, int b_index)
 {
 	t_node	*tmp;
