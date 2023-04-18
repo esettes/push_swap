@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/14 21:33:38 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/19 00:46:16 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,50 +23,77 @@ void	*get_rotation_type(int sel)
 	return (ptr);
 }
 
-int	do_less_rotation_moves(t_temp aux, t_stack *s, t_node **l, int index)
+void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index)
 {
-	int	rotations;
-	int	temp_bottom;
-	int	current_elems;
-	int	stack_type;
+	int	i;
+	t_node **tmp;
 
 	i = 0;
-	if (index > 0)
-	{
-		current_elems = count_stack_elements(s, 1);
-		stack_type = 1;
-	}
-	else
-	{
-		current_elems = count_stack_elements(s, 0);
-		stack_type = 0;
-	}
-	temp_bottom = current_elems - aux.bottom;
-	if (aux.top < temp_bottom)
+	tmp = l;
+	printf("---- searching index %i ----\n", index);
+	usleep(1300000);
+	if (aux.top > aux.bottom)
 	{
 		while (aux.top != 0)
 		{
-			f_rotate(l, 1, stack_type);
+			f_rotate(l, 1, 1);
 			print_both_stacks(s, 0, 0);
 			aux.top--;
 		}
 	}
 	else
 	{
-		
-		// do_rotation(get_rotation_type(1), temp_bottom, &stack->a);
-		// print_both_stacks(stack, 0, 0);
-		while (temp_bottom != 0)
+		while (aux.bottom != 0)
 		{
-			f_reverse_rotate(l, 1, stack_type);
+			f_reverse_rotate(l, 1, 1);
 			// printf("temp_bottom position: %i\n", temp_bottom);
 			// usleep(1000000);
 			print_both_stacks(s, 0, 0);
-			temp_bottom--;
+			aux.bottom--;
+		}
+	}
+	printf("---- moved index %i to head----\n", (*l)->index);
+	usleep(1300000);
+}
+
+void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
+{
+	int	i;
+	t_node **tmp;
+
+	i = 0;
+	tmp = l;
+	if (aux.top > aux.bottom)
+	{
+		while (aux.top != 0)
+		{
+			f_rotate(tmp, 1, 0);
+			print_both_stacks(s, 0, 0);
+			aux.top--;
+		}
+	}
+	if (!is_one_of_three_biggest_elems(s, (*tmp)->index))
+	{
+		if (aux.top > aux.bottom)
+		{
+			while (aux.top != 0)
+			{
+				f_rotate(l, 1, 0);
+				print_both_stacks(s, 0, 0);
+				aux.top--;
+			}
+		}
+	}
+	else
+	{
+		while (aux.bottom != 0)
+		{
+			f_reverse_rotate(l, 1, 0);
+			print_both_stacks(s, 0, 0);
+			aux.bottom--;
 		}
 	}
 }
-
 
 int	get_least_elem_position(t_stack *stack, t_node *lst)
 {
@@ -110,6 +137,20 @@ int	get_least_elem_position(t_stack *stack, t_node *lst)
 	return (least_pos);
 }
 
+int	is_one_of_three_biggest_elems(t_stack *stack, int val)
+{
+	int	i;
+
+	i = 0;
+	while (i <= 3)
+	{
+		if (val == stack->max_values[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	get_node_position_from_top(t_node *lst, int b_index)
 {
 	t_node	*tmp;
@@ -142,7 +183,7 @@ int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
 		tmp = tmp->next;
 		pos++;
 	}
-	return (elem_pos);
+	return (elems - elem_pos);
 }
 
 int	get_node_index_position_from_top(t_node *lst, int index)
@@ -162,7 +203,7 @@ int	get_node_index_position_from_top(t_node *lst, int index)
 	return (pos);
 }
 
-int	get_node_index_position_from_bottom(t_node *lst, int index, int elems)
+int	get_node_index_position_from_bottom(t_node *lst, int i, int elems)
 {
 	t_node	*tmp;
 	int		pos;
@@ -172,12 +213,12 @@ int	get_node_index_position_from_bottom(t_node *lst, int index, int elems)
 	tmp = lst;
 	while (tmp)
 	{
-		if (tmp->index == index)
+		if (tmp->index == i)
 			elem_pos = pos;
 		tmp = tmp->next;
 		pos++;
 	}
-	return (elem_pos);
+	return (elems - elem_pos);
 }
 
 int	are_elems_of_current_bucket_in_stack(t_node *stack, int b_index)
