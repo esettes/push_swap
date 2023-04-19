@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/19 00:45:20 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:33:52 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include "list_movements.h"
 #include "stack_movements.h"
 
-#define PRINT_	0
-#define COLORED	0
+#define PRINT_	1
+#define COLORED	1
 
 #if COLORED
 	#define RED_    "\x1b[31m"

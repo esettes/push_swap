@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/19 00:45:37 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:51:18 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_moves	*init_num_moves(void);
 int		are_elems_of_current_bucket_in_a(t_stack *stack, int b_index);
 void	sort_stack_A(t_stack *stack);
 void	set_three_biggest_elems(t_stack *stack);
+int	return_biggest_elems_from_b(t_stack *stack);
 
 /**
  * @brief Sorts the stack in a temporal stack to sets indexes to each elem
@@ -67,13 +68,13 @@ void	set_three_biggest_elems(t_stack *stack)
 	int	val;
 	int	i;
 
-	val = stack->elements - 4;
+	val = stack->elements - 3;
 	i = 0;
-	while (i <= 3)
+	while (i < 3)
 	{
 		stack->max_values[i] = val;
-		//printf (" + + + stack->max_values[%i]: %i\n", i, stack->max_values[i]);
-		//usleep(1200000);
+		printf (" + + + stack->max_values[%i]: %i\n", i, stack->max_values[i]);
+		usleep(1200000);
 		val++;
 		i++;
 	}
@@ -161,25 +162,26 @@ void	f_insertion_sort(t_stack *stack)
 			print_both_stacks(stack, b_index, 0);
 			// if (!is_one_of_three_biggest_elems(stack, stack->a->index))
 			// {
-				if (stack->b && stack->a->index < stack->b->index)
-				{
-					curr_elems_b = count_stack_elements(stack, 1);
-					last_val = get_index_of_last_elem(stack->b);
-					if (stack->b && curr_elems_b >= 4 && last_val > stack->b->index && last_val > stack->b->next->index)
-					{
-						f_reverse_rotate(&stack->b, 1, 1);
-						f_push(&stack->a, &stack->b, 1, 2);
-						f_rotate(&stack->b, 1, 1);
-						f_rotate(&stack->b, 1, 1);
-					}
-					else
-					{
-						f_reverse_rotate(&stack->b, 1, 1);
-						f_push(&stack->a, &stack->b, 1, 2);
-						f_rotate(&stack->b, 1, 1);
-					}
-				}
-				else
+				// if (stack->b && stack->a->index < stack->b->index)
+				// {
+				// 	curr_elems_b = count_stack_elements(stack, 1);
+				// 	last_val = get_index_of_last_elem(stack->b);
+				// 	if (stack->b && curr_elems_b >= 4 && last_val > stack->b->index && last_val > stack->b->next->index)
+				// 	{
+				// 		f_reverse_rotate(&stack->b, 1, 1);
+				// 		f_push(&stack->a, &stack->b, 1, 2);
+				// 		f_rotate(&stack->b, 1, 1);
+				// 		f_rotate(&stack->b, 1, 1);
+				// 	}
+				// 	else
+				// 	{
+				// 		f_reverse_rotate(&stack->b, 1, 1);
+				// 		f_push(&stack->a, &stack->b, 1, 2);
+				// 		f_rotate(&stack->b, 1, 1);
+				// 	}
+				// }
+				// else
+				if (stack->a->b_index == b_index && !is_one_of_three_biggest_elems(stack, stack->a->index))
 					f_push(&stack->a, &stack->b, 1, 2);
 			//}
 			print_both_stacks(stack, b_index,0);
@@ -187,10 +189,38 @@ void	f_insertion_sort(t_stack *stack)
 		}
 		b_index++;
 	}
-	f_rotate(&stack->b, 1, 1);
+	//f_rotate(&stack->b, 1, 1);
+	if (return_biggest_elems_from_b(stack))
+	{
+		f_rotate(&stack->b, 1, 1);
+		f_push(&stack->b, &stack->a, 1, 1);
+	}
 	sort_three_elems(stack, stack->a);
 	sort_stack_A(stack);
 	print_both_stacks(stack, b_index, 0);
+}
+
+int	return_biggest_elems_from_b(t_stack *stack)
+{
+	while (stack->b)
+	{
+		if (is_one_of_three_biggest_elems(stack, stack->b->index))
+		{
+			printf("---- index %i is one of biggest elems ----\n", (stack->b->index));
+				usleep(1400000);
+			// f_rotate(&stack->b, 1, 1);
+			// f_push(&stack->b, &stack->a, 1, 1);
+			return (1);
+			// if (is_one_of_three_biggest_elems(stack, stack->b->index))
+			// {
+			// 	printf("---- index %i is one of biggest elems ----\n", (stack->b->index));
+			// 	usleep(900000);
+			// 	f_push(&stack->b, &stack->a, 1, 1);
+			// }
+		}
+		stack->b = stack->b->next;
+	}
+	return (0);
 }
 
 void	sort_stack_A(t_stack *stack)
@@ -206,11 +236,11 @@ void	sort_stack_A(t_stack *stack)
 		elems_in_b = count_stack_elements(stack, 1);
 		node.top = get_node_index_position_from_top(stack->b, index);
 		node.bottom = get_node_index_position_from_bottom(stack->b, index, elems_in_b);
-		printf("index: %i\n", index);
-		printf("elems_in_b: %i\n", elems_in_b);
-		printf("node.top position: %i\n", node.top);
-		printf("node.bottom position: %i\n", node.bottom);
-		usleep(1400000);
+		// printf("index: %i\n", index);
+		// printf("elems_in_b: %i\n", elems_in_b);
+		// printf("node.top position: %i\n", node.top);
+		// printf("node.bottom position: %i\n", node.bottom);
+		// usleep(1400000);
 		do_less_rotation_moves_b(node, stack, &stack->b, index);
 		f_push(&stack->b, &stack->a, 1, 1);
 		print_both_stacks(stack, 0, elems_in_b);

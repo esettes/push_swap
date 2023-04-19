@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/19 00:46:16 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:46:44 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,71 +27,100 @@ void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index)
 {
 	int	i;
 	t_node **tmp;
+	int		temp_bottom;
+	int		elems_b;
 
 	i = 0;
 	tmp = l;
-	printf("---- searching index %i ----\n", index);
-	usleep(1300000);
-	if (aux.top > aux.bottom)
-	{
-		while (aux.top != 0)
-		{
-			f_rotate(l, 1, 1);
-			print_both_stacks(s, 0, 0);
-			aux.top--;
-		}
-	}
-	else
+	elems_b = count_stack_elements(s, 1);
+	temp_bottom = elems_b - aux.bottom;
+	printf("---- elems in b %i ----\n", elems_b);
+	printf("---- aux.bottom %i ----\n", aux.bottom);
+	printf("---- temp_bottom %i ----\n", temp_bottom);
+	usleep(1600000);
+	if (aux.top > temp_bottom)
 	{
 		while (aux.bottom != 0)
 		{
 			f_reverse_rotate(l, 1, 1);
-			// printf("temp_bottom position: %i\n", temp_bottom);
-			// usleep(1000000);
 			print_both_stacks(s, 0, 0);
 			aux.bottom--;
 		}
 	}
-	printf("---- moved index %i to head----\n", (*l)->index);
-	usleep(1300000);
+	else
+	{
+		while (aux.top != 0)
+		{
+			f_rotate(l, 1, 1);
+			// printf("temp_bottom position: %i\n", temp_bottom);
+			// usleep(1000000);
+			print_both_stacks(s, 0, 0);
+			aux.top--;
+		}
+	}
+	//printf("---- moved index %i to head----\n", (*l)->index);
+	//usleep(1300000);
 }
 
 void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
 {
 	int	i;
 	t_node **tmp;
+	int		temp_bottom;
+	int		elems_a;
 
 	i = 0;
 	tmp = l;
-	if (aux.top > aux.bottom)
+	elems_a = count_stack_elements(s, 0);
+	temp_bottom = elems_a - aux.bottom;
+	if (aux.top > temp_bottom)
+	{
+		while (aux.bottom != 0)
+		{
+			f_reverse_rotate(tmp, 1, 0);
+			print_both_stacks(s, 0, 0);
+			aux.bottom--;
+		}
+	}
+	else
 	{
 		while (aux.top != 0)
 		{
-			f_rotate(tmp, 1, 0);
+			f_rotate(l, 1, 0);
 			print_both_stacks(s, 0, 0);
 			aux.top--;
 		}
 	}
 	if (!is_one_of_three_biggest_elems(s, (*tmp)->index))
 	{
-		if (aux.top > aux.bottom)
-		{
-			while (aux.top != 0)
-			{
-				f_rotate(l, 1, 0);
-				print_both_stacks(s, 0, 0);
-				aux.top--;
-			}
-		}
+		//printf("---- index %i is not of one of biggest elems ----\n", (*tmp)->index);
+		//usleep(900000);
+		// if (aux.top > aux.bottom)
+		// {
+		// 	while (aux.top != 0)
+		// 	{
+		// 		f_reverse_rotate(l, 1, 0);
+		// 		print_both_stacks(s, 0, 0);
+		// 		aux.top--;
+		// 	}
+		// }
+		// else
+		// {
+		// 	while (aux.bottom != 0)
+		// 	{
+		// 		f_reverse_rotate(l, 1, 0);
+		// 		print_both_stacks(s, 0, 0);
+		// 		aux.bottom--;
+		// 	}
+		// }
+		return ;
 	}
 	else
 	{
-		while (aux.bottom != 0)
-		{
-			f_reverse_rotate(l, 1, 0);
-			print_both_stacks(s, 0, 0);
-			aux.bottom--;
-		}
+		f_push(&s->a, &s->b, 1, 2);
+		f_rotate(&s->b, 1, 1);
+		// ft_putendl_fd(RED_, "---- index reserved as one of the biggest elems ----", 0);
+		// usleep(1300000);
 	}
 }
 
