@@ -19,9 +19,9 @@ void    f_reverse_rotate(t_node **head, int print, int stack)
 	if (print)
 	{
 		if (stack == 0)
-			ft_putendl_fd(VIOLET_, "rra", 1);
+			ft_putendl_fd(BLUE_, "rra", 1);
 		else if (stack == 1)
-			ft_putendl_fd(VIOLET_, "rrb", 1);
+			ft_putendl_fd(BLUE_, "rrb", 1);
 	}
 }
 

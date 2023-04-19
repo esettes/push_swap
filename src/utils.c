@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/19 22:46:44 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 00:43:16 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index)
 	tmp = l;
 	elems_b = count_stack_elements(s, 1);
 	temp_bottom = elems_b - aux.bottom;
-	printf("---- elems in b %i ----\n", elems_b);
-	printf("---- aux.bottom %i ----\n", aux.bottom);
-	printf("---- temp_bottom %i ----\n", temp_bottom);
-	usleep(1600000);
-	if (aux.top > temp_bottom)
+	// printf("---- elems in b %i ----\n", elems_b);
+	// printf("---- aux.bottom %i ----\n", aux.bottom);
+	// printf("---- temp_bottom %i ----\n", temp_bottom);
+	// usleep(500000);
+	if (aux.top > aux.bottom)
 	{
 		while (aux.bottom != 0)
 		{
@@ -72,8 +72,16 @@ void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
 	i = 0;
 	tmp = l;
 	elems_a = count_stack_elements(s, 0);
-	temp_bottom = elems_a - aux.bottom;
-	if (aux.top > temp_bottom)
+	if (aux.bottom > elems_a / 2)
+		temp_bottom = aux.bottom;
+	else
+		temp_bottom = elems_a - aux.bottom;
+	// ft_putendl_fd(RESET_, "\n", 1);
+	// printf("---- elems in a %i ----\n", elems_a);
+	// printf("---- aux.bottom %i ----\n", aux.bottom);
+	// printf("---- temp_bottom %i ----\n\n", temp_bottom);
+	// usleep(500000);
+	if (aux.top > aux.bottom)
 	{
 		while (aux.bottom != 0)
 		{
@@ -118,7 +126,9 @@ void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
 	else
 	{
 		f_push(&s->a, &s->b, 1, 2);
+		print_both_stacks(s, 0, 0);
 		f_rotate(&s->b, 1, 1);
+		print_both_stacks(s, 0, 0);
 		// ft_putendl_fd(RED_, "---- index reserved as one of the biggest elems ----", 0);
 		// usleep(1300000);
 	}
@@ -171,7 +181,7 @@ int	is_one_of_three_biggest_elems(t_stack *stack, int val)
 	int	i;
 
 	i = 0;
-	while (i <= 3)
+	while (i < 3)
 	{
 		if (val == stack->max_values[i])
 			return (1);

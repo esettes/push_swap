@@ -72,11 +72,12 @@ void	print_both_stacks(t_stack *stack, int i, int j)
 	int		aux;
 
 	#if PRINT_
+	usleep(140000);
 	printf("\033c");
 	current_a = stack->a;
 	current_b = stack->b;
 	aux = 0;
-	printf("MIN VAL: %d \n", stack->min_val);
+	printf("\nMIN VAL: %d \n", stack->min_val);
 	printf("MAX VAL: %d \n", stack->max_val);
 	printf("Elements: %d \n", stack->elements);
 	printf("Bucket range: %d \n", stack->bucket_range);
