@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  pushswap:
+    container_name: push_swap
+    image: push_swap_app:latest
+    volumes:
+      - /Users/iostancu/Desktop/cursus/push_swap:/home
+    stdin_open: true
+    tty: true
+    

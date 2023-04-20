@@ -2,43 +2,66 @@ BLUE	=\033[0;35m
 GREEN	=\033[0;36m
 YELLOW	=\033[0;33m
 
-TARGET_SRC = /home/
-APP_NAME = push_swap_app:latest
+APPNAME = push_swap_app:latest
 CONTAINER = push_swap
-MOUNT_SRC = /home/settes/Desktop/workspace/cursus/push_swap/
-DOCKER_PATH = Dockerfile
+DOCKER_PATH = ./build/Dockerfile
 
-all:	run	exec
+OS		=	$(shell uname -s)
+MOUNT_SRC	= /Users/${USER}/Desktop/cursus/push_swap
+COMP_CMD = docker-compose
+COMPOSE = ./docker-compose.yml
+
+all:	up	exec
 
 list:
-	@echo "${BLUE}"
-	docker ps -a
-	@echo "${GREEN}"
-	docker ps
-	@echo "${YELLOW}"
-	docker images
+	@echo "${BLUE}> Compose running containers: --------------------------"
+	@$(COMP_CMD) -f $(COMPOSE) ps -a
+	@echo "${LILA}> Running containers: \t--------------------------------${END}"
+	@docker ps -a
+	@echo "${LILA}> Existing docker images: ------------------------------${END}"
+	@docker images 
+	
+up:
+	@$(COMP_CMD) -f $(COMPOSE) up -d
 
-build:
-	sudo docker build -f ${DOCKER_PATH} -t ${APP_NAME} .
+b:
+	@docker build -f $(DOCKER_PATH) . -t $(APPNAME)
 
-run:
-	sudo docker run -d --mount type=bind,source=${MOUNT_SRC},target=${TARGET_SRC} --name ${CONTAINER} ${APP_NAME}
+down:
+	@echo "$(RED) If image is not deleted. Run [ make del ]"
+	@${COMP_CMD} -f $(COMPOSE) down --rmi all
 
-delete:
-	@echo "${BLUE}"
-	docker rm -fv ${CONTAINER}
-#	@echo "${GREEN}"
-#	docker rm  ${CONTAINER}
-	@echo "${YELLOW}"
-	docker rmi  ${APP_NAME}
+delete: down
+	docker rm -fv $(CONTAINER)
+	docker rmi -f $(DOCKER_PATH) $(APPNAME)
+	
+#Check why delete cause error 
+del:
+	docker rmi -f $(DOCKER_PATH) $(APPNAME)
+	
+prune:
+	docker system prune
 
 exec:
-	sudo docker exec -it ${CONTAINER} bash
+	@docker exec -it $(CONTAINER) /bin/sh -c bash
 
 help:
-	@echo "${BLUE}GENERAL COMMANDS:\033[2;37m"
-	@echo "[make] builds main image, and run a container and execute it with bash"
-	@echo "[build] builds image"
-	@echo "[exec] execute container with bash"
-	@echo "[list] shows images and all containers"
-	@echo "[delete] stops running containers, deletes containers and images"
+	@echo ""
+	@echo "${BLUE}GENERAL COMMANDS: \n \033[2;37m"
+	@echo "\t[ list ] \tShows images and all containers with compose."
+	@echo "\t[ make ] \tExecutes 'up' and 'exec'."
+	@echo "\t[ up ] \t\tBuilds images and run containers."
+	@echo "\t[ exec ] \tExecutes container with bash."
+	@echo "\t[ delete ] \tStop and delete containers and images."
+	@echo "\t[ build ] \tBuild the image."
+	@echo ""
+	@echo "\t[ prune ] \tRemove: \n \
+\t\t\t- all stopped containers \n \
+\t\t\t- all networks not used by at least one container\n \
+\t\t\t- all dangling images\n \
+\t\t\t- all dangling build cache\n"
+	@echo ""
+	@echo "\tA normal workflow would be: [ make b ] + [ make ] "
+	@echo ""
+	@echo "\tThen you can [ make list ] to se all existing images and containers and"
+	@echo "\tto delete the images and containers related, execute [ make down ] "
