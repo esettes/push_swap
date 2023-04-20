@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:21:39 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/18 23:38:29 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:53:27 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,7 @@ typedef struct	s_temp
 	int	bottom;
 }				t_temp;
 
-typedef struct	s_moves
-{
-	int	moves_i_rotate;
-	int	moves_i_reverse;
-	int	moves_j_rotate;
-	int	moves_j_reverse;
-}				t_moves;
-
-typedef struct s_rotations
-{
-	int	a;
-	int	b;
-}				t_rotations;
-
-typedef struct s_node
+typedef struct	s_node
 {
 	long int		data;
 	int				index;
@@ -48,7 +34,7 @@ typedef struct s_node
 	struct s_node	*next;
 }				t_node;
 
-typedef struct s_bucket
+typedef struct	s_bucket
 {
 	int	b_index;
 	int	num_elems;

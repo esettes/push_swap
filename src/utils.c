@@ -6,22 +6,11 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 21:08:17 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:51:02 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	*get_rotation_type(int sel)
-{
-	void	(*ptr)(t_node **, int, int);
-
-	if (sel == 0)
-		ptr = &f_rotate;
-	else
-		ptr = &f_reverse_rotate;
-	return (ptr);
-}
 
 void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index)
 {
@@ -38,8 +27,7 @@ void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index)
 	{
 		while (aux.bottom != 0)
 		{
-			f_reverse_rotate(l, 1, 1);
-			print_both_stacks(s, 0, 0);
+			f_reverse_rotate(l, s, 0, 1);
 			aux.bottom--;
 		}
 	}
@@ -47,8 +35,7 @@ void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index)
 	{
 		while (aux.top != 0)
 		{
-			f_rotate(l, 1, 1);
-			print_both_stacks(s, 0, 0);
+			f_rotate(l, s, 0, 1);
 			aux.top--;
 		}
 	}
@@ -72,8 +59,7 @@ void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
 	{
 		while (aux.bottom != 0)
 		{
-			f_reverse_rotate(tmp, 1, 0);
-			print_both_stacks(s, 0, 0);
+			f_reverse_rotate(tmp, s, 0, 0);
 			aux.bottom--;
 		}
 	}
@@ -81,21 +67,16 @@ void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
 	{
 		while (aux.top != 0)
 		{
-			f_rotate(l, 1, 0);
-			print_both_stacks(s, 0, 0);
+			f_rotate(l, s, 0, 0);
 			aux.top--;
 		}
 	}
 	if (!is_one_of_three_biggest_elems(s, (*tmp)->index))
-	{
 		return ;
-	}
 	else
 	{
-		f_push(&s->a, &s->b, 1, 2);
-		print_both_stacks(s, 0, 0);
-		f_rotate(&s->b, 1, 1);
-		print_both_stacks(s, 0, 0);
+		f_push(&s->a, &s->b, s, 2);
+		f_rotate(&s->b, s, 0, 1);
 	}
 }
 
@@ -227,18 +208,4 @@ int	are_elems_of_current_bucket_in_stack(t_node *stack, int b_index)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-void	do_rotation(void (*f)(t_node **, int, int), int pos, t_node **lst)
-{
-	int	i;
-
-	i = pos;
-	if (!*lst)
-		return ;
-	while (lst && i != 0)
-	{
-		f(lst, 1, 0);
-		i--;
-	}
 }

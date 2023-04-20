@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:30:30 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/22 16:31:04 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:22:02 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	add_value_back(t_node **head, long int data)
 {
-	t_node *current;
+	t_node	*current;
 
 	current = *head;
 	while (current->next != NULL)
@@ -68,24 +68,8 @@ void	add_front(t_node **head_a, t_node *new_node)
 	{
 		*head_a = new_node;
 		return ;
-		printf("\n------ no list to add_front ------\n");
 	}
 }
-
-// int	pop_node(t_node **head)
-// {
-// 	int	ret;
-// 	t_node	*next_node;
-
-// 	ret = -1;
-// 	if (*head == NULL)
-// 		return (ret);
-// 	next_node = (*head)->next;
-// 	ret = (*head)->data;
-// 	free(*head);
-// 	*head = next_node;
-// 	return (ret);
-// }
 
 t_node	*pop_node(t_node **head)
 {

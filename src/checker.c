@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/02/27 17:26:18 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:20:34 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 int	is_valid_arg(char **stack)
 {
 	char 		*ptr;
-    long int 	ret;
-    int 		i;
+	long int	ret;
+	int 		i;
 	
 	i = 1;
 	if (stack[1] == NULL)
 		return (0);
-    while (stack[i])
-    {
-        ptr = NULL;
-        ret = ft_strtol(stack[i], &ptr, 10);
-        if (*ptr)
-            return (0);
-        i++;
-    }
+	while (stack[i])
+	{
+		ptr = NULL;
+		ret = ft_strtol(stack[i], &ptr, 10);
+		if (*ptr)
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
-int     is_sorted_stack(t_node **head)
+int	is_sorted_stack(t_node **head)
 {
 	t_node *current;
 	t_node *next;
@@ -53,7 +53,7 @@ int     is_sorted_stack(t_node **head)
 	return (0);
 }
 
-int     is_reverse_sorted(t_node **head)
+int	is_reverse_sorted(t_node **head)
 {
 	t_node *current;
 	t_node *next;
@@ -74,7 +74,7 @@ int     is_reverse_sorted(t_node **head)
 	return (0);
 }
 
-int		is_duplicated_arg(t_node **head)
+int	is_duplicated_arg(t_node **head)
 {
 	t_node *current;
 	t_node *next;

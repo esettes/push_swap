@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 21:12:54 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:52:27 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include "list_movements.h"
 #include "stack_movements.h"
 
-#define PRINT_	0
-#define COLORED	0
+#define PRINT_	1
+#define COLORED	1
 
 #if COLORED
 	#define RED_    "\x1b[31m"
@@ -49,26 +49,8 @@ int		is_reverse_sorted(t_node **head);
 int		is_duplicated_arg(t_node **head);
 char	**read_input_file(int fd, char **split_fd);
 
-/**
- * @brief Sets num of movements of rotation and reverse rotation
- * to found each iterator.
- * 
- * @param moves Struct
- * @param lst Node to get position by its index
- * @param i Iterator to search
- * @param elems Num of elements in stack
- */
-void	count_num_movements(t_moves *moves, t_node *lst, t_iter i, int elems);
-/**
- * @brief Makes the movement depending of the smallest num of movements
- * 
- * @param moves Struct
- * @param lst Pointer to entirely stack
- * @param it Struct iterator
-*/
-void	do_less_rotation_moves(t_temp aux, t_stack *s, t_node **l, int index);
 void	print_args(t_node *stack);
-void	print_both_stacks(t_stack *stack, int i, int j);
+void	print_both_stacks(t_stack *stack);
 long	ft_strtol(const char *restrict ptr, char **restrict endptr, int base);
 /**
  * @brief Counts how many elements are currently in the indicated stack
@@ -78,19 +60,12 @@ long	ft_strtol(const char *restrict ptr, char **restrict endptr, int base);
  * @return number of stack elements
  */
 int		count_stack_elements(t_node *node);
-/**
- * @param stack Struct
- * @param n 0 if ckech stack A, 1 if check stack B
- * @return True if all initial elements are in indicated stack, False if not
- */
-int		check_all_elements(t_stack *stack, int n);
 void	set_index_to_each_elem(t_stack *stacks);
-void	f_bucket_sort(t_stack *stack);
 /**
  * @brief Main function that calls others related to bucket sort initialization
  * 
- * @param stack 
- * @param lst 
+ * @param stack
+ * @param lst
  */
 void	set_bucket_sort_values(t_stack *stack, t_node *lst);
 void	sort_three_elems(t_stack *stack, t_node *node);
@@ -101,12 +76,7 @@ int		get_node_position_from_bottom(t_stack *stack, t_node *lst, int b_index, int
 int		get_node_position_from_top(t_stack *stack, t_node *lst, int b_index);
 void	put_least_elem_of_b_to_head(t_stack *stack, int b_index);
 int		get_least_elem_position(t_stack *stack, t_node *lst);
-void	do_rotation(void (*f)(t_node **, int, int), int pos, t_node **lst);
-void	*get_rotation_type(int sel);
-int		get_index_of_last_elem(t_node *stack);
 int		are_elems_of_current_bucket_in_stack(t_node *stack, int b_index);
-void	set_min_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index);
-void	set_max_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index);
 int		get_node_index_position_from_bottom(t_node *lst, int i, int elems);
 int		get_node_index_position_from_top(t_node *lst, int index);
 int		is_one_of_three_biggest_elems(t_stack *stack, int val);

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:04:07 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 21:08:42 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:47:21 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	f_insertion_sort(t_stack *stack)
 {
 	t_temp		node;
-	t_rotations	rotations;
 	int			last_val;
 	int			current_elems;
 	int			b_index;
@@ -36,7 +35,7 @@ void	f_insertion_sort(t_stack *stack)
 			// printf("+++ b_index: %i\n\n", b_index);
 			// usleep(50000);
 			do_less_rotation_moves_a(node, stack, &stack->a);
-			print_both_stacks(stack, b_index, 0);
+			print_both_stacks(stack);
 			// if (!is_one_of_three_biggest_elems(stack, stack->a->index))
 			// {
 				// if (stack->b && stack->a->index < stack->b->index)
@@ -60,20 +59,17 @@ void	f_insertion_sort(t_stack *stack)
 				// else
 			if (stack->a->b_index == b_index && !is_one_of_three_biggest_elems(stack, stack->a->index))
 			{
-				f_push(&stack->a, &stack->b, 1, 2);
+				f_push(&stack->a, &stack->b, stack, 2);
 			}
 			//}
-			print_both_stacks(stack, b_index, 0);
 			current_elems = count_stack_elements(stack->a);
 		}
 		b_index++;
 	}
 	if (return_biggest_elems_from_b(stack, stack->b))
 	{
-		f_reverse_rotate(&stack->b, 1, 1);
-		print_both_stacks(stack, b_index, 0);
-		f_push(&stack->b, &stack->a, 1, 1);
-		print_both_stacks(stack, b_index, 0);
+		f_reverse_rotate(&stack->b, stack, 0, 1);
+		f_push(&stack->b, &stack->a, stack, 1);
 	}
 	// ft_putendl_fd(BLUE_, "\n\t---- going to sort three elems ----", 1);
 	// usleep(800000);
@@ -84,5 +80,4 @@ void	f_insertion_sort(t_stack *stack)
 	sort_stack_A(stack);
 	// ft_putendl_fd(GREEN_, "\n\t---- finished sort stack A ----", 1);
 	// usleep(800000);
-	print_both_stacks(stack, b_index, 0);
 }

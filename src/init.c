@@ -1,12 +1,12 @@
 #include "push_swap.h"
-long 	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
-void    push_new_node(t_node **head_a, long int data);
+long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
+void	push_new_node(t_node **head_a, long int data);
 
-t_stack    *alloc_stacks(int argc, char **argv)
+t_stack	*alloc_stacks(int argc, char **argv)
 {
-	char 		*ptr;
-	long int 	ret;
-	int 		i;
+	char		*ptr;
+	long int	ret;
+	int			i;
 	t_stack		*stack;
 
 	i = 1;
@@ -32,8 +32,8 @@ t_stack    *alloc_stacks(int argc, char **argv)
 
 t_stack		*alloc_stacks_arr(int argc, int *arr)
 {
-	int 		i;
-	t_stack		*stack;
+	int		i;
+	t_stack	*stack;
 
 	i = 0;
 	stack = (t_stack *)malloc(sizeof(t_stack));
@@ -65,7 +65,7 @@ void	print_args(t_node *stack)
 	}
 }
 
-void	print_both_stacks(t_stack *stack, int i, int j)
+void	print_both_stacks(t_stack *stack)
 {
 	t_node *current_a;
 	t_node *current_b;

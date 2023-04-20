@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/03/15 20:55:23 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:53:55 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,4 @@ void	free_stack(t_node **head)
 		*head = (*head)->next;
 		free(tmp);
 	}
-}
-
-void	free_struct_moves(t_moves *moves)
-{
-	free(moves);
 }
