@@ -72,7 +72,7 @@ void	print_both_stacks(t_stack *stack, int i, int j)
 	int		aux;
 
 	#if PRINT_
-	usleep(140000);
+	usleep(160000);
 	printf("\033c");
 	current_a = stack->a;
 	current_b = stack->b;
@@ -105,8 +105,8 @@ void	print_both_stacks(t_stack *stack, int i, int j)
 		aux++;
 	}
 	//printf("i: \t%i\n", i);
-	printf("j: \t%i\n", j);
-	printf("b_index: \t%i\n", i);
-	usleep(140000);
+	//printf("j: \t%i\n", j);
+	//printf("b_index: \t%i\n", i);
+	//usleep(110000);
 	#endif
 }

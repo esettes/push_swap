@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 00:42:28 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:12:54 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,6 @@ int		is_duplicated_arg(t_node **head);
 char	**read_input_file(int fd, char **split_fd);
 
 /**
- * @brief Return true if a node in head of stack A is pushed to stack B
-*/
-int		pushed_current_index(t_stack *stack, t_iter *iter, int middle);
-/**
  * @brief Sets num of movements of rotation and reverse rotation
  * to found each iterator.
  * 
@@ -77,13 +73,11 @@ long	ft_strtol(const char *restrict ptr, char **restrict endptr, int base);
 /**
  * @brief Counts how many elements are currently in the indicated stack
  * 
- * @param stack Pointer to stack
- * @param n 0 if is stack A, else if is stack B
+ * @param node Pointer to stack
  * 
  * @return number of stack elements
  */
-int		count_stack_elements(t_stack *stack, int n);
-int		count_stack_elements_2(t_node **stack, int n);
+int		count_stack_elements(t_node *node);
 /**
  * @param stack Struct
  * @param n 0 if ckech stack A, 1 if check stack B
@@ -103,9 +97,8 @@ void	sort_three_elems(t_stack *stack, t_node *node);
 void	push_all_elems_except_last_three(t_stack *stack);
 void	f_insertion_sort(t_stack *stack);
 
-int		get_node_position_from_bottom(t_node *lst, int b_index, int elems);
-int		get_node_position_from_top(t_node *lst, int b_index);
-int		is_current_bucket_sorted(t_stack *stack, int b_index);
+int		get_node_position_from_bottom(t_stack *stack, t_node *lst, int b_index, int elems);
+int		get_node_position_from_top(t_stack *stack, t_node *lst, int b_index);
 void	put_least_elem_of_b_to_head(t_stack *stack, int b_index);
 int		get_least_elem_position(t_stack *stack, t_node *lst);
 void	do_rotation(void (*f)(t_node **, int, int), int pos, t_node **lst);
@@ -120,5 +113,8 @@ int		is_one_of_three_biggest_elems(t_stack *stack, int val);
 
 void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l);
 void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index);
+
+int		return_biggest_elems_from_b(t_stack *stack, t_node *node);
+void	sort_stack_A(t_stack *stack);
 
 #endif

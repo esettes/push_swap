@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 00:43:16 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:08:17 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,15 @@ void	*get_rotation_type(int sel)
 
 void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index)
 {
-	int	i;
-	t_node **tmp;
+	int		i;
+	t_node	**tmp;
 	int		temp_bottom;
 	int		elems_b;
 
 	i = 0;
 	tmp = l;
-	elems_b = count_stack_elements(s, 1);
+	elems_b = count_stack_elements(s->b);
 	temp_bottom = elems_b - aux.bottom;
-	// printf("---- elems in b %i ----\n", elems_b);
-	// printf("---- aux.bottom %i ----\n", aux.bottom);
-	// printf("---- temp_bottom %i ----\n", temp_bottom);
-	// usleep(500000);
 	if (aux.top > aux.bottom)
 	{
 		while (aux.bottom != 0)
@@ -52,35 +48,26 @@ void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index)
 		while (aux.top != 0)
 		{
 			f_rotate(l, 1, 1);
-			// printf("temp_bottom position: %i\n", temp_bottom);
-			// usleep(1000000);
 			print_both_stacks(s, 0, 0);
 			aux.top--;
 		}
 	}
-	//printf("---- moved index %i to head----\n", (*l)->index);
-	//usleep(1300000);
 }
 
 void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
 {
-	int	i;
-	t_node **tmp;
+	int		i;
+	t_node	**tmp;
 	int		temp_bottom;
 	int		elems_a;
 
 	i = 0;
 	tmp = l;
-	elems_a = count_stack_elements(s, 0);
+	elems_a = count_stack_elements(s->a);
 	if (aux.bottom > elems_a / 2)
 		temp_bottom = aux.bottom;
 	else
 		temp_bottom = elems_a - aux.bottom;
-	// ft_putendl_fd(RESET_, "\n", 1);
-	// printf("---- elems in a %i ----\n", elems_a);
-	// printf("---- aux.bottom %i ----\n", aux.bottom);
-	// printf("---- temp_bottom %i ----\n\n", temp_bottom);
-	// usleep(500000);
 	if (aux.top > aux.bottom)
 	{
 		while (aux.bottom != 0)
@@ -101,26 +88,6 @@ void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
 	}
 	if (!is_one_of_three_biggest_elems(s, (*tmp)->index))
 	{
-		//printf("---- index %i is not of one of biggest elems ----\n", (*tmp)->index);
-		//usleep(900000);
-		// if (aux.top > aux.bottom)
-		// {
-		// 	while (aux.top != 0)
-		// 	{
-		// 		f_reverse_rotate(l, 1, 0);
-		// 		print_both_stacks(s, 0, 0);
-		// 		aux.top--;
-		// 	}
-		// }
-		// else
-		// {
-		// 	while (aux.bottom != 0)
-		// 	{
-		// 		f_reverse_rotate(l, 1, 0);
-		// 		print_both_stacks(s, 0, 0);
-		// 		aux.bottom--;
-		// 	}
-		// }
 		return ;
 	}
 	else
@@ -129,8 +96,6 @@ void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
 		print_both_stacks(s, 0, 0);
 		f_rotate(&s->b, 1, 1);
 		print_both_stacks(s, 0, 0);
-		// ft_putendl_fd(RED_, "---- index reserved as one of the biggest elems ----", 0);
-		// usleep(1300000);
 	}
 }
 
@@ -138,7 +103,6 @@ int	get_least_elem_position(t_stack *stack, t_node *lst)
 {
 	t_node	*tmp;
 	t_node	*next;
-	int		least;
 	int		least_pos;
 	int		pos;
 
@@ -147,7 +111,6 @@ int	get_least_elem_position(t_stack *stack, t_node *lst)
 	tmp = lst;
 	if (tmp)
 	{
-		least = tmp->index;
 		next = tmp->next;
 	}
 	while (tmp)
@@ -155,23 +118,13 @@ int	get_least_elem_position(t_stack *stack, t_node *lst)
 		if (next)
 		{
 			if (tmp->index < next->index)
-			{
 				least_pos = pos;
-				// printf("lower data-> %i \n\n", tmp->index);
-				// usleep(1200000);
-			}
 			else if (next->index < tmp->index)
-			{
 				least_pos = pos + 1;
-				// printf("lower data-> %i \n\n", tmp->index);
-				// usleep(1200000);
-			}
 			next = next->next;
 			pos++;
 		}
 		tmp = tmp->next;
-		
-		
 	}
 	return (least_pos);
 }
@@ -190,7 +143,7 @@ int	is_one_of_three_biggest_elems(t_stack *stack, int val)
 	return (0);
 }
 
-int	get_node_position_from_top(t_node *lst, int b_index)
+int	get_node_position_from_top(t_stack *stack, t_node *lst, int b_index)
 {
 	t_node	*tmp;
 	int		pos;
@@ -199,15 +152,17 @@ int	get_node_position_from_top(t_node *lst, int b_index)
 	tmp = lst;
 	while (tmp)
 	{
-		if (tmp->b_index == b_index)
+		if (tmp->b_index == b_index && !is_one_of_three_biggest_elems(stack, tmp->index))
+		{
 			return (pos);
+		}
 		tmp = tmp->next;
 		pos++;
 	}
 	return (pos);
 }
 
-int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
+int	get_node_position_from_bottom(t_stack *stack, t_node *lst, int b_index, int elems)
 {
 	t_node	*tmp;
 	int		pos;
@@ -217,7 +172,7 @@ int	get_node_position_from_bottom(t_node *lst, int b_index, int elems)
 	tmp = lst;
 	while (tmp)
 	{
-		if (tmp->b_index == b_index)
+		if (tmp->b_index == b_index && !is_one_of_three_biggest_elems(stack, tmp->index))
 			elem_pos = pos;
 		tmp = tmp->next;
 		pos++;
@@ -272,42 +227,6 @@ int	are_elems_of_current_bucket_in_stack(t_node *stack, int b_index)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-int	is_current_bucket_sorted(t_stack *stack, int b_index)
-{
-	t_node	*tmp;
-
-	tmp = stack->b;
-	if (stack->b_elems[b_index].num_elems == 1)
-	{
-		return (1);
-	}
-	while (tmp)
-	{
-		if (tmp->b_index == b_index)
-		{
-			if (stack->b_elems[b_index].num_elems == 1)
-				return (1);
-			if (tmp->next && tmp->index > tmp->next->index)
-			{
-				return (0);
-			}
-		}
-		tmp = tmp->next;
-	}
-	tmp = stack->a;
-	while (tmp)
-	{
-		if (tmp->b_index == b_index)
-		{
-		// 	printf("There's elements of bucket index [%i] in stack A! ********  \n\n", b_index);
-		// 	usleep(1600000);
-			return (0);
-		}
-		tmp = tmp->next;
-	}
-	return (1);
 }
 
 void	do_rotation(void (*f)(t_node **, int, int), int pos, t_node **lst)

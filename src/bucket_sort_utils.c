@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/14 21:34:09 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:17:21 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_bucket	*get_elems_for_each_bucket(t_stack *stack, t_node *lst)
 	int			i;
 	int			b_index;
 
-	b_elems = malloc(sizeof(t_bucket) * (stack->max_bucket + 1)); // elements
+	b_elems = malloc(sizeof(t_bucket) * (stack->max_bucket + 1));
 	if (!b_elems)
 		return (NULL);
 	i = 0;
@@ -68,7 +68,6 @@ void	set_min_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index)
 		lst = lst->next;
 	}
 	stack->b_elems[b_index].min_val = min_val;
-	//printf("+ + + + + stack->b_elems[%i].min_val = %i \n\n", b_index, stack->b_elems[b_index].min_val);
 }
 
 void	set_max_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index)
@@ -87,7 +86,6 @@ void	set_max_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index)
 		lst = lst->next;
 	}
 	stack->b_elems[b_index].max_val = max_val;
-	//printf("+ + + + + stack->b_elems[%i].max_val = %i \n\n", b_index, stack->b_elems[b_index].max_val);
 }
 
 void	set_min_and_max_values(t_stack *stack, t_node *lst)
@@ -152,17 +150,22 @@ void	sort_three_elems(t_stack *stack, t_node *node)
 	next_next = next->next;
 	while (!is_sorted_stack(&stack->a))
 	{
-		if ((stack->a->index > stack->a->next->index && stack->a->index < stack->a->next->next->index)|| (stack->a->index < stack->a->next->index && stack->a->index < stack->a->next->next->index))
+		if ((stack->a->index > stack->a->next->index &&
+			stack->a->index < stack->a->next->next->index) ||
+			(stack->a->index < stack->a->next->index &&
+			stack->a->index < stack->a->next->next->index))
 		{
 			f_swap(&stack->a, 0, 0);
 			print_both_stacks(stack, 0, 0);
 		}
-		if (stack->a->index > stack->a->next->index && stack->a->index > stack->a->next->next->index)
+		if (stack->a->index > stack->a->next->index &&
+			stack->a->index > stack->a->next->next->index)
 		{
 			f_rotate(&stack->a, 1, 0);
 			print_both_stacks(stack, 0, 0);
 		}	
-		if (stack->a->index < stack->a->next->index && stack->a->index > stack->a->next->next->index)
+		if (stack->a->index < stack->a->next->index &&
+			stack->a->index > stack->a->next->next->index)
 		{
 			f_reverse_rotate(&stack->a, 1, 0);
 			print_both_stacks(stack, 0, 0);
