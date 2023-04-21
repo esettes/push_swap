@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/21 22:45:44 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/21 23:51:15 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,42 @@
 // 	return (1);
 // }
 
-int	is_valid_arg(char **argv)
+int	is_valid_arg(char **argv, int argc)
 {
-	char		**arr;
+	long int	*arr;
 	char 		*ptr;
 	long int	ret;
-	int 		i;
+	int			i;
 	int			j;
 
-	arr = ft_split(argv[1], ' ');
-	
 	j = 0;
 	if (argv[1] == NULL)
 		return (0);
-	while (arr[j][i])
+	while (argv[++j])
 	{
-		printf("%s \n", arr[j]);
+		i = 0;
+		while (argv[j][i])
+		{
+			if (!(ft_isdigit(argv[j][i]) || ft_isspace(argv[j][i])))
+				//|| argv[j][i] == '-'))
+				return (0);
+			i++;
+		}
+	}
+	arr = malloc(sizeof(long int) * argc - 1);
+	if (!arr)
+		return (0);
+	j = 0;
+	while (argc-- > 0 && argv[j + 1])
+	{
+		arr[j] = ft_atoi(argv[j + 1]);
+		j++;
+	}
+	j = 0;
+	while (arr[j])
+	{
+		if (arr[j] > 2147483648 || arr[j] < -2147483649)
+			return (0);
 		j++;
 	}
 	free (arr);

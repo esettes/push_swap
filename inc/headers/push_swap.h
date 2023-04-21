@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/21 20:53:53 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/21 23:00:18 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 
 t_stack	*alloc_stacks(int argc, char **argv);
 t_stack	*alloc_stacks_arr(int argc, int *arr);
-int		is_valid_arg(char **argv);
+int		is_valid_arg(char **argv, int argc);
 int		is_sorted_stack(t_node **head);
 int		is_reverse_sorted(t_node **head);
 int		is_duplicated_arg(t_node **head);
