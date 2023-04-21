@@ -6,29 +6,51 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 21:20:34 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/21 22:45:44 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_valid_arg(char **stack)
+// int	is_valid_arg(char **argv)
+// {
+// 	char 		*ptr;
+// 	long int	ret;
+// 	int 		i;
+	
+// 	i = 1;
+// 	if (argv[1] == NULL)
+// 		return (0);
+// 	while (argv[i])
+// 	{
+// 		ptr = NULL;
+// 		ret = ft_strtol(argv[i], &ptr, 10);
+// 		if (*ptr)
+// 			return (0);
+// 		i++;
+// 	}
+// 	return (1);
+// }
+
+int	is_valid_arg(char **argv)
 {
+	char		**arr;
 	char 		*ptr;
 	long int	ret;
 	int 		i;
+	int			j;
+
+	arr = ft_split(argv[1], ' ');
 	
-	i = 1;
-	if (stack[1] == NULL)
+	j = 0;
+	if (argv[1] == NULL)
 		return (0);
-	while (stack[i])
+	while (arr[j][i])
 	{
-		ptr = NULL;
-		ret = ft_strtol(stack[i], &ptr, 10);
-		if (*ptr)
-			return (0);
-		i++;
+		printf("%s \n", arr[j]);
+		j++;
 	}
+	free (arr);
 	return (1);
 }
 

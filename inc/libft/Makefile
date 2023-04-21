@@ -6,7 +6,7 @@
 #    By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 17:01:06 by iostancu          #+#    #+#              #
-#    Updated: 2023/02/13 17:28:03 by iostancu         ###   ########.fr        #
+#    Updated: 2023/04/21 00:09:08 by iostancu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJB	= $(addprefix $(OBJDIR), $(B_SRCNAMES:.c=.o))
 
 NAME	= libft.a
 BONUS	= .
-CC  = clang#gcc
+CC  = gcc
 RM  = rm -f
 CFLAGS  = -g3 -o0 -Wall -Wextra -Werror -I
 AR = ar rc

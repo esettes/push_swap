@@ -6,15 +6,15 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:55 by iostancu          #+#    #+#             */
-/*   Updated: 2022/02/17 19:09:16 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:57:47 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
-	int			i;
+	long int	i;
 	int			sign;
 	long int	res;
 
