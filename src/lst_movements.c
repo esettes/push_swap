@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:30:30 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 21:22:02 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/25 23:39:16 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,6 @@ void	add_back(t_node **head, t_node *new_node)
 	while (current->next != NULL)
 		current = current->next;
 	current->next = new_node;
-}
-
-void	push_new_node(t_node **head_a, long int data)
-{
-	t_node *new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	new_node->data = data;
-	if (head_a)
-	{
-		new_node->next = *head_a;
-		*head_a = new_node;
-	}
-	else
-		new_node->next = NULL;
 }
 
 void	add_front(t_node **head_a, t_node *new_node)

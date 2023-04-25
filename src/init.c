@@ -14,12 +14,12 @@ t_stack	*alloc_stacks(int argc, char **argv)
 	if (!(stack || stack->a))
 		return (NULL);
 	stack->b = NULL;
-	stack->a->data = (int)ft_atoi(argv[1]);
+	stack->a->data = ft_atoi(argv[1]);
 	stack->a->next = NULL;
 	stack->elements = argc - 1;
 	while (argc-- > 0 && argv[i + 1])
 	{
-		tmp = (int)ft_atoi(argv[i + 1]);
+		tmp = ft_atoi(argv[i + 1]);
 		add_value_back(&stack->a, tmp);
 		i++;
 	}

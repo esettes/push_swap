@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 22:22:15 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/25 23:44:06 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void	sort_three_elems(t_stack *stack, t_node *node)
 	head = node;
 	next = node->next;
 	next_next = next->next;
+	if (!is_sorted_stack(&stack->a) && stack->elements == 2)
+		f_swap(&stack->a, stack, 0, 0);
 	while (!is_sorted_stack(&stack->a))
 	{
 		if ((stack->a->index > stack->a->next->index &&
