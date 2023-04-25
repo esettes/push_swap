@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:21:39 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 21:53:27 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/25 23:46:44 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct	s_node
 	long int		data;
 	int				index;
 	int				b_index;
-	int				is_sorted;
 	struct s_node	*next;
 }				t_node;
 

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 21:12:59 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/25 23:49:14 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,11 @@ void	set_three_biggest_elems(t_stack *stack);
  */
 void	set_index_to_each_elem(t_stack *stacks)
 {
-	t_iter	iter;
 	int		index;
 	t_node	*next;
 	t_node	*aux;
 	t_node	*head;
 
-	iter.i = 0;
-	iter.j = 0;
 	index = 0;
 	aux = create_aux_stack(stacks->a);
 	head = aux;
@@ -122,7 +119,6 @@ void	set_index_to_original_stack(t_node *original, t_node *aux)
 			{
 				aux_head->b_index = head_a->b_index;
 				aux_head->index = head_a->index;
-				aux_head->is_sorted = 0;
 				break ;
 			}
 			aux_head = aux_head->next;

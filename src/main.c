@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 23:43:11 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/25 23:48:27 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "fcntl.h"
 
 int		is_correct_argument(t_stack *stack);
-long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void	free_stack(t_node **head);
 
 int		main(int argc, char **argv)
