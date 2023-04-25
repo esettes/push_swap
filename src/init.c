@@ -2,67 +2,54 @@
 long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void	push_new_node(t_node **head_a, long int data);
 
+// t_stack	*alloc_stacks(int argc, char **argv)
+// {
+// 	char		*ptr;
+// 	long int	ret;
+// 	int			i;
+// 	t_stack		*stack;
+
+// 	i = 1;
+// 	stack = (t_stack *)malloc(sizeof(t_stack));
+// 	stack->a = (t_node *)malloc(sizeof(t_node));
+// 	stack->b = NULL;
+// 	ptr = NULL;
+// 	ret = ft_strtol(argv[i], &ptr, 10);
+// 	stack->a->data = ret;
+// 	stack->a->next = NULL;
+// 	i++;
+// 	while (argv[i])
+// 	{
+// 		ptr = NULL;
+// 		ret = ft_strtol(argv[i], &ptr, 10);
+// 		add_value_back(&stack->a, ret);
+// 		i++;
+// 	}
+// 	i--;
+// 	stack->elements = i;
+// 	return (stack);
+// }
+
 t_stack	*alloc_stacks(int argc, char **argv)
 {
-	char		*ptr;
-	long int	ret;
-	int			i;
-	t_stack		*stack;
+	int		i;
+	t_stack	*stack;
+	int		tmp;
 
 	i = 1;
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->a = (t_node *)malloc(sizeof(t_node));
 	stack->b = NULL;
-	ptr = NULL;
-	ret = ft_strtol(argv[i], &ptr, 10);
-	stack->a->data = ret;
+	stack->a->data = (int)ft_atoi(argv[1]);
 	stack->a->next = NULL;
-	i++;
-	while (argv[i])
+	stack->elements = argc - 1;
+	while (argc-- > 0 && argv[i + 1])
 	{
-		ptr = NULL;
-		ret = ft_strtol(argv[i], &ptr, 10);
-		add_value_back(&stack->a, ret);
-		i++;
-	}
-	i--;
-	stack->elements = i;
-	return (stack);
-}
-
-t_stack		*alloc_stacks_arr(int argc, int *arr)
-{
-	int		i;
-	t_stack	*stack;
-
-	i = 0;
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	stack->a = (t_node *)malloc(sizeof(t_node));
-	stack->b = (t_node *)malloc(sizeof(t_node));
-	stack->a->data = arr[i];
-	stack->a->next = NULL;
-	stack->b->data = 0;
-	stack->b->next = NULL;
-	i++;
-	while (arr[i])
-	{
-		add_value_back(&stack->a, arr[i]);
-		add_value_back(&stack->b, 0);
+		tmp = (int)ft_atoi(argv[i + 1]);
+		add_value_back(&stack->a, tmp);
 		i++;
 	}
 	return (stack);
-}
-
-void	print_args(t_node *stack)
-{
-	t_node *current;
-
-	current = stack;
-	while (current != NULL)
-	{
-		printf("%ld\n",current->data);
-		current = current->next;
-	}
 }
 
 void	print_both_stacks(t_stack *stack)

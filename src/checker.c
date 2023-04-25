@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/21 23:51:15 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:39:33 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	is_valid_arg(char **argv, int argc)
 {
 	long int	*arr;
 	char 		*ptr;
-	long int	ret;
 	int			i;
 	int			j;
 
@@ -54,20 +53,25 @@ int	is_valid_arg(char **argv, int argc)
 			i++;
 		}
 	}
-	arr = malloc(sizeof(long int) * argc - 1);
+	arr = malloc(sizeof(long int) * argc);
 	if (!arr)
 		return (0);
 	j = 0;
+	i = argc;
 	while (argc-- > 0 && argv[j + 1])
 	{
 		arr[j] = ft_atoi(argv[j + 1]);
 		j++;
 	}
 	j = 0;
-	while (arr[j])
+	while (j < i - 1)
 	{
 		if (arr[j] > 2147483648 || arr[j] < -2147483649)
+		{
+			free (arr);
 			return (0);
+		}
+		//printf("%i\n", arr[j]);
 		j++;
 	}
 	free (arr);
