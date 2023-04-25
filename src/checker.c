@@ -6,36 +6,15 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 21:39:33 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:45:39 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// int	is_valid_arg(char **argv)
-// {
-// 	char 		*ptr;
-// 	long int	ret;
-// 	int 		i;
-	
-// 	i = 1;
-// 	if (argv[1] == NULL)
-// 		return (0);
-// 	while (argv[i])
-// 	{
-// 		ptr = NULL;
-// 		ret = ft_strtol(argv[i], &ptr, 10);
-// 		if (*ptr)
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
-
 int	is_valid_arg(char **argv, int argc)
 {
 	long int	*arr;
-	char 		*ptr;
 	int			i;
 	int			j;
 
@@ -47,8 +26,12 @@ int	is_valid_arg(char **argv, int argc)
 		i = 0;
 		while (argv[j][i])
 		{
-			if (!(ft_isdigit(argv[j][i]) || ft_isspace(argv[j][i])))
-				//|| argv[j][i] == '-'))
+			if (argv[j][i] == '-' && !(ft_isdigit(argv[j][i + 1])))
+				return (0);
+			if (argv[j][i] == '+' && !(ft_isdigit(argv[j][i + 1])))
+				return (0);
+			if (!(ft_isdigit(argv[j][i]) || ft_isspace(argv[j][i])
+				|| argv[j][i] == '-' || argv[j][i] == '+'))
 				return (0);
 			i++;
 		}
@@ -66,12 +49,11 @@ int	is_valid_arg(char **argv, int argc)
 	j = 0;
 	while (j < i - 1)
 	{
-		if (arr[j] > 2147483648 || arr[j] < -2147483649)
+		if (arr[j] > 2147483647 || arr[j] < -2147483648)
 		{
 			free (arr);
 			return (0);
 		}
-		//printf("%i\n", arr[j]);
 		j++;
 	}
 	free (arr);

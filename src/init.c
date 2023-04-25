@@ -2,34 +2,6 @@
 long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
 void	push_new_node(t_node **head_a, long int data);
 
-// t_stack	*alloc_stacks(int argc, char **argv)
-// {
-// 	char		*ptr;
-// 	long int	ret;
-// 	int			i;
-// 	t_stack		*stack;
-
-// 	i = 1;
-// 	stack = (t_stack *)malloc(sizeof(t_stack));
-// 	stack->a = (t_node *)malloc(sizeof(t_node));
-// 	stack->b = NULL;
-// 	ptr = NULL;
-// 	ret = ft_strtol(argv[i], &ptr, 10);
-// 	stack->a->data = ret;
-// 	stack->a->next = NULL;
-// 	i++;
-// 	while (argv[i])
-// 	{
-// 		ptr = NULL;
-// 		ret = ft_strtol(argv[i], &ptr, 10);
-// 		add_value_back(&stack->a, ret);
-// 		i++;
-// 	}
-// 	i--;
-// 	stack->elements = i;
-// 	return (stack);
-// }
-
 t_stack	*alloc_stacks(int argc, char **argv)
 {
 	int		i;
@@ -39,6 +11,8 @@ t_stack	*alloc_stacks(int argc, char **argv)
 	i = 1;
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->a = (t_node *)malloc(sizeof(t_node));
+	if (!(stack || stack->a))
+		return (NULL);
 	stack->b = NULL;
 	stack->a->data = (int)ft_atoi(argv[1]);
 	stack->a->next = NULL;
@@ -91,9 +65,5 @@ void	print_both_stacks(t_stack *stack)
 		}
 		aux++;
 	}
-	//printf("i: \t%i\n", i);
-	//printf("j: \t%i\n", j);
-	//printf("b_index: \t%i\n", i);
-	//usleep(110000);
 	#endif
 }

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 20:25:03 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:46:55 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		main(int argc, char **argv)
 	int 	i;
 
 	i = 0;
+	if (argc < 2)
+		return (0);
 	if (is_valid_arg(argv, argc))
 	{
 		stack = alloc_stacks(argc, argv);

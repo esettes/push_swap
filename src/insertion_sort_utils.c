@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:10:47 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 21:48:10 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:20:09 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	count_stack_elements(t_node *node)
 	}
 	return (i);
 }
-
 
 void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
 {
