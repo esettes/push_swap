@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/26 17:41:58 by iostancu          #+#    #+#             */
+/*   Updated: 2023/04/26 17:42:17 by iostancu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	f_reverse_rotate(t_node **head, t_stack *s, int called, int stack)
 {
-	t_node *tmp;
-	t_node *last;
+	t_node	*tmp;
+	t_node	*last;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
@@ -29,7 +41,7 @@ void	f_reverse_rotate(t_node **head, t_stack *s, int called, int stack)
 void	f_rotate(t_node **head, t_stack *s, int called, int stack)
 {
 	long int	aux;
-	t_node	*tmp;
+	t_node		*tmp;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
@@ -49,6 +61,6 @@ void	f_rotate_both(t_stack *stack)
 {
 	f_rotate(&stack->a, stack, 0, 0);
 	f_rotate(&stack->b, stack, 0, 1);
-	ft_putendl_fd(BLUE_,"rr", 1);
+	ft_putendl_fd(BLUE_, "rr", 1);
 	print_both_stacks(stack);
 }

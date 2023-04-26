@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:30:30 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 23:39:16 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:38:05 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	add_value_back(t_node **head, long int data)
 
 void	add_back(t_node **head, t_node *new_node)
 {
-	t_node *current;
+	t_node	*current;
 
 	current = *head;
 	if (!current)

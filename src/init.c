@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/26 17:30:38 by iostancu          #+#    #+#             */
+/*   Updated: 2023/04/26 17:59:37 by iostancu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-long	ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
-void	push_new_node(t_node **head_a, long int data);
 
 t_stack	*alloc_stacks(int argc, char **argv)
 {
@@ -28,8 +38,14 @@ t_stack	*alloc_stacks(int argc, char **argv)
 
 void	print_both_stacks(t_stack *stack)
 {
-	t_node *current_a;
-	t_node *current_b;
+	(void)stack;
+}
+
+/*
+void	print_both_stacks(t_stack *stack)
+{
+	t_node	*current_a;
+	t_node	*current_b;
 	int		aux;
 
 	#if PRINT_
@@ -48,7 +64,8 @@ void	print_both_stacks(t_stack *stack)
 	{
 		if (current_a && current_b)
 		{
-			printf(" %ld, %i \t %ld, %i\n",current_a->index, current_a->b_index, current_b->index, current_b->b_index);
+			printf(" %ld, %i \t %ld, %i\n",current_a->index,
+				current_a->b_index, current_b->index, current_b->b_index);
 			current_a = current_a->next;
 			current_b = current_b->next;
 			aux++;
@@ -67,3 +84,4 @@ void	print_both_stacks(t_stack *stack)
 	}
 	#endif
 }
+*/

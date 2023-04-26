@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:10:47 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 23:48:02 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:37:48 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	return_biggest_elems_from_b(t_stack *stack, t_node *node)
 	return (0);
 }
 
-void	sort_stack_A(t_stack *stack)
+void	sort_stack_a(t_stack *stack)
 {
 	int		elems_in_b;
 	t_temp	node;
@@ -71,7 +71,7 @@ void	sort_stack_A(t_stack *stack)
 		elems_in_b = count_stack_elements(stack->b);
 		node.top = get_node_index_position_from_top(stack->b, index);
 		node.bottom = get_node_index_position_from_bottom(stack->b, index,
-			elems_in_b);
+				elems_in_b);
 		do_less_rotation_moves_b(node, stack, &stack->b, index);
 		f_push(&stack->b, &stack->a, stack, 1);
 		index--;

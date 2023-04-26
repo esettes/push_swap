@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 23:48:27 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:03:26 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 #include "fcntl.h"
 
 int		is_correct_argument(t_stack *stack);
-void	free_stack(t_node **head);
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stack	*stack;
-	int		fd;
-	char	**input;
-	int 	i;
 
-	i = 0;
-	if (argc < 2)
-		return (0);
+	// if (argc < 2)
+	// 	return (0);
 	if (is_valid_arg(argv, argc))
 	{
 		stack = alloc_stacks(argc, argv);
@@ -34,29 +29,21 @@ int		main(int argc, char **argv)
 		if (is_correct_argument(stack))
 		{
 			set_index_to_each_elem(stack);
-			//f_bucket_sort(stack);
 			if (stack->elements <= 3)
 				sort_three_elems(stack, stack->a);
-			//push_all_elems_except_last_three(stack);
 			f_insertion_sort(stack);
 		}
-		else
-		{
-			//ft_putendl_fd(RED_,"Error", 2);
-		}
-		free_stack(&stack->a);
-		free_stack(&stack->b);
-		free(stack);
+		free_entire_stack(stack);
 	}
 	else
 	{
-		ft_putendl_fd(RED_,"Error", 2);
+		ft_putendl_fd(RED_, "Error", 2);
 		return (0);
 	}
 	return (1);
 }
 
-int		is_correct_argument(t_stack *stack)
+int	is_correct_argument(t_stack *stack)
 {
 	if (is_sorted_stack(&stack->a))
 	{
@@ -64,7 +51,7 @@ int		is_correct_argument(t_stack *stack)
 	}
 	if (is_duplicated_arg(&stack->a))
 	{
-		ft_putendl_fd(RED_,"Error", 1);
+		ft_putendl_fd(RED_, "Error", 2);
 		return (0);
 	}
 	return (1);
@@ -80,4 +67,11 @@ void	free_stack(t_node **head)
 		*head = (*head)->next;
 		free(tmp);
 	}
+}
+
+void	free_entire_stack(t_stack *stack)
+{
+	free_stack(&stack->a);
+	free_stack(&stack->b);
+	free(stack);
 }

@@ -6,20 +6,17 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 23:49:14 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:43:56 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 void	swap_selection(t_node *a, t_node *b);
 t_node	*create_aux_stack(t_node *original);
 void	set_index_to_original_stack(t_node *original, t_node *aux);
-void	free_stack(t_node **head);
 void	set_three_biggest_elems(t_stack *stack);
 
-/**
- * @brief Sorts the stack in a temporal stack to sets indexes to each elem
- */
 void	set_index_to_each_elem(t_stack *stacks)
 {
 	int		index;

@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 23:44:06 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:14:42 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,6 @@ t_bucket	*get_elems_for_each_bucket(t_stack *stack, t_node *lst)
 	return (b_elems);
 }
 
-void	set_min_value_for_each_bucket(t_stack *stack, t_node *lst, int	b_index)
-{
-	int	min_val;
-
-	if (lst)
-		min_val = lst->index;
-	while (lst)
-	{
-		if (lst->next && lst->b_index == b_index && lst->next->b_index == b_index)
-		{
-			if (lst->next->index < min_val)
-				min_val = lst->next->index;
-		}
-		lst = lst->next;
-	}
-	stack->b_elems[b_index].min_val = min_val;
-}
-
 void	set_min_and_max_values(t_stack *stack, t_node *lst)
 {
 	int		i;
@@ -97,11 +79,11 @@ void	set_min_and_max_values(t_stack *stack, t_node *lst)
 int	get_bucket_range(t_stack *stack)
 {
 	if (stack->elements <= 15)
-		stack->bucket_range	= stack->elements / 3;
+		stack->bucket_range = stack->elements / 3;
 	else if (stack->elements <= 100)
-		stack->bucket_range	= stack->elements / 7;
+		stack->bucket_range = stack->elements / 7;
 	else
-		stack->bucket_range	= stack->elements / 11;
+		stack->bucket_range = stack->elements / 11;
 	if (stack->bucket_range == 0)
 		stack->bucket_range = 1;
 	return (stack->bucket_range);
@@ -119,37 +101,4 @@ void	set_bucket_indexes(t_stack *stack, t_node *lst)
 		lst = lst->next;
 	}
 	stack->max_bucket = max_bucket;
-}
-
-void	sort_three_elems(t_stack *stack, t_node *node)
-{
-	t_node	*head;
-	t_node	*next;
-	t_node	*next_next;
-
-	head = node;
-	next = node->next;
-	next_next = next->next;
-	if (!is_sorted_stack(&stack->a) && stack->elements == 2)
-		f_swap(&stack->a, stack, 0, 0);
-	while (!is_sorted_stack(&stack->a))
-	{
-		if ((stack->a->index > stack->a->next->index &&
-			stack->a->index < stack->a->next->next->index) ||
-			(stack->a->index < stack->a->next->index &&
-			stack->a->index < stack->a->next->next->index))
-		{
-			f_swap(&stack->a, stack, 0, 0);
-		}
-		if (stack->a->index > stack->a->next->index &&
-			stack->a->index > stack->a->next->next->index)
-		{
-			f_rotate(&stack->a, stack, 0, 0);
-		}	
-		if (stack->a->index < stack->a->next->index &&
-			stack->a->index > stack->a->next->next->index)
-		{
-			f_reverse_rotate(&stack->a, stack, 0, 0);
-		}
-	}
 }
