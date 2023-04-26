@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:30:38 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/26 17:59:37 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/26 22:01:41 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,55 @@
 
 t_stack	*alloc_stacks(int argc, char **argv)
 {
-	int		i;
-	t_stack	*stack;
-	int		tmp;
+	char		*ptr;
+	long int	ret;
+	int			i;
+	t_stack		*stack;
 
 	i = 1;
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->a = (t_node *)malloc(sizeof(t_node));
-	if (!(stack || stack->a))
-		return (NULL);
 	stack->b = NULL;
-	stack->a->data = ft_atoi(argv[1]);
+	ptr = NULL;
+	ret = ft_strtol(argv[i], &ptr, 10);
+	stack->a->data = ret;
 	stack->a->next = NULL;
-	stack->elements = argc - 1;
-	while (argc-- > 0 && argv[i + 1])
+	i++;
+	while (argv[i])
 	{
-		tmp = ft_atoi(argv[i + 1]);
-		add_value_back(&stack->a, tmp);
+		ptr = NULL;
+		ret = ft_strtol(argv[i], &ptr, 10);
+		add_value_back(&stack->a, ret);
 		i++;
 	}
+	i--;
+	stack->elements = i;
 	return (stack);
 }
+
+// t_stack	*alloc_stacks(int argc, char **argv)
+// {
+// 	int		i;
+// 	t_stack	*stack;
+// 	int		tmp;
+
+// 	i = 1;
+// 	stack = (t_stack *)malloc(sizeof(t_stack));
+// 	stack->a = (t_node *)malloc(sizeof(t_node));
+// 	if (!(stack || stack->a))
+// 		return (NULL);
+// 	stack->b = NULL;
+// 	stack->a->data = ft_atoi(argv[1]);
+// 	stack->a->next = NULL;
+// 	stack->elements = argc - 1;
+// 	while (argc-- > 0 && argv[i + 1])
+// 	{
+// 		tmp = ft_atoi(argv[i + 1]);
+// 		add_value_back(&stack->a, tmp);
+// 		i++;
+// 	}
+// 	return (stack);
+// }
 
 void	print_both_stacks(t_stack *stack)
 {

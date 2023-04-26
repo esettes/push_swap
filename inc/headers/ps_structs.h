@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:21:39 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 23:46:44 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/26 22:29:13 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ typedef struct	s_temp
 	int	top;
 	int	bottom;
 }				t_temp;
+
+typedef struct	s_stol
+{
+	int				is_neg;
+	int				overflow;
+	unsigned long	n;
+	unsigned long	cutoff;
+	int				cutlim;
+	int				c;
+}				t_stol;
 
 typedef struct	s_node
 {

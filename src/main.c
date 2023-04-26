@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/26 18:03:26 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/26 23:12:11 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int	main(int argc, char **argv)
 			if (stack->elements <= 3)
 				sort_three_elems(stack, stack->a);
 			f_insertion_sort(stack);
+		}
+		else
+		{
+			ft_putendl_fd(RED_, "Error", 2);
+			return (0);
 		}
 		free_entire_stack(stack);
 	}
