@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 21:49:08 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:02:17 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,10 @@ int	is_valid_arg(char **argv, int argc)
 	if (!are_correct_chars(argv))
 		return (0);
 	all_args = count_all_args(argc, argv);
-	printf("all_args: %i \n", all_args);
-	arr = malloc(sizeof(long int) * all_args + 1);
+	arr = malloc(sizeof(long int) * all_args);
 	if (!arr)
 		return (0);
 	set_all_args(argc, argv, arr);
-	
-	
-	// it.j = 0;
-	// arg.i = 0;
-	// while (all_args > 0 && argv[it.j + 1])
-	// {
-	// 	it.i = str_count(argv[it.j + 1], ' ');
-	// 	if (it.i > 1)
-	// 	{
-	// 		arg.j = 0;
-	// 		tmp = ft_split(argv[it.j + 1], ' ');
-	// 		while (--it.i > 0)
-	// 			arr[arg.i++] = ft_atoi(tmp[arg.j++]);
-	// 		it.j++;
-	// 		free (tmp);
-	// 	}
-	// 	else
-	// 	{
-	// 		arr[arg.i++] = ft_atoi(argv[it.j + 1]);
-	// 		it.j++;
-	// 	}
-	// 	all_args--;
-	// }
-	// arr[arg.i] = 0;
 	if (!are_all_integers(arr, all_args))
 		return (0);
 	free (arr);

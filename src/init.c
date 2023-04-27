@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:30:38 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 21:49:06 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:02:15 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_stack	*alloc_stacks(int argc, char **argv)
 	long int	*arr;
 	int			all_args;
 
-	i = 0;
+	i = 1;
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->a = (t_node *)malloc(sizeof(t_node));
 	if (!(stack || stack->a))
@@ -29,24 +29,14 @@ t_stack	*alloc_stacks(int argc, char **argv)
 	stack->a->data = ft_atoi(argv[1]);
 	stack->a->next = NULL;
 	all_args = count_all_args(argc, argv);
-	printf("all_args: %i \n", all_args);
-	arr = malloc(sizeof(long int) * all_args + 1);
+	arr = malloc(sizeof(long int) * all_args);
 	if (!arr)
 		return (0);
 	set_all_args(argc, argv, arr);
-	printf("heyyyy \n");
-	while (i < all_args - 1)
-	{
-		add_value_back(&stack->a, arr[i]);
-		//printf("arr[i]: %i \n", arr[i]);
-		i++;
-	}
-	// while (argc-- > 0 && argv[i + 1])
-	// {
-	// 	tmp = ft_atoi(argv[i + 1]);
-	// 	add_value_back(&stack->a, tmp);
-	// 	i++;
-	// }
+	while (i < all_args)
+		add_value_back(&stack->a, arr[i++]);
+	stack->elements = all_args;
+	print_both_stacks(stack);
 	free (arr);
 	return (stack);
 }
@@ -59,35 +49,22 @@ void	set_all_args(int argc, char **argv, long int *arr)
 	int		all_args;
 
 	all_args = count_all_args(argc, argv);
-	it.j = 0;
+	it.j = 1;
 	arg.i = 0;
-	while (all_args > 0 && argv[it.j + 1])
+	while (all_args-- > 0 && argv[it.j])
 	{
-		it.i = str_count(argv[it.j + 1], ' ');
+		it.i = str_count(argv[it.j], ' ');
 		if (it.i > 1)
 		{
 			arg.j = 0;
-			tmp = ft_split(argv[it.j + 1], ' ');
+			tmp = ft_split(argv[it.j++], ' ');
 			while (it.i-- >= 0 && tmp[arg.j])
-			{
-				arr[arg.i] = ft_atoi(tmp[arg.j++]);
-				printf("arr[i]: %i \n", *(arr + arg.i));
-				arg.i++;
-			}
-			it.j++;
+				arr[arg.i++] = ft_atoi(tmp[arg.j++]);
 			free (tmp);
 		}
 		else
-		{
-			arr[arg.i] = ft_atoi(argv[it.j + 1]);
-			printf("arr[i]: %i \n", *(arr + arg.i));
-			arg.i++;
-			it.j++;
-		}
-		all_args--;
+			arr[arg.i++] = ft_atoi(argv[it.j++]);
 	}
-	printf("arg.i: %i \n", arg.i);
-	arr[arg.i] = '\0';
 }
 
 // void	print_both_stacks(t_stack *stack)

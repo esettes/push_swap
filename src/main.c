@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 17:50:38 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:42:13 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stack;
 
-	if (argc < 1)
+	if (argc < 2)
 		return (0);
 	if (is_valid_arg(argv, argc))
 	{
@@ -50,13 +50,13 @@ int	main(int argc, char **argv)
 
 int	is_correct_argument(t_stack *stack)
 {
-	if (is_sorted_stack(&stack->a))
-	{
-		return (0);
-	}
 	if (is_duplicated_arg(&stack->a))
 	{
 		ft_putendl_fd(RED_, "Error", 2);
+		return (0);
+	}
+	if (is_sorted_stack(&stack->a))
+	{
 		return (0);
 	}
 	return (1);
