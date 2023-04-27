@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/26 17:12:20 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:29:05 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,18 @@ void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l)
 		temp_bottom = elems_a - aux.bottom;
 	if (aux.top > aux.bottom)
 	{
-		while (aux.bottom != 0)
-		{
+		while (aux.bottom-- != 0)
 			f_reverse_rotate(tmp, s, 0, 0);
-			aux.bottom--;
-		}
 	}
 	else
 	{
-		while (aux.top != 0)
-		{
+		while (aux.top-- != 0)
 			f_rotate(l, s, 0, 0);
-			aux.top--;
-		}
 	}
 	if (!is_one_of_three_biggest_elems(s, (*tmp)->index))
 		return ;
-	else
-	{
-		f_push(&s->a, &s->b, s, 2);
-		f_rotate(&s->b, s, 0, 1);
-	}
+	f_push(&s->a, &s->b, s, 2);
+	f_rotate(&s->b, s, 0, 1);
 }
 
 int	is_one_of_three_biggest_elems(t_stack *stack, int val)
@@ -119,22 +110,16 @@ void	sort_three_elems(t_stack *stack, t_node *node)
 		f_swap(&stack->a, stack, 0, 0);
 	while (!is_sorted_stack(&stack->a))
 	{
-		if ((stack->a->index > stack->a->next->index &&
-			stack->a->index < stack->a->next->next->index) ||
-			(stack->a->index < stack->a->next->index &&
-			stack->a->index < stack->a->next->next->index))
-		{
+		if ((stack->a->index > stack->a->next->index
+				&& stack->a->index < stack->a->next->next->index)
+			|| (stack->a->index < stack->a->next->index
+				&& stack->a->index < stack->a->next->next->index))
 			f_swap(&stack->a, stack, 0, 0);
-		}
-		if (stack->a->index > stack->a->next->index &&
-			stack->a->index > stack->a->next->next->index)
-		{
+		if (stack->a->index > stack->a->next->index
+			&& stack->a->index > stack->a->next->next->index)
 			f_rotate(&stack->a, stack, 0, 0);
-		}
-		if (stack->a->index < stack->a->next->index &&
-			stack->a->index > stack->a->next->next->index)
-		{
+		if (stack->a->index < stack->a->next->index
+			&& stack->a->index > stack->a->next->next->index)
 			f_reverse_rotate(&stack->a, stack, 0, 0);
-		}
 	}
 }

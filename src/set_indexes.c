@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:28:17 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/26 17:43:56 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:35:03 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,18 @@ void	swap_selection(t_node *a, t_node *b);
 t_node	*create_aux_stack(t_node *original);
 void	set_index_to_original_stack(t_node *original, t_node *aux);
 void	set_three_biggest_elems(t_stack *stack);
+void	loop_stack_swapping(t_node **aux, int *index);
 
 void	set_index_to_each_elem(t_stack *stacks)
 {
 	int		index;
-	t_node	*next;
 	t_node	*aux;
 	t_node	*head;
 
 	index = 0;
 	aux = create_aux_stack(stacks->a);
 	head = aux;
-	while (aux->next != NULL)
-	{
-		next = aux->next;
-		while (next != NULL)
-		{
-			if (aux->data > next->data)
-			{
-				swap_selection(aux, next);
-				next->index = index;
-				aux->index = index;
-			}
-			else
-				aux->index = index;
-			next = next->next;
-		}
-		aux = aux->next;
-		index++;
-	}
+	loop_stack_swapping(&aux, &index);
 	aux->index = index;
 	aux = head;
 	set_bucket_sort_values(stacks, aux);
@@ -53,18 +36,27 @@ void	set_index_to_each_elem(t_stack *stacks)
 	free_stack(&aux);
 }
 
-void	set_three_biggest_elems(t_stack *stack)
+void	loop_stack_swapping(t_node **aux, int *index)
 {
-	int	val;
-	int	i;
+	t_node	*next;
 
-	val = stack->elements - 3;
-	i = 0;
-	while (i < 3)
+	while ((*aux)->next != NULL)
 	{
-		stack->max_values[i] = val;
-		val++;
-		i++;
+		next = (*aux)->next;
+		while (next != NULL)
+		{
+			if ((*aux)->data > next->data)
+			{
+				swap_selection(*aux, next);
+				next->index = *index;
+				(*aux)->index = *index;
+			}
+			else
+				(*aux)->index = *index;
+			next = next->next;
+		}
+		(*aux) = (*aux)->next;
+		*index += 1;
 	}
 }
 

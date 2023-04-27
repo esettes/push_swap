@@ -6,26 +6,26 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:21:39 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/26 22:29:13 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:37:16 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PS_STRUCTS_H
 # define PS_STRUCTS_H
 
-typedef struct	s_iter
+typedef struct s_iter
 {
 	int	i;
 	int	j;
 }				t_iter;
 
-typedef struct	s_temp
+typedef struct s_temp
 {
 	int	top;
 	int	bottom;
 }				t_temp;
 
-typedef struct	s_stol
+typedef struct s_stol
 {
 	int				is_neg;
 	int				overflow;
@@ -35,7 +35,7 @@ typedef struct	s_stol
 	int				c;
 }				t_stol;
 
-typedef struct	s_node
+typedef struct s_node
 {
 	long int		data;
 	int				index;
@@ -43,7 +43,7 @@ typedef struct	s_node
 	struct s_node	*next;
 }				t_node;
 
-typedef struct	s_bucket
+typedef struct s_bucket
 {
 	int	b_index;
 	int	num_elems;
@@ -56,7 +56,7 @@ typedef struct	s_bucket
  * 
  * @param bucket_range Range of each bucket
  */
-typedef struct	s_stack
+typedef struct s_stack
 {
 	t_node		*a;
 	t_node		*b;

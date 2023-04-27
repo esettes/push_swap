@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:10:47 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/26 17:37:48 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:35:28 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,20 @@ void	sort_stack_a(t_stack *stack)
 		do_less_rotation_moves_b(node, stack, &stack->b, index);
 		f_push(&stack->b, &stack->a, stack, 1);
 		index--;
+	}
+}
+
+void	set_three_biggest_elems(t_stack *stack)
+{
+	int	val;
+	int	i;
+
+	val = stack->elements - 3;
+	i = 0;
+	while (i < 3)
+	{
+		stack->max_values[i] = val;
+		val++;
+		i++;
 	}
 }

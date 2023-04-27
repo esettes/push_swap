@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:30:38 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 22:02:15 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:19:29 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_stack	*alloc_stacks(int argc, char **argv)
 	while (i < all_args)
 		add_value_back(&stack->a, arr[i++]);
 	stack->elements = all_args;
-	print_both_stacks(stack);
 	free (arr);
 	return (stack);
 }
@@ -67,11 +66,12 @@ void	set_all_args(int argc, char **argv, long int *arr)
 	}
 }
 
-// void	print_both_stacks(t_stack *stack)
-// {
-// 	(void)stack;
-// }
+void	print_both_stacks(t_stack *stack)
+{
+	(void)stack;
+}
 
+/*
 void	print_both_stacks(t_stack *stack)
 {
 	t_node	*current_a;
@@ -114,3 +114,4 @@ void	print_both_stacks(t_stack *stack)
 	}
 	#endif
 }
+*/

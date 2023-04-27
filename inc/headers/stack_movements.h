@@ -6,14 +6,14 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:26:11 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/20 21:45:19 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:40:42 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_MOVEMENTS_H
 # define STACK_MOVEMENTS_H
 
-#include "ps_structs.h"
+# include "ps_structs.h"
 
 /**
  * Swaps the first two elements of the head of stack.
@@ -23,7 +23,7 @@
  * @param s Stack struct
  * @param stack index for msg display. 0 = stack A; 1 = stack B
  * @param called 1 = if function is called from swap_both or 0 = if not
- */ 
+ */
 void	f_swap(t_node **head, t_stack *s, int stack, int called);
 /**
  * @brief Swaps the first two elements of the head of stack A and B.

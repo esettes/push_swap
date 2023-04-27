@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 20:19:28 by iostancu          #+#    #+#             */
-/*   Updated: 2022/06/29 18:27:10 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:45:03 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define TRUE 1
 # define FALSE 0
 # ifndef OPEN_MAX
-# define OPEN_MAX 10
+#  define OPEN_MAX 10
 # endif
 
 char	*get_next_line(int fd);

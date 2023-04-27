@@ -6,40 +6,40 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 22:03:43 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:40:07 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft.h"
-#include "gnl.h"
-#include "stdio.h"
-#include "ps_structs.h"
-#include "list_movements.h"
-#include "stack_movements.h"
+# include "libft.h"
+# include "gnl.h"
+# include "stdio.h"
+# include "ps_structs.h"
+# include "list_movements.h"
+# include "stack_movements.h"
 
-#define PRINT_	0
-#define COLORED	0
+# define PRINT_		0
+# define COLORED	0
 
-#if COLORED
-	#define RED_    "\x1b[31m"
-	#define GREEN_  "\x1b[32m"
-	#define YELLOW_ "\x1b[33m"
-	#define BLUE_   "\x1b[34m"
-	#define VIOLET_ "\x1b[35m"
-	#define CYAN_   "\x1b[36m"
-	#define RESET_  "\x1b[0m"
-#else
-	#define RED_    ""
-	#define GREEN_  ""
-	#define YELLOW_ ""
-	#define BLUE_   ""
-	#define VIOLET_ ""
-	#define CYAN_   ""
-	#define RESET_  ""
-#endif
+# if COLORED
+#  define RED_    "\x1b[31m"
+#  define GREEN_  "\x1b[32m"
+#  define YELLOW_ "\x1b[33m"
+#  define BLUE_   "\x1b[34m"
+#  define VIOLET_ "\x1b[35m"
+#  define CYAN_   "\x1b[36m"
+#  define RESET_  "\x1b[0m"
+# else
+#  define RED_    ""
+#  define GREEN_  ""
+#  define YELLOW_ ""
+#  define BLUE_   ""
+#  define VIOLET_ ""
+#  define CYAN_   ""
+#  define RESET_  ""
+# endif
 
 t_stack	*alloc_stacks(int argc, char **argv);
 int		is_valid_arg(char **argv, int argc);
@@ -71,7 +71,7 @@ void	sort_three_elems(t_stack *stack, t_node *node);
 void	f_insertion_sort(t_stack *stack);
 
 int		get_node_position_from_bottom(t_stack *stack, t_node *lst, int b_index,
-	int elems);
+			int elems);
 int		get_node_position_from_top(t_stack *stack, t_node *lst, int b_index);
 void	put_least_elem_of_b_to_head(t_stack *stack, int b_index);
 int		are_elems_of_current_bucket_in_stack(t_node *stack, int b_index);

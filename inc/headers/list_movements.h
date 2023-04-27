@@ -6,14 +6,14 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:23:39 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/25 23:47:37 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:40:52 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_MOVEMENTS_H
 # define LIST_MOVEMENTS_H
 
-#include "ps_structs.h"
+# include "ps_structs.h"
 
 void	add_back(t_node **head, t_node *new_node);
 void	add_value_back(t_node **head, long int data);

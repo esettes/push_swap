@@ -6,13 +6,12 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 19:06:23 by iostancu          #+#    #+#             */
-/*   Updated: 2022/09/26 15:57:32 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:42:24 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
-
 
 static int	check_char(char const *set, char c)
 {
