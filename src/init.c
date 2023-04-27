@@ -6,11 +6,13 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:30:38 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 23:19:29 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:04:23 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_temp_args(char **tmp, int i);
 
 t_stack	*alloc_stacks(int argc, char **argv)
 {
@@ -46,6 +48,7 @@ void	set_all_args(int argc, char **argv, long int *arr)
 	t_iter	arg;
 	char	**tmp;
 	int		all_args;
+	int		save_count;
 
 	all_args = count_all_args(argc, argv);
 	it.j = 1;
@@ -53,17 +56,27 @@ void	set_all_args(int argc, char **argv, long int *arr)
 	while (all_args-- > 0 && argv[it.j])
 	{
 		it.i = str_count(argv[it.j], ' ');
+		save_count = it.i;
 		if (it.i > 1)
 		{
 			arg.j = 0;
 			tmp = ft_split(argv[it.j++], ' ');
 			while (it.i-- >= 0 && tmp[arg.j])
 				arr[arg.i++] = ft_atoi(tmp[arg.j++]);
-			free (tmp);
+			free_temp_args(tmp, save_count);
 		}
 		else
 			arr[arg.i++] = ft_atoi(argv[it.j++]);
 	}
+}
+
+void	free_temp_args(char **tmp, int i)
+{
+	while (tmp[i])
+	{
+		free (tmp[i--]);
+	}
+	free (tmp);
 }
 
 void	print_both_stacks(t_stack *stack)
