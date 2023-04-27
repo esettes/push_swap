@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/26 18:18:56 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:33:10 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ void	free_stack(t_node **head);
  * @param stack Pointer to stack
  */
 void	free_entire_stack(t_stack *stack);
-long ft_strtol(const char *restrict nptr, char **restrict endptr, int base);
+long	ft_strtol(const char *nptr, char **endptr, int base);
+int		count_all_args(int argc, char **argv);
+int		str_count(char const *s, char c);
+int		are_correct_chars(char **argv);
+void	set_all_args(int argc, char **argv, long int *arr);
 
 #endif

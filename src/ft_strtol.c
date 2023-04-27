@@ -49,8 +49,12 @@ void	loop_str(const char *p, const char **endp, t_stol *sl, char **endptr)
 {
 	while (1)
 	{
+		printf("*p: %s \n", *p);
 		if (*p <= '9')
+		{
 			sl->c = *p - '0';
+			printf("sl->c: %i \n", sl->c);
+		}
 		else
 			break;
 		if (sl->c < 0 || sl->c >= 10)

@@ -6,60 +6,59 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/26 23:12:44 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:49:08 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	are_correct_chars(char **argv);
-int	are_all_integers(long int *arr, int i);
+int		are_all_integers(long int *arr, int i);
 
 int	is_valid_arg(char **argv, int argc)
 {
-	char 		*ptr;
-	long int	ret;
-	int 		i;
+	long int	*arr;
+	t_iter		it;
+	t_iter		arg;
+	char		**tmp;
+	int			all_args;
 
-	i = 1;
-	if (argv[1] == NULL)
+	if (!are_correct_chars(argv))
 		return (0);
-	while (argv[i])
-	{
-		ptr = NULL;
-		ret = ft_strtol(argv[i], &ptr, 10);
-
-		if (*ptr)
-			return (0);
-		i++;
-	}
+	all_args = count_all_args(argc, argv);
+	printf("all_args: %i \n", all_args);
+	arr = malloc(sizeof(long int) * all_args + 1);
+	if (!arr)
+		return (0);
+	set_all_args(argc, argv, arr);
+	
+	
+	// it.j = 0;
+	// arg.i = 0;
+	// while (all_args > 0 && argv[it.j + 1])
+	// {
+	// 	it.i = str_count(argv[it.j + 1], ' ');
+	// 	if (it.i > 1)
+	// 	{
+	// 		arg.j = 0;
+	// 		tmp = ft_split(argv[it.j + 1], ' ');
+	// 		while (--it.i > 0)
+	// 			arr[arg.i++] = ft_atoi(tmp[arg.j++]);
+	// 		it.j++;
+	// 		free (tmp);
+	// 	}
+	// 	else
+	// 	{
+	// 		arr[arg.i++] = ft_atoi(argv[it.j + 1]);
+	// 		it.j++;
+	// 	}
+	// 	all_args--;
+	// }
+	// arr[arg.i] = 0;
+	if (!are_all_integers(arr, all_args))
+		return (0);
+	free (arr);
 	return (1);
 }
-
-// int	is_valid_arg(char **argv, int argc)
-// {
-// 	long int	*arr;
-// 	int			i;
-// 	int			j;
-
-// 	j = 0;
-// 	if (!are_correct_chars(argv))
-// 		return (0);
-// 	arr = malloc(sizeof(long int) * argc);
-// 	if (!arr)
-// 		return (0);
-// 	i = argc;
-// 	while (argc-- > 0 && argv[j + 1])
-// 	{
-// 		arr[j] = ft_atoi(argv[j + 1]);
-// 		j++;
-// 	}
-// 	j = 0;
-// 	if (!are_all_integers(arr, i))
-// 		return (0);
-// 	free (arr);
-// 	return (1);
-// }
 
 int	is_sorted_stack(t_node **head)
 {
