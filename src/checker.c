@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:20:51 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 22:02:17 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:31:33 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int		are_all_integers(long int *arr, int i);
 int	is_valid_arg(char **argv, int argc)
 {
 	long int	*arr;
-	t_iter		it;
-	t_iter		arg;
-	char		**tmp;
 	int			all_args;
 
 	if (!are_correct_chars(argv))

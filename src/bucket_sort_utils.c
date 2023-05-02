@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:41:31 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 17:44:33 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/02 20:13:10 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	set_bucket_sort_values(t_stack *stack, t_node *lst)
 t_bucket	*get_elems_for_each_bucket(t_stack *stack, t_node *lst)
 {
 	t_bucket	*b_elems;
-	t_bucket	*head;
 	int			i;
 	int			b_index;
 
@@ -56,7 +55,6 @@ void	set_min_and_max_values(t_stack *stack, t_node *lst)
 {
 	int		i;
 	t_node	*tmp;
-	t_node	*next;
 
 	i = 0;
 	tmp = lst;

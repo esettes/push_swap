@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:10:47 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 23:35:28 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:34:28 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,6 @@ int	count_stack_elements(t_node *node)
 		i++;
 	}
 	return (i);
-}
-
-void	put_least_elem_of_b_to_head(t_stack *stack, int b_index)
-{
-	t_node	*tmp;
-	int		max_val;
-	int		elems;
-
-	elems = count_stack_elements(stack->b);
-	tmp = stack->b;
-	if (tmp)
-		max_val = tmp->index;
-	while (tmp)
-	{
-		if (tmp->next && tmp->next->index < max_val)
-			max_val = tmp->next->index;
-		tmp = tmp->next;
-	}
-	while (stack->b && elems > 2 && stack->b->index != max_val)
-		f_rotate(&stack->b, stack, 0, 1);
 }
 
 int	return_biggest_elems_from_b(t_stack *stack, t_node *node)
@@ -72,7 +52,7 @@ void	sort_stack_a(t_stack *stack)
 		node.top = get_node_index_position_from_top(stack->b, index);
 		node.bottom = get_node_index_position_from_bottom(stack->b, index,
 				elems_in_b);
-		do_less_rotation_moves_b(node, stack, &stack->b, index);
+		do_less_rotation_moves_b(node, stack, &stack->b);
 		f_push(&stack->b, &stack->a, stack, 1);
 		index--;
 	}

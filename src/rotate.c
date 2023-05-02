@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:41:58 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/26 17:42:17 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:32:42 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	f_reverse_rotate(t_node **head, t_stack *s, int called, int stack)
 
 void	f_rotate(t_node **head, t_stack *s, int called, int stack)
 {
-	long int	aux;
 	t_node		*tmp;
 
 	if (*head == NULL || (*head)->next == NULL)

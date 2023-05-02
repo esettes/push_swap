@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:52 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 23:55:40 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/02 20:08:30 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 			if (stack->elements <= 3)
 				sort_three_elems(stack, stack->a);
 			f_insertion_sort(stack);
+			free(stack->b_elems);
 		}
 		free_entire_stack(stack);
 	}
@@ -71,8 +72,9 @@ void	free_stack(t_node **head)
 
 void	free_entire_stack(t_stack *stack)
 {
-	free_stack(&stack->a);
-	free_stack(&stack->b);
-	free(stack->b_elems);
+	if (stack->a)
+		free_stack(&stack->a);
+	if (stack->b)
+		free_stack(&stack->b);
 	free(stack);
 }

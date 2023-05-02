@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:30:38 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/28 00:04:23 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:31:50 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_stack	*alloc_stacks(int argc, char **argv)
 {
 	int			i;
 	t_stack		*stack;
-	int			tmp;
 	long int	*arr;
 	int			all_args;
 

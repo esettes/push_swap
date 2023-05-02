@@ -6,13 +6,13 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:08 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 23:29:05 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:33:05 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index)
+void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l)
 {
 	int		i;
 	t_node	**tmp;
