@@ -6,13 +6,13 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:30:38 by iostancu          #+#    #+#             */
-/*   Updated: 2023/05/02 19:31:50 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:17:11 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_temp_args(char **tmp, int i);
+void	free_temp_args(char **tmp);
 
 t_stack	*alloc_stacks(int argc, char **argv)
 {
@@ -62,19 +62,23 @@ void	set_all_args(int argc, char **argv, long int *arr)
 			tmp = ft_split(argv[it.j++], ' ');
 			while (it.i-- >= 0 && tmp[arg.j])
 				arr[arg.i++] = ft_atoi(tmp[arg.j++]);
-			free_temp_args(tmp, save_count);
+			free_temp_args(tmp);
 		}
 		else
 			arr[arg.i++] = ft_atoi(argv[it.j++]);
 	}
 }
 
-void	free_temp_args(char **tmp, int i)
+void	free_temp_args(char **tmp)
 {
+	int	i;
+
+	i = 0;
 	while (tmp[i])
-	{
+		i++;
+	i--;
+	while (tmp[i])
 		free (tmp[i--]);
-	}
 	free (tmp);
 }
 

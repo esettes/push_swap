@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/05/02 19:34:08 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:16:53 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	f_insertion_sort(t_stack *stack);
 int		get_node_position_from_bottom(t_stack *stack, t_node *lst, int b_index,
 			int elems);
 int		get_node_position_from_top(t_stack *stack, t_node *lst, int b_index);
-void	put_least_elem_of_b_to_head(t_stack *stack, int b_index);
 int		are_elems_of_current_bucket_in_stack(t_node *stack, int b_index);
 int		get_node_index_position_from_bottom(t_node *lst, int i, int elems);
 int		get_node_index_position_from_top(t_node *lst, int index);
