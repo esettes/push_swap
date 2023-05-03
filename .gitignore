@@ -7,6 +7,7 @@ push_swap_visualizer
 *tester
 .DS_Store
 checker*
+checker_linux
 error
 test*
 docker
