@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:30:38 by iostancu          #+#    #+#             */
-/*   Updated: 2023/05/03 17:17:11 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:22:56 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ void	free_temp_args(char **tmp)
 	free (tmp);
 }
 
-void	print_both_stacks(t_stack *stack)
-{
-	(void)stack;
-}
+// void	print_both_stacks(t_stack *stack)
+// {
+// 	(void)stack;
+// }
 
-/*
+
 void	print_both_stacks(t_stack *stack)
 {
 	t_node	*current_a;
@@ -100,7 +100,6 @@ void	print_both_stacks(t_stack *stack)
 	current_a = stack->a;
 	current_b = stack->b;
 	aux = 0;
-	printf("\nMIN VAL: %d \n", stack->min_val);
 	printf("MAX VAL: %d \n", stack->max_val);
 	printf("Elements: %d \n", stack->elements);
 	printf("Bucket range: %d \n", stack->bucket_range);
@@ -110,24 +109,22 @@ void	print_both_stacks(t_stack *stack)
 	{
 		if (current_a && current_b)
 		{
-			printf(" %ld, %i \t %ld, %i\n",current_a->data,
-				current_a->b_index, current_b->data, current_b->b_index);
+			printf(" %ld \t %ld\n",current_a->data, current_b->data);
 			current_a = current_a->next;
 			current_b = current_b->next;
 			aux++;
 		}
 		else if (current_b)
 		{
-			printf("   \t %ld, %i\n", current_b->data, current_b->b_index);
+			printf("   \t %ld\n", current_b->data);
 			current_b = current_b->next;
 		}
 		else if (current_a)
 		{
-			printf(" %ld, %i \t  \n",current_a->data, current_a->b_index);
+			printf(" %ld\t  \n",current_a->data);
 			current_a = current_a->next;
 		}
 		aux++;
 	}
 	#endif
 }
-*/

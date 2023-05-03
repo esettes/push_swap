@@ -4,6 +4,10 @@
 *.a
 push_swap
 push_swap_visualizer
-ps_tester
-lais_tester
+*tester
 .DS_Store
+checker*
+error
+test*
+docker
+dbg
