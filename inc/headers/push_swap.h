@@ -6,7 +6,7 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:00:57 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/27 23:40:07 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:19:25 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "list_movements.h"
 # include "stack_movements.h"
 
-# define PRINT_		0
+# define PRINT_		1
 # define COLORED	0
 
 # if COLORED
@@ -46,7 +46,6 @@ int		is_valid_arg(char **argv, int argc);
 int		is_sorted_stack(t_node **head);
 int		is_reverse_sorted(t_node **head);
 int		is_duplicated_arg(t_node **head);
-
 void	print_both_stacks(t_stack *stack);
 /**
  * @brief Counts how many elements are currently in the indicated stack
@@ -69,19 +68,15 @@ void	set_index_to_each_elem(t_stack *stacks);
 void	set_bucket_sort_values(t_stack *stack, t_node *lst);
 void	sort_three_elems(t_stack *stack, t_node *node);
 void	f_insertion_sort(t_stack *stack);
-
 int		get_node_position_from_bottom(t_stack *stack, t_node *lst, int b_index,
 			int elems);
 int		get_node_position_from_top(t_stack *stack, t_node *lst, int b_index);
-void	put_least_elem_of_b_to_head(t_stack *stack, int b_index);
 int		are_elems_of_current_bucket_in_stack(t_node *stack, int b_index);
 int		get_node_index_position_from_bottom(t_node *lst, int i, int elems);
 int		get_node_index_position_from_top(t_node *lst, int index);
 int		is_one_of_three_biggest_elems(t_stack *stack, int val);
-
 void	do_less_rotation_moves_a(t_temp aux, t_stack *s, t_node **l);
-void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l, int index);
-
+void	do_less_rotation_moves_b(t_temp aux, t_stack *s, t_node **l);
 int		return_biggest_elems_from_b(t_stack *stack, t_node *node);
 void	sort_stack_a(t_stack *stack);
 /**
@@ -96,7 +91,6 @@ void	free_stack(t_node **head);
  * @param stack Pointer to stack
  */
 void	free_entire_stack(t_stack *stack);
-long	ft_strtol(const char *nptr, char **endptr, int base);
 int		count_all_args(int argc, char **argv);
 int		str_count(char const *s, char c);
 int		are_correct_chars(char **argv);

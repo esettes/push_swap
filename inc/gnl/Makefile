@@ -23,6 +23,7 @@ FLAGS	= -g -O0 -Wall -Wextra -Werror
 CC	= gcc
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
+	@mkdir -p $(OBJDIR)
 	@$(CC) $(FLAGS) -I$(LIBINC) -o $@ -c $< 
 #	@echo "${LWHITE}Compiling $(notdir $<)${LGREEN}✓$(RESET)"
 
@@ -31,10 +32,10 @@ $(NAME): $(OBJS)
 	@ranlib $(NAME)
 	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(LWHITE)\033[2;33m"
 
-all: obj	$(NAME) ${OBJS}
+all:	$(NAME) ${OBJS}
 
 obj:
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 clean:
 	@rm -rf $(OBJDIR)*.o

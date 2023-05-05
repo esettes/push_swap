@@ -6,19 +6,18 @@
 /*   By: iostancu <iostancu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:30:38 by iostancu          #+#    #+#             */
-/*   Updated: 2023/04/28 00:04:23 by iostancu         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:22:56 by iostancu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_temp_args(char **tmp, int i);
+void	free_temp_args(char **tmp);
 
 t_stack	*alloc_stacks(int argc, char **argv)
 {
 	int			i;
 	t_stack		*stack;
-	int			tmp;
 	long int	*arr;
 	int			all_args;
 
@@ -63,19 +62,23 @@ void	set_all_args(int argc, char **argv, long int *arr)
 			tmp = ft_split(argv[it.j++], ' ');
 			while (it.i-- >= 0 && tmp[arg.j])
 				arr[arg.i++] = ft_atoi(tmp[arg.j++]);
-			free_temp_args(tmp, save_count);
+			free_temp_args(tmp);
 		}
 		else
 			arr[arg.i++] = ft_atoi(argv[it.j++]);
 	}
 }
 
-void	free_temp_args(char **tmp, int i)
+void	free_temp_args(char **tmp)
 {
+	int	i;
+
+	i = 0;
 	while (tmp[i])
-	{
+		i++;
+	i--;
+	while (tmp[i])
 		free (tmp[i--]);
-	}
 	free (tmp);
 }
 
@@ -92,39 +95,36 @@ void	print_both_stacks(t_stack *stack)
 	int		aux;
 
 	#if PRINT_
+	usleep(160000);
 	printf("\033c");
 	current_a = stack->a;
 	current_b = stack->b;
 	aux = 0;
-	printf("\nMIN VAL: %d \n", stack->min_val);
 	printf("MAX VAL: %d \n", stack->max_val);
 	printf("Elements: %d \n", stack->elements);
 	printf("Bucket range: %d \n", stack->bucket_range);
 	printf("\n+ + + + + + + +\n\n");
-	printf("|A|\t\t|B|\n");
+	printf("|A|\t|B|\n");
 	while (aux <= stack->elements + 1)
 	{
 		if (current_a && current_b)
 		{
-			printf(" %ld, %i \t\t %ld, %i\n",current_a->data,
-				current_a->b_index, current_b->data, current_b->b_index);
+			printf(" %ld \t %ld\n",current_a->data, current_b->data);
 			current_a = current_a->next;
 			current_b = current_b->next;
 			aux++;
 		}
 		else if (current_b)
 		{
-			printf("   \t\t %ld, %i\n", current_b->data, current_b->b_index);
+			printf("   \t %ld\n", current_b->data);
 			current_b = current_b->next;
 		}
 		else if (current_a)
 		{
-			printf(" %ld, %i \t\t  \n",current_a->data, current_a->b_index);
+			printf(" %ld\t  \n",current_a->data);
 			current_a = current_a->next;
 		}
 		aux++;
 	}
-	usleep(110000);
 	#endif
 }
-
