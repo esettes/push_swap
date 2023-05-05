@@ -79,12 +79,12 @@ void	free_temp_args(char **tmp, int i)
 	free (tmp);
 }
 
-void	print_both_stacks(t_stack *stack)
-{
-	(void)stack;
-}
+// void	print_both_stacks(t_stack *stack)
+// {
+// 	(void)stack;
+// }
 
-/*
+
 void	print_both_stacks(t_stack *stack)
 {
 	t_node	*current_a;
@@ -92,7 +92,6 @@ void	print_both_stacks(t_stack *stack)
 	int		aux;
 
 	#if PRINT_
-	usleep(160000);
 	printf("\033c");
 	current_a = stack->a;
 	current_b = stack->b;
@@ -102,12 +101,12 @@ void	print_both_stacks(t_stack *stack)
 	printf("Elements: %d \n", stack->elements);
 	printf("Bucket range: %d \n", stack->bucket_range);
 	printf("\n+ + + + + + + +\n\n");
-	printf("|A|\t|B|\n");
+	printf("|A|\t\t|B|\n");
 	while (aux <= stack->elements + 1)
 	{
 		if (current_a && current_b)
 		{
-			printf(" %ld, %i \t %ld, %i\n",current_a->data,
+			printf(" %ld, %i \t\t %ld, %i\n",current_a->data,
 				current_a->b_index, current_b->data, current_b->b_index);
 			current_a = current_a->next;
 			current_b = current_b->next;
@@ -115,16 +114,17 @@ void	print_both_stacks(t_stack *stack)
 		}
 		else if (current_b)
 		{
-			printf("   \t %ld, %i\n", current_b->data, current_b->b_index);
+			printf("   \t\t %ld, %i\n", current_b->data, current_b->b_index);
 			current_b = current_b->next;
 		}
 		else if (current_a)
 		{
-			printf(" %ld, %i \t  \n",current_a->data, current_a->b_index);
+			printf(" %ld, %i \t\t  \n",current_a->data, current_a->b_index);
 			current_a = current_a->next;
 		}
 		aux++;
 	}
+	usleep(110000);
 	#endif
 }
-*/
+
